@@ -1,0 +1,234 @@
+import type { SiteContent } from './types';
+
+/** English content. Written as native English copy rather than a literal translation. */
+export const en: SiteContent = {
+  meta: {
+    localeTag: 'en-US',
+    tagline: 'Impact protection walls and sports flooring, installed with precision.',
+    description:
+      'SportPlus Montagen GmbH, based in Rosenheim, installs impact protection walls and sports flooring in sports halls, hotels and timber buildings. On schedule, to standard, handed over without defects.',
+    skipToContent: 'Skip to content',
+  },
+
+  nav: {
+    home: 'Home',
+    services: 'Services',
+    references: 'References',
+    about: 'About',
+    contact: 'Contact',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    languageLabel: 'Choose language',
+  },
+
+  home: {
+    hero: {
+      eyebrow: 'Installation specialists based in Rosenheim',
+      title: 'The installation partner you can rely on',
+      subtitle:
+        'We install impact protection walls and sports flooring in sports halls, hotels and timber buildings — built to current technical standards, delivered on the agreed date and handed over without defects.',
+      ctaPrimary: 'Request a quote',
+      ctaSecondary: 'View our services',
+    },
+    stats: [
+      { value: 'Defect-free', label: 'Handover on our projects' },
+      { value: 'DIN 18202', label: 'Installed to current standard' },
+      { value: 'On schedule', label: 'Every project delivered on time' },
+    ],
+    intro: {
+      title: 'Clean work, precise fit, on the agreed date',
+      body: [
+        'SportPlus Montagen specialises in installing impact protection walls and sports flooring. What we build gets used every day — by school classes, sports clubs and hotel guests. We work to match.',
+        'We take on work for construction firms, local authorities and private clients, from a single hall wall through to a complete interior fit-out.',
+      ],
+    },
+    servicesTeaser: {
+      title: 'What we take off your hands',
+      subtitle:
+        'From stripping out the old elements to signing off the finished floor — handled end to end.',
+      cta: 'All services',
+    },
+    sectorsTeaser: {
+      title: 'Where we work',
+      subtitle: 'Three sectors we have worked in for years.',
+      cta: 'View references',
+    },
+    ctaBand: {
+      title: 'Have a project coming up?',
+      body:
+        'Send us the essentials — hall size, preferred system, target date. We will come back to you promptly with a realistic assessment.',
+      cta: 'Get in touch',
+    },
+  },
+
+  services: {
+    title: 'Services',
+    subtitle: 'Installation, strip-out, surveying and handover from a single contractor.',
+    lead:
+      'We handle the whole sequence: strip out the old elements, survey the space, install the new system and walk the handover with you. One point of contact, one schedule, one result.',
+    items: [
+      {
+        id: 'installation',
+        title: 'Installation & Service',
+        body:
+          'We install impact protection walls and sports flooring to current technical standards — accurately aligned, securely fixed and executed to specification. We work with all the common systems:',
+        bullets: [
+          'Protection walls with timber or metal frames, with fire protection on request',
+          'Foam and plywood panels, including Haro systems',
+          'Light 19 and Light 27 on level wall surfaces to DIN 18202',
+          'Textile protective coverings',
+        ],
+        note:
+          'System not listed? Get in touch — we can usually find a way to make it work.',
+      },
+      {
+        id: 'dismantling',
+        title: 'Strip-out & Disposal',
+        body:
+          'We remove old elements carefully and dispose of them properly. Specialist tooling lets us release protection walls and sports floors without damaging the building fabric underneath.',
+        bullets: [
+          'Impact protection walls and sports floors of all construction types',
+          'Old grandstands and sports equipment',
+          'Fitted units, gates and doors',
+          'Proper disposal, documentation included',
+        ],
+      },
+      {
+        id: 'surveying',
+        title: 'Surveying & Bespoke Elements',
+        body:
+          'Not every hall follows standard dimensions. We survey on site and build the elements that fall outside the standard range, so everything sits flush at the end.',
+        bullets: [
+          'Window frames and reveals',
+          'Ball roller boards',
+          'Bespoke elements to your specification',
+        ],
+      },
+      {
+        id: 'handover',
+        title: 'Handover & Documentation',
+        body:
+          'Handover normally takes place directly after installation, carried out by our qualified fitters. Separate handover appointments can be arranged on request.',
+        note: 'We are happy to show you our recent handover reports in advance.',
+      },
+    ],
+  },
+
+  references: {
+    title: 'References',
+    subtitle: 'Three sectors we have worked in for years.',
+    lead:
+      'A selection of our work. For references near you, or for a particular system, just ask.',
+    sectors: [
+      {
+        id: 'sports-halls',
+        title: 'Sports halls',
+        body:
+          'Impact protection and sports flooring for school, club and multi-purpose halls. Precisely aligned, cleanly jointed and built to last for decades.',
+      },
+      {
+        id: 'hotels',
+        title: 'Hotels',
+        body:
+          'Interior fit-out for hospitality, commercial and residential projects. Delivered by experienced tradespeople who understand that every day counts when a building stays open.',
+      },
+      {
+        id: 'timber-houses',
+        title: 'Timber buildings',
+        body:
+          'Timber construction for residential and non-residential buildings, plus energy-efficiency retrofits using natural, ecological materials.',
+      },
+    ],
+    galleryNote: 'More project photographs coming soon.',
+  },
+
+  about: {
+    title: 'About us',
+    subtitle: 'One company, four principles.',
+    lead: [
+      'SportPlus Montagen is an installation company based in Rosenheim. We have the experience to install protection walls and sports floors of every kind — and the standards to get it right every time.',
+      'We work for companies and private clients alike. What stays the same either way: a named point of contact, firm dates, and a site left the way we would want to find it ourselves.',
+    ],
+    pillars: [
+      {
+        id: 'quality',
+        title: 'Quality',
+        body:
+          'Our projects are handed over free of defects. That is not a marketing line but a matter of record — we are happy to show you the recent handover reports on request.',
+      },
+      {
+        id: 'reliability',
+        title: 'Reliability',
+        body:
+          'A commitment is a commitment. You reach us on the same number throughout the project and always know where your job stands.',
+      },
+      {
+        id: 'detail',
+        title: 'Attention to detail',
+        body:
+          'Edges, joints, transitions: the details decide whether a hall still looks right after five years. You can see how we handle them in our references.',
+      },
+      {
+        id: 'punctuality',
+        title: 'On-time delivery',
+        body:
+          'We have completed every project to date on schedule and intend to keep it that way. If a delivery slips, we will work through the options with you so your date still holds.',
+      },
+    ],
+    closing: {
+      title: 'See for yourself',
+      body:
+        'Call us or drop us a line about what is coming up. We will get back to you promptly with an honest assessment — including when we are not the right company for your project.',
+      cta: 'Get in touch',
+    },
+  },
+
+  contact: {
+    title: 'Contact',
+    subtitle: 'We would like to hear from you.',
+    lead:
+      'Tell us briefly about your project: the type of hall or building, approximate area, preferred system and target date. The more we know, the more precise our response can be.',
+    form: {
+      firstName: 'First name',
+      lastName: 'Last name',
+      email: 'Email',
+      phone: 'Phone',
+      subject: 'Subject',
+      message: 'Your message',
+      messagePlaceholder:
+        'What is the project? Type of building, approximate area, preferred system, target date …',
+      consent:
+        'I have read the privacy policy and consent to my details being processed in order to handle my enquiry.',
+      submit: 'Send enquiry',
+      sending: 'Sending …',
+      success:
+        'Thank you for your message! We normally get back to you within one working day.',
+      error:
+        'That did not go through. Please try again, or simply give us a call.',
+      required: 'Required',
+    },
+    directTitle: 'Direct line',
+    phoneLabel: 'Phone',
+    emailLabel: 'Email',
+    addressLabel: 'Address',
+    hoursLabel: 'Availability',
+    hours: 'Monday to Friday, 8:00 – 18:00',
+    responseNote: 'We normally reply within one working day.',
+  },
+
+  footer: {
+    about:
+      'Installation of impact protection walls and sports flooring in sports halls, hotels and timber buildings. Based in Rosenheim, working across the region.',
+    quickLinksTitle: 'Navigation',
+    contactTitle: 'Contact',
+    legalTitle: 'Legal',
+    imprint: 'Imprint',
+    privacy: 'Privacy',
+    rights: 'All rights reserved.',
+  },
+
+  legal: {
+    imprintTitle: 'Imprint',
+    privacyTitle: 'Privacy Policy',
+  },
+};

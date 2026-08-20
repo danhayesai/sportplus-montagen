@@ -1,0 +1,131 @@
+---
+import { type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+/**
+ * Light/dark toggle.
+ *
+ * The site follows the operating system preference by default. Pressing the
+ * button pins an explicit choice and stores it, which BaseLayout re-applies
+ * before first paint so the page never flashes the wrong theme.
+ */
+const labels = {
+  de: { toggle: 'Farbschema wechseln' },
+  en: { toggle: 'Switch colour scheme' },
+} as const;
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  aria-label={labels[lang].toggle}
+  title={labels[lang].toggle}
+>
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="12" cy="12" r="4.2" />
+    <path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" />
+  </svg>
+
+  <svg
+    class="theme-toggle__icon theme-toggle__icon--moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8Z" />
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+  }
+
+  .theme-toggle__icon {
+    grid-area: 1 / 1;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  /* Show the icon for the theme the button switches *to*. Light theme is the
+     default, so the moon shows first. */
+  .theme-toggle__icon--sun {
+    display: none;
+  }
+
+  :root[data-theme='dark'] .theme-toggle__icon--sun {
+    display: block;
+  }
+
+  :root[data-theme='dark'] .theme-toggle__icon--moon {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .theme-toggle__icon--sun {
+      display: block;
+    }
+
+    :root:not([data-theme='light']) .theme-toggle__icon--moon {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+  if (button) {
+    button.addEventListener('click', () => {
+      const root = document.documentElement;
+      // Resolve what is on screen right now, whether that came from an
+      // explicit choice or from the system preference.
+      const current =
+        root.dataset.theme ??
+        (window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light');
+      const next = current === 'dark' ? 'light' : 'dark';
+
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem('theme', next);
+      } catch (error) {
+        /* Storage blocked - the choice simply will not persist. */
+      }
+    });
+  }
+</script>

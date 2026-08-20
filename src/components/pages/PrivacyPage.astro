@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import { site } from '../../config/site';
+import { getContent, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+
+/**
+ * Privacy policy.
+ *
+ * This describes what the site as built actually does: it is a static site
+ * with no cookies, no analytics and no third-party tracking. The only personal
+ * data collected is what a visitor types into the contact form.
+ *
+ * IMPORTANT: this is a starting point written to match the current build, not
+ * legal advice. Have it reviewed before launch, and update it if you later add
+ * analytics, embedded maps, or a different form provider.
+ */
+const labels = {
+  de: {
+    intro:
+      'Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Erklärung beschreibt, welche Daten beim Besuch dieser Website verarbeitet werden und zu welchem Zweck.',
+    controllerTitle: 'Verantwortliche Stelle',
+    controllerText:
+      'Verantwortlich für die Datenverarbeitung auf dieser Website ist:',
+    hostingTitle: 'Hosting und Server-Logfiles',
+    hostingText:
+      'Diese Website wird als statische Website bei einem Hosting-Dienstleister betrieben. Beim Aufruf der Seiten erhebt der Anbieter automatisch Informationen, die Ihr Browser übermittelt (sogenannte Server-Logfiles): aufgerufene Seite, Datum und Uhrzeit, übertragene Datenmenge, Browsertyp und Betriebssystem, Referrer-URL sowie die IP-Adresse. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer technisch fehlerfreien Darstellung).',
+    cookiesTitle: 'Cookies und Tracking',
+    cookiesText:
+      'Diese Website setzt keine Cookies zu Analyse- oder Marketingzwecken und bindet keine Tracking-Dienste ein. Lediglich Ihre Auswahl des Farbschemas (hell oder dunkel) wird auf Wunsch lokal in Ihrem Browser gespeichert. Diese Information verlässt Ihr Gerät nicht und wird von uns nicht ausgelesen.',
+    formTitle: 'Kontaktformular und E-Mail-Kontakt',
+    formText:
+      'Wenn Sie uns über das Kontaktformular oder per E-Mail eine Anfrage senden, verarbeiten wir die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, gegebenenfalls Telefonnummer sowie den Inhalt Ihrer Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Maßnahmen, ansonsten Art. 6 Abs. 1 lit. f DSGVO. Ihre Angaben verbleiben bei uns, bis Sie uns zur Löschung auffordern oder der Zweck für die Speicherung entfällt. Zwingende gesetzliche Aufbewahrungsfristen bleiben unberührt.',
+    fontsTitle: 'Schriftarten',
+    fontsText:
+      'Zur einheitlichen Darstellung von Schriftarten werden Web Fonts eingebunden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Schriftarten, wobei Ihre IP-Adresse an den Anbieter der Schriftarten übertragen werden kann. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.',
+    rightsTitle: 'Ihre Rechte',
+    rightsIntro:
+      'Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Darüber hinaus haben Sie das Recht auf:',
+    rightsList: [
+      'Berichtigung unrichtiger Daten (Art. 16 DSGVO)',
+      'Löschung Ihrer Daten (Art. 17 DSGVO)',
+      'Einschränkung der Verarbeitung (Art. 18 DSGVO)',
+      'Datenübertragbarkeit (Art. 20 DSGVO)',
+      'Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)',
+      'Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft',
+    ],
+    rightsContact:
+      'Zur Ausübung dieser Rechte genügt eine formlose Nachricht an die oben genannten Kontaktdaten.',
+    complaintTitle: 'Beschwerderecht bei der Aufsichtsbehörde',
+    complaintText:
+      'Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren. Zuständig ist in der Regel die Aufsichtsbehörde Ihres gewöhnlichen Aufenthaltsortes oder unseres Firmensitzes.',
+    sslTitle: 'SSL- bzw. TLS-Verschlüsselung',
+    sslText:
+      'Diese Website nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt. Bei aktiver Verschlüsselung können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.',
+    changesTitle: 'Änderungen dieser Datenschutzerklärung',
+    changesText:
+      'Wir passen diese Datenschutzerklärung an, sobald Änderungen an der Website oder an den eingesetzten Diensten dies erforderlich machen. Es gilt jeweils die auf dieser Seite veröffentlichte Fassung.',
+  },
+  en: {
+    intro:
+      'Protecting your personal data matters to us. This policy explains what data is processed when you visit this website, and for what purpose.',
+    controllerTitle: 'Data controller',
+    controllerText:
+      'The party responsible for data processing on this website is:',
+    hostingTitle: 'Hosting and server log files',
+    hostingText:
+      'This website is operated as a static site with a hosting provider. When you access a page, the provider automatically collects information transmitted by your browser (server log files): the page requested, date and time, volume of data transferred, browser type and operating system, referrer URL and IP address. This data is used solely to operate the site securely and reliably. The legal basis is Art. 6 (1) (f) GDPR (legitimate interest in a technically sound presentation).',
+    cookiesTitle: 'Cookies and tracking',
+    cookiesText:
+      'This website sets no cookies for analytics or marketing purposes and embeds no tracking services. Only your colour scheme preference (light or dark) is stored locally in your browser if you choose one. That information never leaves your device and is not read by us.',
+    formTitle: 'Contact form and email',
+    formText:
+      'If you send us an enquiry via the contact form or by email, we process the details you provide (name, email address, telephone number where given, and the content of your message) solely in order to handle your enquiry. The legal basis is Art. 6 (1) (b) GDPR for pre-contractual measures, otherwise Art. 6 (1) (f) GDPR. Your details remain with us until you ask us to erase them or the purpose for storing them no longer applies. Mandatory statutory retention periods remain unaffected.',
+    fontsTitle: 'Web fonts',
+    fontsText:
+      'Web fonts are used to present typefaces consistently. When you open a page, your browser loads the required fonts, and your IP address may be transmitted to the font provider in the process. The legal basis is Art. 6 (1) (f) GDPR.',
+    rightsTitle: 'Your rights',
+    rightsIntro:
+      'You have the right at any time to obtain information free of charge about your stored personal data, its origin and recipients, and the purpose of processing. You additionally have the right to:',
+    rightsList: [
+      'Rectification of inaccurate data (Art. 16 GDPR)',
+      'Erasure of your data (Art. 17 GDPR)',
+      'Restriction of processing (Art. 18 GDPR)',
+      'Data portability (Art. 20 GDPR)',
+      'Object to processing (Art. 21 GDPR)',
+      'Withdraw consent with effect for the future',
+    ],
+    rightsContact:
+      'An informal message to the contact details above is enough to exercise these rights.',
+    complaintTitle: 'Right to lodge a complaint',
+    complaintText:
+      'You have the right to lodge a complaint with a data protection supervisory authority about our processing of your personal data. The competent authority is usually the one for your habitual residence or for our registered office.',
+    sslTitle: 'SSL / TLS encryption',
+    sslText:
+      'For security reasons this website uses SSL / TLS encryption. You can recognise an encrypted connection by the browser address bar switching from "http://" to "https://". When encryption is active, the data you send us cannot be read by third parties.',
+    changesTitle: 'Changes to this policy',
+    changesText:
+      'We update this privacy policy whenever changes to the website or the services it uses make that necessary. The version published on this page applies.',
+  },
+} as const;
+
+const l = labels[lang];
+---
+
+<BaseLayout lang={lang} title={t.legal.privacyTitle}>
+  <PageHero title={t.legal.privacyTitle} />
+
+  <section class="section">
+    <div class="container container--narrow prose legal">
+      <p>{l.intro}</p>
+
+      <h2>{l.controllerTitle}</h2>
+      <p>{l.controllerText}</p>
+      <p>
+        {site.legalName}<br />
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}<br />
+        {site.address.country}<br />
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a><br />
+        <a href={`tel:${site.contact.phoneHref}`}>{site.contact.phone}</a>
+      </p>
+
+      <h2>{l.hostingTitle}</h2>
+      <p>{l.hostingText}</p>
+
+      <h2>{l.cookiesTitle}</h2>
+      <p>{l.cookiesText}</p>
+
+      <h2>{l.formTitle}</h2>
+      <p>{l.formText}</p>
+
+      <h2>{l.fontsTitle}</h2>
+      <p>{l.fontsText}</p>
+
+      <h2>{l.rightsTitle}</h2>
+      <p>{l.rightsIntro}</p>
+      <ul>
+        {l.rightsList.map((right) => <li>{right}</li>)}
+      </ul>
+      <p>{l.rightsContact}</p>
+
+      <h2>{l.complaintTitle}</h2>
+      <p>{l.complaintText}</p>
+
+      <h2>{l.sslTitle}</h2>
+      <p>{l.sslText}</p>
+
+      <h2>{l.changesTitle}</h2>
+      <p>{l.changesText}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .legal h2 {
+    color: var(--color-text);
+    font-size: var(--text-lg);
+  }
+
+  .legal p {
+    overflow-wrap: break-word;
+  }
+</style>

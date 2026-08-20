@@ -1,0 +1,65 @@
+/**
+ * Company and site-wide constants.
+ *
+ * These values are language neutral, so they live outside the i18n files and
+ * are referenced from the footer, the contact page, the imprint and the
+ * structured data. Change a detail here and it updates everywhere.
+ */
+
+export const site = {
+  /** Legal company name, as registered. */
+  legalName: 'SportPlus Montagen GmbH',
+  /** Short name used in navigation and headings. */
+  shortName: 'SportPlus Montagen',
+  /** Canonical production URL, without a trailing slash. */
+  url: 'https://www.sportplusmontagen.de',
+
+  contact: {
+    email: 'info@sportplusmontagen.de',
+    phone: '0176 56802656',
+    /** E.164 format, used for tel: links and structured data. */
+    phoneHref: '+4917656802656',
+  },
+
+  address: {
+    street: 'Möslstrasse 11e',
+    postalCode: '83024',
+    city: 'Rosenheim',
+    country: 'Deutschland',
+    countryCode: 'DE',
+  },
+
+  legal: {
+    managingDirector: 'Daniel Hayes',
+    /** Responsible for content under § 18 (2) MStV. */
+    contentResponsible: 'Daniel Hayes',
+    vatId: 'DE332276997',
+    // TODO: A GmbH must state its registry court and HRB number under § 5 TMG.
+    // Fill these in from the commercial register extract before going live.
+    registryCourt: '',
+    registrationNumber: '',
+  },
+
+  /**
+   * Endpoint for the contact form.
+   *
+   * The site is fully static, so form delivery runs through a third-party
+   * endpoint. Paste the form ID from your provider (for example Web3Forms or
+   * Formspree) here. While this is empty, the form falls back to a mailto link
+   * so no enquiry is ever silently lost.
+   */
+  contactFormEndpoint: '',
+
+  /** Business hours used for structured data, in 24h format. */
+  openingHours: {
+    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  },
+} as const;
+
+/** Single-line postal address, used in the footer and structured data. */
+export function getFormattedAddress(): string {
+  const { street, postalCode, city } = site.address;
+  return `${street}, ${postalCode} ${city}`;
+}

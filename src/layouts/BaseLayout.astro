@@ -1,0 +1,147 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../config/site';
+import {
+  getContent,
+  getAlternatePath,
+  languages,
+  type Language,
+} from '../i18n';
+import '../styles/global.css';
+
+interface Props {
+  lang: Language;
+  /** Page title, without the company suffix. */
+  title: string;
+  /** Meta description. Falls back to the site-wide description. */
+  description?: string;
+  /** Set on the home page so the title is not duplicated. */
+  isHome?: boolean;
+}
+
+const { lang, title, description, isHome = false } = Astro.props;
+
+const t = getContent(lang);
+const pathname = Astro.url.pathname;
+
+const pageTitle = isHome
+  ? `${site.shortName} — ${t.meta.tagline}`
+  : `${title} | ${site.shortName}`;
+
+const metaDescription = description ?? t.meta.description;
+const canonicalUrl = new URL(pathname, site.url).href;
+
+// One alternate link per language, plus x-default pointing at German.
+const alternates = (Object.keys(languages) as Language[]).map((code) => ({
+  code,
+  href: new URL(getAlternatePath(pathname, code), site.url).href,
+}));
+
+// LocalBusiness structured data helps the company surface in local search
+// results and map listings.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.legalName,
+  alternateName: site.shortName,
+  description: metaDescription,
+  url: site.url,
+  telephone: site.contact.phoneHref,
+  email: site.contact.email,
+  vatID: site.legal.vatId,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressCountry: site.address.countryCode,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.openingHours.days,
+      opens: site.openingHours.opens,
+      closes: site.openingHours.closes,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    {
+      alternates.map((alternate) => (
+        <link
+          rel="alternate"
+          hreflang={alternate.code}
+          href={alternate.href}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(getAlternatePath(pathname, 'de'), site.url).href}
+    />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#1b4272" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.shortName} />
+    <meta property="og:locale" content={t.meta.localeTag.replace('-', '_')} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Self-hosting note: Inter is loaded from Google Fonts for now. To drop
+         the third-party request entirely, download the woff2 files into
+         /public/fonts and swap this for a local @font-face rule. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+
+    <!-- Applies the saved theme before first paint so the page never flashes
+         the wrong colour scheme. -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.dataset.theme = stored;
+          }
+        } catch (error) {
+          /* localStorage unavailable - fall back to system preference */
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{t.meta.skipToContent}</a>
+    <Header lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

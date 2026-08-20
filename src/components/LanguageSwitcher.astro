@@ -1,0 +1,77 @@
+---
+import { getContent, getAlternatePath, languages, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const pathname = Astro.url.pathname;
+
+/**
+ * Rendered as plain links rather than a dropdown: with only two languages a
+ * dropdown adds a click and a stack of JavaScript for no benefit, and links
+ * keep the alternate version crawlable.
+ *
+ * Each link points at the equivalent page in the other language, so switching
+ * from `/de/leistungen` lands on `/en/services`, not back on the home page.
+ */
+const options = (Object.keys(languages) as Language[]).map((code) => ({
+  code,
+  label: code.toUpperCase(),
+  title: languages[code],
+  href: getAlternatePath(pathname, code),
+  isActive: code === lang,
+}));
+---
+
+<div class="language-switcher" role="group" aria-label={t.nav.languageLabel}>
+  {
+    options.map((option) => (
+      <a
+        href={option.href}
+        class="language-switcher__option"
+        hreflang={option.code}
+        lang={option.code}
+        title={option.title}
+        aria-current={option.isActive ? 'true' : undefined}
+      >
+        {option.label}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .language-switcher__option {
+    padding: 0.32rem 0.6rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .language-switcher__option:hover {
+    color: var(--color-text);
+  }
+
+  .language-switcher__option[aria-current='true'] {
+    background-color: var(--color-bg-raised);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text);
+  }
+</style>

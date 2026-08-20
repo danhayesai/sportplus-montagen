@@ -1,0 +1,50 @@
+---
+interface Props {
+  /** Small label above the heading. */
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  /** Longer introductory paragraph below the subtitle. */
+  lead?: string;
+}
+
+const { eyebrow, title, subtitle, lead } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1 class="page-hero__title">{title}</h1>
+    {subtitle && <p class="page-hero__subtitle">{subtitle}</p>}
+    {lead && <p class="page-hero__lead">{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem);
+    background-color: var(--color-bg-subtle);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero__title {
+    max-width: 20ch;
+    font-size: var(--text-4xl);
+  }
+
+  .page-hero__subtitle {
+    max-width: 45ch;
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--text-xl);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+  }
+
+  .page-hero__lead {
+    max-width: 60ch;
+    margin-top: var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+</style>

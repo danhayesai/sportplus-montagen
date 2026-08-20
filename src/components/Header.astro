@@ -1,0 +1,289 @@
+---
+import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { site } from '../config/site';
+import {
+  getContent,
+  getPath,
+  getNavLabel,
+  primaryNavKeys,
+  type Language,
+} from '../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const pathname = Astro.url.pathname;
+
+const navItems = primaryNavKeys.map((key) => {
+  const href = getPath(key, lang);
+  // Normalise trailing slashes so `/de` and `/de/` both match the home entry.
+  const normalised = pathname.replace(/\/$/, '') || pathname;
+  return {
+    key,
+    href,
+    label: getNavLabel(key, lang),
+    isCurrent: normalised === href,
+  };
+});
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href={getPath('home', lang)} class="site-header__brand" aria-label={site.shortName}>
+      <Logo />
+    </a>
+
+    <nav class="site-nav" aria-label={t.nav.home} id="site-nav">
+      <ul class="site-nav__list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="site-nav__link"
+                aria-current={item.isCurrent ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="site-nav__actions">
+        <LanguageSwitcher lang={lang} />
+        <ThemeToggle lang={lang} />
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label={t.nav.openMenu}
+      data-label-open={t.nav.openMenu}
+      data-label-close={t.nav.closeMenu}
+    >
+      <span class="menu-toggle__bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    min-height: 4.5rem;
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .site-nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav__link {
+    display: block;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+
+  .site-nav__link:hover {
+    background-color: var(--color-bg-subtle);
+    color: var(--color-link);
+  }
+
+  .site-nav__link[aria-current='page'] {
+    color: var(--color-accent-600);
+    font-weight: 600;
+  }
+
+  .site-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-left: var(--space-lg);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .menu-toggle {
+    display: none;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  /* Three bars that morph into a cross when the menu is open. */
+  .menu-toggle__bars,
+  .menu-toggle__bars::before,
+  .menu-toggle__bars::after {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: transform var(--transition-base),
+      opacity var(--transition-fast);
+  }
+
+  .menu-toggle__bars::before,
+  .menu-toggle__bars::after {
+    content: '';
+    position: absolute;
+  }
+
+  .menu-toggle__bars::before {
+    transform: translateY(-6px);
+  }
+
+  .menu-toggle__bars::after {
+    transform: translateY(6px);
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars {
+    background-color: transparent;
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars::before {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__bars::after {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  @media (max-width: 60rem) {
+    .menu-toggle {
+      display: grid;
+      position: relative;
+    }
+
+    .site-nav {
+      position: fixed;
+      inset: 4.5rem 0 auto 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-lg);
+      max-height: calc(100svh - 4.5rem);
+      padding: var(--space-xl) var(--container-gutter) var(--space-2xl);
+      overflow-y: auto;
+      background-color: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      /* Hidden by default; revealed when the toggle sets the open state. */
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-0.5rem);
+      transition: opacity var(--transition-base),
+        transform var(--transition-base), visibility var(--transition-base);
+    }
+
+    .site-nav[data-open='true'] {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .site-nav__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2xs);
+    }
+
+    .site-nav__link {
+      padding: var(--space-sm) var(--space-md);
+      font-size: var(--text-lg);
+    }
+
+    .site-nav__actions {
+      justify-content: space-between;
+      padding-left: 0;
+      padding-top: var(--space-lg);
+      border-left: none;
+      border-top: 1px solid var(--color-border);
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu: toggles the panel, keeps ARIA state in sync, and closes on
+  // Escape or when the viewport grows back to the desktop layout.
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#site-nav');
+
+  if (toggle && nav) {
+    const setOpen = (open: boolean) => {
+      nav.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+      const label = open
+        ? toggle.dataset.labelClose
+        : toggle.dataset.labelOpen;
+      if (label) {
+        toggle.setAttribute('aria-label', label);
+      }
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    const desktop = window.matchMedia('(min-width: 60.0625rem)');
+    desktop.addEventListener('change', (event) => {
+      if (event.matches) {
+        setOpen(false);
+      }
+    });
+  }
+</script>

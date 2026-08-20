@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import { getContent, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const services = t.services;
+---
+
+<BaseLayout lang={lang} title={services.title} description={services.subtitle}>
+  <PageHero
+    title={services.title}
+    subtitle={services.subtitle}
+    lead={services.lead}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="services-list">
+        {
+          services.items.map((item, index) => (
+            <article class="service" id={item.id}>
+              <div class="service__aside">
+                <span class="card__index">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <div class="service__content">
+                <h2 class="service__title">{item.title}</h2>
+                <p class="service__body">{item.body}</p>
+
+                {item.bullets && (
+                  <ul class="card__list service__bullets">
+                    {item.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {item.note && <p class="card__note">{item.note}</p>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    title={t.home.ctaBand.title}
+    body={t.home.ctaBand.body}
+    cta={t.home.ctaBand.cta}
+  />
+</BaseLayout>
+
+<style>
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+
+  .service {
+    display: grid;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-3xl);
+    border-bottom: 1px solid var(--color-border);
+    /* Offset anchor links so the sticky header does not cover the heading. */
+    scroll-margin-top: 6rem;
+  }
+
+  .service:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  @media (min-width: 48rem) {
+    .service {
+      grid-template-columns: 5rem 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+
+  .service__title {
+    font-size: var(--text-2xl);
+  }
+
+  .service__body {
+    max-width: 62ch;
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .service__bullets {
+    max-width: 62ch;
+    margin-top: var(--space-lg);
+  }
+
+  .service__bullets li {
+    font-size: var(--text-base);
+  }
+
+  .service__content .card__note {
+    max-width: 62ch;
+    margin-top: var(--space-lg);
+    padding-top: 0;
+  }
+</style>

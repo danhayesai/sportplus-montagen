@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBand from '../CtaBand.astro';
+import { getContent, getPath, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const home = t.home;
+---
+
+<BaseLayout lang={lang} title={t.nav.home} isHome>
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="eyebrow">{home.hero.eyebrow}</span>
+        <h1 class="hero__title">{home.hero.title}</h1>
+        <p class="hero__subtitle">{home.hero.subtitle}</p>
+
+        <div class="button-group">
+          <a href={getPath('contact', lang)} class="button button--primary">
+            {home.hero.ctaPrimary}
+          </a>
+          <a href={getPath('services', lang)} class="button button--secondary">
+            {home.hero.ctaSecondary}
+          </a>
+        </div>
+      </div>
+
+      <!-- Replace with a wide photograph of a finished hall. -->
+      <div class="media-placeholder media-placeholder--wide hero__media">
+        <span>hero.jpg &mdash; 1600 &times; 900</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <ul class="stats__list">
+        {
+          home.stats.map((stat) => (
+            <li class="stats__item">
+              <span class="stats__value">{stat.value}</span>
+              <span class="stats__label">{stat.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-header section-header--centred">
+        <h2 class="section-title">{home.intro.title}</h2>
+      </div>
+      <div class="prose intro__body">
+        {home.intro.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">{home.servicesTeaser.title}</h2>
+        <p class="section-subtitle">{home.servicesTeaser.subtitle}</p>
+      </div>
+
+      <div class="grid grid--2">
+        {
+          t.services.items.map((item, index) => (
+            <article class="card">
+              <span class="card__index">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 class="card__title">{item.title}</h3>
+              <p class="card__body">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="section-cta">
+        <a href={getPath('services', lang)} class="link-arrow">
+          {home.servicesTeaser.cta}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">{home.sectorsTeaser.title}</h2>
+        <p class="section-subtitle">{home.sectorsTeaser.subtitle}</p>
+      </div>
+
+      <div class="grid grid--3">
+        {
+          t.references.sectors.map((sector) => (
+            <article class="sector-card">
+              <div class="media-placeholder">
+                <span>{sector.id}.jpg &mdash; 1200 &times; 900</span>
+              </div>
+              <h3 class="card__title">{sector.title}</h3>
+              <p class="card__body">{sector.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="section-cta">
+        <a href={getPath('references', lang)} class="link-arrow">
+          {home.sectorsTeaser.cta}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    title={home.ctaBand.title}
+    body={home.ctaBand.body}
+    cta={home.ctaBand.cta}
+  />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 15% 0%,
+        rgb(47 107 181 / 0.09),
+        transparent 60%
+      ),
+      var(--color-bg);
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 62rem) {
+    .hero__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hero__title {
+    max-width: 16ch;
+    font-size: var(--text-4xl);
+  }
+
+  .hero__subtitle {
+    max-width: 52ch;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero__media {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .stats {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .stats__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: var(--space-lg);
+    margin: 0;
+    padding: var(--space-xl);
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    list-style: none;
+  }
+
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    text-align: center;
+  }
+
+  .stats__value {
+    color: var(--color-brand-600);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  :root[data-theme='dark'] .stats__value {
+    color: var(--color-brand-300);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .stats__value {
+      color: var(--color-brand-300);
+    }
+  }
+
+  .stats__label {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .intro__body {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    text-align: center;
+  }
+
+  .sector-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .sector-card .media-placeholder {
+    margin-bottom: var(--space-xs);
+  }
+
+  .section-cta {
+    margin-top: var(--space-2xl);
+  }
+</style>

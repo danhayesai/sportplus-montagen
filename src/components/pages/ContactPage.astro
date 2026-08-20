@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import ContactForm from '../ContactForm.astro';
+import { site } from '../../config/site';
+import { getContent, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const contact = t.contact;
+---
+
+<BaseLayout lang={lang} title={contact.title} description={contact.subtitle}>
+  <PageHero
+    title={contact.title}
+    subtitle={contact.subtitle}
+    lead={contact.lead}
+  />
+
+  <section class="section">
+    <div class="container contact-layout">
+      <div class="contact-layout__form">
+        <ContactForm lang={lang} />
+      </div>
+
+      <aside class="contact-layout__details">
+        <h2 class="contact-details__title">{contact.directTitle}</h2>
+
+        <dl class="contact-details">
+          <div class="contact-details__row">
+            <dt>{contact.phoneLabel}</dt>
+            <dd>
+              <a href={`tel:${site.contact.phoneHref}`}>{site.contact.phone}</a>
+            </dd>
+          </div>
+
+          <div class="contact-details__row">
+            <dt>{contact.emailLabel}</dt>
+            <dd>
+              <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+            </dd>
+          </div>
+
+          <div class="contact-details__row">
+            <dt>{contact.addressLabel}</dt>
+            <dd>
+              <address>
+                {site.legalName}<br />
+                {site.address.street}<br />
+                {site.address.postalCode} {site.address.city}
+              </address>
+            </dd>
+          </div>
+
+          <div class="contact-details__row">
+            <dt>{contact.hoursLabel}</dt>
+            <dd>{contact.hours}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .contact-layout {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+
+  .contact-layout__details {
+    padding: var(--space-xl);
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .contact-details__title {
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-xl);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin: 0;
+  }
+
+  .contact-details__row dt {
+    margin-bottom: var(--space-2xs);
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-details__row dd {
+    margin: 0;
+    font-size: var(--text-base);
+  }
+
+  .contact-details address {
+    font-style: normal;
+    line-height: var(--leading-relaxed);
+  }
+</style>

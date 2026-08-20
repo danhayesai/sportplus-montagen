@@ -1,0 +1,56 @@
+---
+import { site } from '../config/site';
+import { getContent, getPath, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+  title: string;
+  body: string;
+  cta: string;
+}
+
+const { lang, title, body, cta } = Astro.props;
+const t = getContent(lang);
+---
+
+<section class="section section--inverse cta-band">
+  <div class="container cta-band__inner">
+    <div class="cta-band__text">
+      <h2 class="section-title">{title}</h2>
+      <p class="section-subtitle">{body}</p>
+    </div>
+
+    <div class="cta-band__actions">
+      <a href={getPath('contact', lang)} class="button button--primary">
+        {cta}
+      </a>
+      <a
+        href={`tel:${site.contact.phoneHref}`}
+        class="button button--secondary"
+      >
+        {site.contact.phone}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xl);
+  }
+
+  .cta-band__text {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+
+  .cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+</style>

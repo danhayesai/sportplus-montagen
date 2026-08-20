@@ -1,0 +1,69 @@
+---
+import { site } from '../config/site';
+
+/**
+ * Root entry point.
+ *
+ * Every real page lives under a language prefix, so `/` only routes visitors
+ * onward. German is the default; the inline script sends browsers that prefer
+ * English to the English tree instead. Visitors without JavaScript get the
+ * meta refresh, and the visible links are the final fallback.
+ *
+ * `noindex` keeps this staging post out of search results, while the hreflang
+ * tags still point crawlers at both real language versions.
+ */
+const germanUrl = new URL('/de', site.url).href;
+const englishUrl = new URL('/en', site.url).href;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.shortName}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0; url=/de" />
+    <link rel="canonical" href={germanUrl} />
+    <link rel="alternate" hreflang="de" href={germanUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={germanUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script is:inline>
+      (function () {
+        var preferred = (navigator.language || 'de').toLowerCase();
+        window.location.replace(preferred.indexOf('en') === 0 ? '/en' : '/de');
+      })();
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+      }
+
+      a {
+        display: inline-block;
+        margin: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid currentColor;
+        border-radius: 8px;
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <p>{site.shortName}</p>
+      <a href="/de" hreflang="de">Deutsch</a>
+      <a href="/en" hreflang="en">English</a>
+    </div>
+  </body>
+</html>

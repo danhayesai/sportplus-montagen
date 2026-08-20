@@ -1,0 +1,365 @@
+---
+import { site } from '../config/site';
+import { getContent, getPath, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const form = t.contact.form;
+
+/**
+ * The site is static, so submissions go to a third-party form endpoint
+ * configured in `src/config/site.ts`. Until one is set, the form degrades to a
+ * mailto link rather than silently discarding an enquiry.
+ */
+const endpoint = site.contactFormEndpoint;
+const hasEndpoint = endpoint.length > 0;
+const privacyHref = getPath('privacy', lang);
+---
+
+<form
+  class="contact-form"
+  id="contact-form"
+  method="post"
+  action={hasEndpoint ? endpoint : undefined}
+  data-endpoint={hasEndpoint ? endpoint : ''}
+  data-mailto={site.contact.email}
+  novalidate
+>
+  <div class="contact-form__row">
+    <div class="field">
+      <label class="field__label" for="firstName">
+        {form.firstName}
+        <span class="field__required" aria-hidden="true">*</span>
+        <span class="visually-hidden">({form.required})</span>
+      </label>
+      <input
+        class="field__input"
+        type="text"
+        id="firstName"
+        name="firstName"
+        autocomplete="given-name"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="lastName">
+        {form.lastName}
+        <span class="field__required" aria-hidden="true">*</span>
+        <span class="visually-hidden">({form.required})</span>
+      </label>
+      <input
+        class="field__input"
+        type="text"
+        id="lastName"
+        name="lastName"
+        autocomplete="family-name"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="contact-form__row">
+    <div class="field">
+      <label class="field__label" for="email">
+        {form.email}
+        <span class="field__required" aria-hidden="true">*</span>
+        <span class="visually-hidden">({form.required})</span>
+      </label>
+      <input
+        class="field__input"
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="phone">{form.phone}</label>
+      <input
+        class="field__input"
+        type="tel"
+        id="phone"
+        name="phone"
+        autocomplete="tel"
+      />
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="subject">{form.subject}</label>
+    <input class="field__input" type="text" id="subject" name="subject" />
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="message">
+      {form.message}
+      <span class="field__required" aria-hidden="true">*</span>
+      <span class="visually-hidden">({form.required})</span>
+    </label>
+    <textarea
+      class="field__input field__input--textarea"
+      id="message"
+      name="message"
+      rows="6"
+      placeholder={form.messagePlaceholder}
+      required></textarea>
+  </div>
+
+  <div class="field field--checkbox">
+    <input type="checkbox" id="consent" name="consent" required />
+    <label for="consent">
+      <span set:html={form.consent.replace(
+        /(Datenschutzerklärung|privacy policy)/i,
+        `<a href="${privacyHref}">$1</a>`
+      )} />
+    </label>
+  </div>
+
+  {/* Honeypot: hidden from people, tempting to bots. Submissions that fill
+      this in are dropped client-side. */}
+  <div class="contact-form__trap" aria-hidden="true">
+    <label for="company">Company</label>
+    <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="contact-form__footer">
+    <button type="submit" class="button button--primary">{form.submit}</button>
+    <p class="contact-form__note">{t.contact.responseNote}</p>
+  </div>
+
+  <p
+    class="contact-form__status"
+    id="form-status"
+    role="status"
+    aria-live="polite"
+    data-sending={form.sending}
+    data-success={form.success}
+    data-error={form.error}
+  >
+  </p>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--space-lg);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    min-width: 0;
+  }
+
+  .field__label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .field__required {
+    color: var(--color-accent-600);
+  }
+
+  .field__input {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    transition: border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  .field__input:focus {
+    outline: none;
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 3px rgb(47 107 181 / 0.18);
+  }
+
+  /* Only flag invalid fields after an attempted submit, never while typing. */
+  .contact-form[data-validated='true'] .field__input:invalid {
+    border-color: #c8322b;
+  }
+
+  .field__input--textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .field--checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .field--checkbox input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    accent-color: var(--color-accent-500);
+  }
+
+  .contact-form__trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .contact-form__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .contact-form__note {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .contact-form__status {
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .contact-form__status:empty {
+    display: none;
+  }
+
+  .contact-form__status[data-state='success'] {
+    padding: var(--space-md);
+    background-color: rgb(34 122 74 / 0.1);
+    border-radius: var(--radius-md);
+    color: #1c6b43;
+  }
+
+  .contact-form__status[data-state='error'] {
+    padding: var(--space-md);
+    background-color: rgb(200 50 43 / 0.1);
+    border-radius: var(--radius-md);
+    color: #a82a24;
+  }
+
+  :root[data-theme='dark'] .contact-form__status[data-state='success'] {
+    color: #6ed49f;
+  }
+
+  :root[data-theme='dark'] .contact-form__status[data-state='error'] {
+    color: #f3a09b;
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+  const status = document.querySelector<HTMLParagraphElement>('#form-status');
+
+  if (form && status) {
+    const submitButton = form.querySelector<HTMLButtonElement>(
+      'button[type="submit"]'
+    );
+    const originalLabel = submitButton?.textContent ?? '';
+
+    const setStatus = (state: 'sending' | 'success' | 'error' | '') => {
+      if (!state) {
+        status.textContent = '';
+        status.removeAttribute('data-state');
+        return;
+      }
+      status.textContent = status.dataset[state] ?? '';
+      status.dataset.state = state;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      form.dataset.validated = 'true';
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Silently accept and discard anything that filled the honeypot.
+      const trap = form.querySelector<HTMLInputElement>('#company');
+      if (trap && trap.value) {
+        setStatus('success');
+        form.reset();
+        return;
+      }
+
+      const data = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+
+      // No endpoint configured yet: hand the enquiry to the visitor's mail
+      // client so it still reaches the company.
+      if (!endpoint) {
+        const address = form.dataset.mailto ?? '';
+        const subject =
+          (data.get('subject') as string) ||
+          `${data.get('firstName')} ${data.get('lastName')}`;
+        const body = [
+          `${data.get('firstName')} ${data.get('lastName')}`,
+          `${data.get('email')}`,
+          `${data.get('phone') ?? ''}`,
+          '',
+          `${data.get('message')}`,
+        ].join('\n');
+
+        window.location.href = `mailto:${address}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+        return;
+      }
+
+      setStatus('sending');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = status.dataset.sending ?? originalLabel;
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        setStatus('success');
+        form.reset();
+        form.dataset.validated = 'false';
+      } catch (error) {
+        setStatus('error');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel;
+        }
+      }
+    });
+  }
+</script>

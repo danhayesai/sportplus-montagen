@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import { getContent, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const about = t.about;
+---
+
+<BaseLayout lang={lang} title={about.title} description={about.subtitle}>
+  <PageHero title={about.title} subtitle={about.subtitle} />
+
+  <section class="section">
+    <div class="container">
+      <div class="about-intro">
+        <div class="about-intro__text prose">
+          {about.lead.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        <!-- Replace with a photograph of the team or a finished project. -->
+        <div class="media-placeholder about-intro__media">
+          <span>team.jpg &mdash; 1200 &times; 900</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">{about.subtitle}</h2>
+      </div>
+
+      <div class="grid grid--2">
+        {
+          about.pillars.map((pillar, index) => (
+            <article class="card" id={pillar.id}>
+              <span class="card__index">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 class="card__title">{pillar.title}</h3>
+              <p class="card__body">{pillar.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    title={about.closing.title}
+    body={about.closing.body}
+    cta={about.closing.cta}
+  />
+</BaseLayout>
+
+<style>
+  .about-intro {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 62rem) {
+    .about-intro {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .about-intro__text {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+  }
+
+  .about-intro__media {
+    box-shadow: var(--shadow-md);
+  }
+
+  .card[id] {
+    scroll-margin-top: 6rem;
+  }
+</style>

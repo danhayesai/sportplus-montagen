@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import { getContent, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+const references = t.references;
+
+/**
+ * Each sector shows a small gallery grid. The tiles are placeholders sized to
+ * the final aspect ratio, so dropping real photographs into /public/images
+ * will not shift the layout.
+ */
+const tilesPerSector = 3;
+---
+
+<BaseLayout
+  lang={lang}
+  title={references.title}
+  description={references.subtitle}
+>
+  <PageHero
+    title={references.title}
+    subtitle={references.subtitle}
+    lead={references.lead}
+  />
+
+  {
+    references.sectors.map((sector, index) => (
+      <section
+        class:list={['section', index % 2 === 1 && 'section--subtle']}
+        id={sector.id}
+      >
+        <div class="container">
+          <div class="section-header">
+            <span class="eyebrow">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h2 class="section-title">{sector.title}</h2>
+            <p class="section-subtitle">{sector.body}</p>
+          </div>
+
+          <div class="gallery">
+            {Array.from({ length: tilesPerSector }).map((_, tile) => (
+              <div class="media-placeholder">
+                <span>
+                  {sector.id}-{tile + 1}.jpg &mdash; 1200 &times; 900
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section gallery-note">
+    <div class="container container--narrow">
+      <p>{references.galleryNote}</p>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    title={t.home.ctaBand.title}
+    body={t.home.ctaBand.body}
+    cta={t.home.ctaBand.cta}
+  />
+</BaseLayout>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: var(--space-lg);
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  .gallery-note {
+    padding-block: var(--space-2xl);
+    text-align: center;
+  }
+
+  .gallery-note p {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-style: italic;
+  }
+</style>
