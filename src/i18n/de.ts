@@ -10,6 +10,13 @@ export const de: SiteContent = {
     skipToContent: 'Zum Inhalt springen',
   },
 
+  media: {
+    heroAlt:
+      'Fertig montierte Prallschutzwand und Sportboden in einer Sporthalle',
+    teamAlt: 'Fertiggestellte Sporthalle mit montierter Prallschutzwand',
+    galleryAltPrefix: 'Projektbeispiel:',
+  },
+
   nav: {
     home: 'Start',
     services: 'Leistungen',
@@ -139,7 +146,8 @@ export const de: SiteContent = {
           'Holzbau für Wohn- und Nichtwohngebäude sowie energetische Sanierung – mit natürlichen, ökologischen Materialien.',
       },
     ],
-    galleryNote: 'Weitere Projektbilder folgen in Kürze.',
+    galleryNote:
+      'Weitere Projektbilder zeigen wir Ihnen gerne auf Anfrage – auch zu einem bestimmten System oder einer Halle in Ihrer Nähe.',
   },
 
   about: {

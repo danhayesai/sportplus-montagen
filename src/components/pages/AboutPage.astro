@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../PageHero.astro';
 import CtaBand from '../CtaBand.astro';
+import Figure from '../Figure.astro';
 import { getContent, type Language } from '../../i18n';
 
 interface Props {
@@ -23,10 +24,13 @@ const about = t.about;
           {about.lead.map((paragraph) => <p>{paragraph}</p>)}
         </div>
 
-        <!-- Replace with a photograph of the team or a finished project. -->
-        <div class="media-placeholder about-intro__media">
-          <span>team.jpg &mdash; 1200 &times; 900</span>
-        </div>
+        <Figure
+          src="/images/team.jpg"
+          alt={t.media.teamAlt}
+          width={1200}
+          height={900}
+          class="about-intro__media"
+        />
       </div>
     </div>
   </section>

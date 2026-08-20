@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../PageHero.astro';
 import CtaBand from '../CtaBand.astro';
+import Figure from '../Figure.astro';
 import { getContent, type Language } from '../../i18n';
 
 interface Props {
@@ -48,11 +49,12 @@ const tilesPerSector = 3;
 
           <div class="gallery">
             {Array.from({ length: tilesPerSector }).map((_, tile) => (
-              <div class="media-placeholder">
-                <span>
-                  {sector.id}-{tile + 1}.jpg &mdash; 1200 &times; 900
-                </span>
-              </div>
+              <Figure
+                src={`/images/${sector.id}-${tile + 1}.jpg`}
+                alt={`${t.media.galleryAltPrefix} ${sector.title}`}
+                width={1200}
+                height={900}
+              />
             ))}
           </div>
         </div>

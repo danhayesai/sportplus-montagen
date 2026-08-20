@@ -1,0 +1,50 @@
+---
+interface Props {
+  /** Path relative to the site root, e.g. "/images/hero.jpg". */
+  src: string;
+  alt: string;
+  /** Intrinsic dimensions. Always set both so the browser reserves the space. */
+  width: number;
+  height: number;
+  /** Only the hero should load eagerly; everything else waits until near view. */
+  loading?: 'lazy' | 'eager';
+  /** CSS aspect-ratio value. Defaults to the 4:3 the gallery grids use. */
+  ratio?: string;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  ratio = '4 / 3',
+  class: className,
+} = Astro.props;
+---
+
+<img
+  class:list={['figure', className]}
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding="async"
+  fetchpriority={loading === 'eager' ? 'high' : undefined}
+  style={`--figure-ratio: ${ratio}`}
+/>
+
+<style>
+  .figure {
+    width: 100%;
+    height: auto;
+    /* Matches the aspect ratio the placeholders reserved, so swapping an image
+       for one of a different shape still crops rather than reflows. */
+    aspect-ratio: var(--figure-ratio, 4 / 3);
+    object-fit: cover;
+    background-color: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+  }
+</style>

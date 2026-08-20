@@ -10,6 +10,13 @@ export const en: SiteContent = {
     skipToContent: 'Skip to content',
   },
 
+  media: {
+    heroAlt:
+      'Finished impact protection wall and sports flooring in a sports hall',
+    teamAlt: 'Completed sports hall with installed impact protection wall',
+    galleryAltPrefix: 'Project example:',
+  },
+
   nav: {
     home: 'Home',
     services: 'Services',
@@ -139,7 +146,8 @@ export const en: SiteContent = {
           'Timber construction for residential and non-residential buildings, plus energy-efficiency retrofits using natural, ecological materials.',
       },
     ],
-    galleryNote: 'More project photographs coming soon.',
+    galleryNote:
+      'We are happy to show you more project photographs on request, including a particular system or a hall near you.',
   },
 
   about: {

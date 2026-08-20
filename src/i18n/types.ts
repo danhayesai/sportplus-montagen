@@ -29,6 +29,14 @@ export interface SiteContent {
     skipToContent: string;
   };
 
+  /** Alternative text for photography, required for screen readers. */
+  media: {
+    heroAlt: string;
+    teamAlt: string;
+    /** Prefixed to a sector name, e.g. "Project example: sports halls". */
+    galleryAltPrefix: string;
+  };
+
   nav: {
     home: string;
     services: string;

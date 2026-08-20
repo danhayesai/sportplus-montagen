@@ -99,9 +99,12 @@ the footer, contact page, imprint and structured data at once.
 
 ## Outstanding tasks
 
-- [ ] **Add photography.** See `public/images/README.md` for the file names and
-      sizes. Placeholders currently reserve the exact aspect ratios, so adding
-      real images will not shift the layout.
+- [x] ~~Add photography.~~ Recovered from the old site, resized and in place.
+      `public/images/library/` holds 111 more photographs to swap in — see
+      `public/images/README.md`.
+- [ ] **Review the image choices.** The visible slots were picked by eye from
+      the library; swap any of them by saving a replacement over the slot
+      filename at the same dimensions.
 - [ ] **Add the commercial register details.** A GmbH must state its registry
       court and HRB number under § 5 TMG. Fill in `registryCourt` and
       `registrationNumber` in `src/config/site.ts` and the imprint section
