@@ -32,6 +32,10 @@ const pageTitle = isHome
 const metaDescription = description ?? t.meta.description;
 const canonicalUrl = new URL(pathname, site.url).href;
 
+// Social previews need an absolute URL; a root-relative path is ignored by
+// every major platform.
+const shareImageUrl = new URL('/images/share.jpg', site.url).href;
+
 // One alternate link per language, plus x-default pointing at German.
 const alternates = (Object.keys(languages) as Language[]).map((code) => ({
   code,
@@ -102,7 +106,14 @@ const structuredData = {
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t.media.shareAlt} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={shareImageUrl} />
+    <meta name="twitter:image:alt" content={t.media.shareAlt} />
 
     <!-- Self-hosting note: Inter is loaded from Google Fonts for now. To drop
          the third-party request entirely, download the woff2 files into

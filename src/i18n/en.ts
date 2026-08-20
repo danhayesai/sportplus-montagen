@@ -14,6 +14,8 @@ export const en: SiteContent = {
     heroAlt:
       'Finished impact protection wall and sports flooring in a sports hall',
     teamAlt: 'Completed sports hall with installed impact protection wall',
+    shareAlt:
+      'Sports hall with impact protection wall and sports flooring installed by SportPlus Montagen',
     galleryAltPrefix: 'Project example:',
   },
 

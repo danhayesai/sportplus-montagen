@@ -33,6 +33,8 @@ export interface SiteContent {
   media: {
     heroAlt: string;
     teamAlt: string;
+    /** Describes the social sharing preview image. */
+    shareAlt: string;
     /** Prefixed to a sector name, e.g. "Project example: sports halls". */
     galleryAltPrefix: string;
   };
