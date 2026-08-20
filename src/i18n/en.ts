@@ -6,7 +6,7 @@ export const en: SiteContent = {
     localeTag: 'en-US',
     tagline: 'Impact protection walls and sports flooring, installed with precision.',
     description:
-      'SportPlus Montagen GmbH, based in Rosenheim, installs impact protection walls and sports flooring in sports halls, hotels and timber buildings. On schedule, to standard, handed over without defects.',
+      'SportPlus Montagen GmbH, based in Rosenheim, installs impact protection walls and sports flooring in sports halls, alongside interior fit-out for hospitality and commercial projects. On schedule, to standard, handed over without defects.',
     skipToContent: 'Skip to content',
   },
 
@@ -33,19 +33,19 @@ export const en: SiteContent = {
       eyebrow: 'Installation specialists based in Rosenheim',
       title: 'The installation partner you can rely on',
       subtitle:
-        'We install impact protection walls and sports flooring in sports halls, hotels and timber buildings — built to current technical standards, delivered on the agreed date and handed over without defects.',
+        'We install impact protection walls and sports flooring in sports halls — built to current technical standards, delivered on the agreed date and handed over without defects. We also take on interior fit-out for hospitality and commercial projects.',
       ctaPrimary: 'Request a quote',
       ctaSecondary: 'View our services',
     },
     stats: [
       { value: 'Defect-free', label: 'Handover on our projects' },
-      { value: 'DIN 18202', label: 'Installed to current standard' },
+      { value: 'End to end', label: 'From strip-out to handover' },
       { value: 'On schedule', label: 'Every project delivered on time' },
     ],
     intro: {
       title: 'Clean work, precise fit, on the agreed date',
       body: [
-        'SportPlus Montagen specialises in installing impact protection walls and sports flooring. What we build gets used every day — by school classes, sports clubs and hotel guests. We work to match.',
+        'SportPlus Montagen specialises in installing impact protection walls and sports flooring in sports halls. What we build there gets used every day — by school classes and sports clubs. We work to match.',
         'We take on work for construction firms, local authorities and private clients, from a single hall wall through to a complete interior fit-out.',
       ],
     },
@@ -57,7 +57,7 @@ export const en: SiteContent = {
     },
     sectorsTeaser: {
       title: 'Where we work',
-      subtitle: 'Three sectors we have worked in for years.',
+      subtitle: 'The sectors we have worked in for years.',
       cta: 'View references',
     },
     ctaBand: {
@@ -82,7 +82,7 @@ export const en: SiteContent = {
         bullets: [
           'Protection walls with timber or metal frames, with fire protection on request',
           'Foam and plywood panels, including Haro systems',
-          'Light 19 and Light 27 on level wall surfaces to DIN 18202',
+          'Light 19 and Light 27 on level wall surfaces',
           'Textile protective coverings',
         ],
         note:
@@ -123,7 +123,7 @@ export const en: SiteContent = {
 
   references: {
     title: 'References',
-    subtitle: 'Three sectors we have worked in for years.',
+    subtitle: 'The sectors we have worked in for years.',
     lead:
       'A selection of our work. For references near you, or for a particular system, just ask.',
     sectors: [
@@ -226,7 +226,7 @@ export const en: SiteContent = {
 
   footer: {
     about:
-      'Installation of impact protection walls and sports flooring in sports halls, hotels and timber buildings. Based in Rosenheim, working across the region.',
+      'Impact protection walls and sports flooring for sports halls, interior fit-out for hospitality and commercial projects. Based in Rosenheim, working across the region.',
     quickLinksTitle: 'Navigation',
     contactTitle: 'Contact',
     legalTitle: 'Legal',

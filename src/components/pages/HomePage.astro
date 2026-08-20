@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../CtaBand.astro';
 import Figure from '../Figure.astro';
-import { getContent, getPath, type Language } from '../../i18n';
+import { getContent, getPath, getActiveSectors, type Language } from '../../i18n';
 
 interface Props {
   lang: Language;
@@ -11,6 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = getContent(lang);
 const home = t.home;
+const sectors = getActiveSectors(lang);
 ---
 
 <BaseLayout lang={lang} title={t.nav.home} isHome>
@@ -107,7 +108,7 @@ const home = t.home;
 
       <div class="grid grid--3">
         {
-          t.references.sectors.map((sector) => (
+          sectors.map((sector) => (
             <article class="sector-card">
               <Figure
                 src={`/images/${sector.id}.jpg`}

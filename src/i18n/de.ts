@@ -6,7 +6,7 @@ export const de: SiteContent = {
     localeTag: 'de-DE',
     tagline: 'Prallschutzwände und Sportböden – montiert mit Präzision.',
     description:
-      'SportPlus Montagen GmbH aus Rosenheim montiert Prallschutzwände und Sportböden in Sporthallen, Hotels und Holzhäusern. Termingerecht, normgerecht und mängelfrei abgenommen.',
+      'SportPlus Montagen GmbH aus Rosenheim montiert Prallschutzwände und Sportböden in Sporthallen. Dazu Innenausbau für Hotellerie und Gewerbe. Termingerecht, normgerecht und mängelfrei abgenommen.',
     skipToContent: 'Zum Inhalt springen',
   },
 
@@ -33,19 +33,19 @@ export const de: SiteContent = {
       eyebrow: 'Montagebetrieb aus Rosenheim',
       title: 'Der Montagepartner, auf den Sie sich verlassen können',
       subtitle:
-        'Wir montieren Prallschutzwände und Sportböden in Sporthallen, Hotels und Holzhäusern – nach aktuellem Stand der Technik, zum vereinbarten Termin und mängelfrei bei der Abnahme.',
+        'Wir montieren Prallschutzwände und Sportböden in Sporthallen – nach aktuellem Stand der Technik, zum vereinbarten Termin und mängelfrei bei der Abnahme. Darüber hinaus übernehmen wir Innenausbau für Hotellerie und Gewerbe.',
       ctaPrimary: 'Projekt anfragen',
       ctaSecondary: 'Leistungen ansehen',
     },
     stats: [
       { value: 'Mängelfrei', label: 'Abnahme unserer Projekte' },
-      { value: 'DIN 18202', label: 'Montage nach gültiger Norm' },
+      { value: 'Aus einer Hand', label: 'Von der Demontage bis zur Abnahme' },
       { value: 'Termintreu', label: 'Bisher jedes Projekt pünktlich' },
     ],
     intro: {
       title: 'Sauber, präzise, termingerecht',
       body: [
-        'SportPlus Montagen ist auf die Montage von Prallschutzwänden und Sportböden spezialisiert. Was wir bauen, wird täglich benutzt – von Schulklassen, Vereinen und Hotelgästen. Entsprechend genau arbeiten wir.',
+        'SportPlus Montagen ist auf die Montage von Prallschutzwänden und Sportböden in Sporthallen spezialisiert. Was wir dort bauen, wird täglich benutzt – von Schulklassen und Vereinen. Entsprechend genau arbeiten wir.',
         'Wir übernehmen Aufträge für Bauunternehmen, Kommunen und private Bauherren – von der einzelnen Hallenwand bis zum kompletten Innenausbau.',
       ],
     },
@@ -57,7 +57,7 @@ export const de: SiteContent = {
     },
     sectorsTeaser: {
       title: 'Wo wir arbeiten',
-      subtitle: 'Drei Bereiche, in denen wir seit Jahren zu Hause sind.',
+      subtitle: 'Die Bereiche, in denen wir seit Jahren zu Hause sind.',
       cta: 'Referenzen ansehen',
     },
     ctaBand: {
@@ -82,7 +82,7 @@ export const de: SiteContent = {
         bullets: [
           'Schutzwände mit Holz- oder Metallrahmen, auf Wunsch mit Brandschutz',
           'Schaum- und Sperrholzpaneele, unter anderem Haro-Systeme',
-          'Light 19 und Light 27 auf ebenen Wandflächen nach DIN 18202',
+          'Light 19 und Light 27 auf ebenen Wandflächen',
           'Textilschutzbeläge',
         ],
         note:
@@ -123,7 +123,7 @@ export const de: SiteContent = {
 
   references: {
     title: 'Referenzen',
-    subtitle: 'Drei Bereiche, in denen wir seit Jahren zu Hause sind.',
+    subtitle: 'Die Bereiche, in denen wir seit Jahren zu Hause sind.',
     lead:
       'Ein Auszug aus unserer Arbeit. Für Referenzen in Ihrer Nähe oder zu einem bestimmten System sprechen Sie uns gerne an.',
     sectors: [
@@ -226,7 +226,7 @@ export const de: SiteContent = {
 
   footer: {
     about:
-      'Montage von Prallschutzwänden und Sportböden in Sporthallen, Hotels und Holzhäusern. Aus Rosenheim, überregional im Einsatz.',
+      'Prallschutzwände und Sportböden für Sporthallen, Innenausbau für Hotellerie und Gewerbe. Aus Rosenheim, überregional im Einsatz.',
     quickLinksTitle: 'Navigation',
     contactTitle: 'Kontakt',
     legalTitle: 'Rechtliches',

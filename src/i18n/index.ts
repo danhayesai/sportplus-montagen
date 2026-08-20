@@ -1,6 +1,7 @@
 import { de } from './de';
 import { en } from './en';
-import type { SiteContent } from './types';
+import { site } from '../config/site';
+import type { LinkedItem, SiteContent } from './types';
 
 /** Languages the site is published in, mapped to their native display names. */
 export const languages = {
@@ -37,6 +38,19 @@ export type RouteKey = (typeof routes)[number]['key'];
 /** Returns the translated content for a language. */
 export function getContent(lang: Language): SiteContent {
   return content[lang];
+}
+
+/**
+ * The sectors that should actually be shown, in the order configured.
+ *
+ * Sector copy and photography stay in the project even when a sector is not
+ * being offered, so bringing one back is a one-line change in `site.ts`.
+ */
+export function getActiveSectors(lang: Language): LinkedItem[] {
+  const sectors = getContent(lang).references.sectors;
+  return site.activeSectors
+    .map((id) => sectors.find((sector) => sector.id === id))
+    .filter((sector): sector is LinkedItem => sector !== undefined);
 }
 
 /**

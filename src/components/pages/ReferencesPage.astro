@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../PageHero.astro';
 import CtaBand from '../CtaBand.astro';
 import Figure from '../Figure.astro';
-import { getContent, type Language } from '../../i18n';
+import { getContent, getActiveSectors, type Language } from '../../i18n';
 
 interface Props {
   lang: Language;
@@ -12,6 +12,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = getContent(lang);
 const references = t.references;
+const sectors = getActiveSectors(lang);
 
 /**
  * Each sector shows a small gallery grid. The tiles are placeholders sized to
@@ -33,7 +34,7 @@ const tilesPerSector = 3;
   />
 
   {
-    references.sectors.map((sector, index) => (
+    sectors.map((sector, index) => (
       <section
         class:list={['section', index % 2 === 1 && 'section--subtle']}
         id={sector.id}

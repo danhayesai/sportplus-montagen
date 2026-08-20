@@ -50,6 +50,19 @@ export const site = {
    */
   contactFormEndpoint: '',
 
+  /**
+   * Sectors currently offered, in display order.
+   *
+   * Anything left out here is hidden everywhere on the site — the home page
+   * cards, the references galleries and the sitemap — while its text and
+   * photography stay in the project untouched. Add an id back to this list to
+   * bring the section straight back.
+   *
+   * 'timber-houses' is deliberately omitted: the company is not taking on
+   * timber construction at the moment.
+   */
+  activeSectors: ['sports-halls', 'hotels'] as const,
+
   /** Business hours used for structured data, in 24h format. */
   openingHours: {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
