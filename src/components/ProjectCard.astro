@@ -1,0 +1,64 @@
+---
+import Figure from './Figure.astro';
+import type { Project } from '../data/projects';
+import { getContent, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+  project: Project;
+  /** Sector name, e.g. "Sporthallen" - shown as the card's type label. */
+  sectorTitle: string;
+}
+
+const { lang, project, sectorTitle } = Astro.props;
+const t = getContent(lang).references.project;
+
+const location = project.location || t.locationPlaceholder;
+const year = project.year ?? t.yearPlaceholder;
+const isPlaceholder = !project.location || project.year === null;
+---
+
+<article class="project-card" data-placeholder={isPlaceholder ? 'true' : undefined}>
+  <Figure
+    src={project.image}
+    alt={`${sectorTitle} – ${location}`}
+    width={800}
+    height={600}
+  />
+  <div class="project-card__meta">
+    <span class="project-card__type">{sectorTitle}</span>
+    <span class="project-card__detail">{location}, {year}</span>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .project-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .project-card__type {
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .project-card__detail {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  /* Placeholder location/year are a visible authoring cue, not final copy -
+     styled distinctly so they cannot be mistaken for real content and ship
+     unnoticed. */
+  .project-card[data-placeholder='true'] .project-card__detail {
+    color: var(--color-accent-600);
+    font-style: italic;
+  }
+</style>

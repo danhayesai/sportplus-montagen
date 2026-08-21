@@ -14,8 +14,7 @@ export const en: SiteContent = {
     heroAlt:
       'Finished impact protection wall and sports flooring in a sports hall',
     teamAlt: 'Completed sports hall with installed impact protection wall',
-    shareAlt:
-      'Sports hall with impact protection wall and sports flooring installed by SportPlus Montagen',
+    shareAlt: 'SportPlus Montagen logo',
     galleryAltPrefix: 'Project example:',
   },
 
@@ -150,6 +149,10 @@ export const en: SiteContent = {
     ],
     galleryNote:
       'We are happy to show you more project photographs on request, including a particular system or a hall near you.',
+    project: {
+      locationPlaceholder: 'Add location',
+      yearPlaceholder: 'Add year',
+    },
   },
 
   about: {

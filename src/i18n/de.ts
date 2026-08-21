@@ -14,8 +14,7 @@ export const de: SiteContent = {
     heroAlt:
       'Fertig montierte Prallschutzwand und Sportboden in einer Sporthalle',
     teamAlt: 'Fertiggestellte Sporthalle mit montierter Prallschutzwand',
-    shareAlt:
-      'Sporthalle mit von SportPlus Montagen montierter Prallschutzwand und Sportboden',
+    shareAlt: 'Logo von SportPlus Montagen',
     galleryAltPrefix: 'Projektbeispiel:',
   },
 
@@ -152,6 +151,10 @@ export const de: SiteContent = {
     ],
     galleryNote:
       'Weitere Projektbilder zeigen wir Ihnen gerne auf Anfrage – auch zu einem bestimmten System oder einer Halle in Ihrer Nähe.',
+    project: {
+      locationPlaceholder: 'Ort ergänzen',
+      yearPlaceholder: 'Jahr ergänzen',
+    },
   },
 
   about: {

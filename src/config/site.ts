@@ -16,9 +16,9 @@ export const site = {
 
   contact: {
     email: 'info@sportplusmontagen.de',
-    phone: '0176 56802656',
+    phone: '0152 26763393',
     /** E.164 format, used for tel: links and structured data. */
-    phoneHref: '+4917656802656',
+    phoneHref: '+4915226763393',
   },
 
   address: {

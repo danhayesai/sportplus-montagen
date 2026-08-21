@@ -2,7 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../PageHero.astro';
 import CtaBand from '../CtaBand.astro';
-import Figure from '../Figure.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { getProjectsForSector, type Project } from '../../data/projects';
 import { getContent, getActiveSectors, type Language } from '../../i18n';
 
 interface Props {
@@ -13,13 +14,6 @@ const { lang } = Astro.props;
 const t = getContent(lang);
 const references = t.references;
 const sectors = getActiveSectors(lang);
-
-/**
- * Each sector shows a small gallery grid. The tiles are placeholders sized to
- * the final aspect ratio, so dropping real photographs into /public/images
- * will not shift the layout.
- */
-const tilesPerSector = 3;
 ---
 
 <BaseLayout
@@ -34,33 +28,35 @@ const tilesPerSector = 3;
   />
 
   {
-    sectors.map((sector, index) => (
-      <section
-        class:list={['section', index % 2 === 1 && 'section--subtle']}
-        id={sector.id}
-      >
-        <div class="container">
-          <div class="section-header">
-            <span class="eyebrow">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <h2 class="section-title">{sector.title}</h2>
-            <p class="section-subtitle">{sector.body}</p>
-          </div>
+    sectors.map((sector, index) => {
+      const sectorProjects = getProjectsForSector(sector.id as Project['sectorId']);
+      return (
+        <section
+          class:list={['section', index % 2 === 1 && 'section--subtle']}
+          id={sector.id}
+        >
+          <div class="container">
+            <div class="section-header">
+              <span class="eyebrow">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h2 class="section-title">{sector.title}</h2>
+              <p class="section-subtitle">{sector.body}</p>
+            </div>
 
-          <div class="gallery">
-            {Array.from({ length: tilesPerSector }).map((_, tile) => (
-              <Figure
-                src={`/images/${sector.id}-${tile + 1}.jpg`}
-                alt={`${t.media.galleryAltPrefix} ${sector.title}`}
-                width={1200}
-                height={900}
-              />
-            ))}
+            <div class="gallery">
+              {sectorProjects.map((project) => (
+                <ProjectCard
+                  lang={lang}
+                  project={project}
+                  sectorTitle={sector.title}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    ))
+        </section>
+      );
+    })
   }
 
   <section class="section gallery-note">

@@ -111,9 +111,19 @@ const legalLinks = (['imprint', 'privacy'] as const).map((key) => ({
     }
   }
 
-  .site-footer__brand :global(.logo__name),
-  .site-footer__brand :global(.logo__mark) {
+  .site-footer__brand :global(.logo__name) {
     color: var(--color-text-inverse);
+  }
+
+  /* The footer background is always dark navy, independent of the site's
+     light/dark theme toggle, so it always wants the light-coloured mark -
+     overriding whichever variant the page-level theme rules picked. */
+  .site-footer__brand :global(.logo__mark--navy) {
+    display: none;
+  }
+
+  .site-footer__brand :global(.logo__mark--light) {
+    display: block;
   }
 
   .site-footer__brand :global(.logo__suffix) {
