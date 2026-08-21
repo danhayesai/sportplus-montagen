@@ -151,10 +151,6 @@ export const de: SiteContent = {
     ],
     galleryNote:
       'Weitere Projektbilder zeigen wir Ihnen gerne auf Anfrage – auch zu einem bestimmten System oder einer Halle in Ihrer Nähe.',
-    project: {
-      locationPlaceholder: 'Ort ergänzen',
-      yearPlaceholder: 'Jahr ergänzen',
-    },
   },
 
   about: {

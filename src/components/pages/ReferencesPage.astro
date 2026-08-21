@@ -46,11 +46,7 @@ const sectors = getActiveSectors(lang);
 
             <div class="gallery">
               {sectorProjects.map((project) => (
-                <ProjectCard
-                  lang={lang}
-                  project={project}
-                  sectorTitle={sector.title}
-                />
+                <ProjectCard project={project} sectorTitle={sector.title} />
               ))}
             </div>
           </div>

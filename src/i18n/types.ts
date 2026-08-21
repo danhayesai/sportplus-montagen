@@ -93,11 +93,6 @@ export interface SiteContent {
     lead: string;
     sectors: LinkedItem[];
     galleryNote: string;
-    /** Shown on a project card while its real location/year is unconfirmed. */
-    project: {
-      locationPlaceholder: string;
-      yearPlaceholder: string;
-    };
   };
 
   about: {

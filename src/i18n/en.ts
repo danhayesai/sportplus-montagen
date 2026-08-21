@@ -149,10 +149,6 @@ export const en: SiteContent = {
     ],
     galleryNote:
       'We are happy to show you more project photographs on request, including a particular system or a hall near you.',
-    project: {
-      locationPlaceholder: 'Add location',
-      yearPlaceholder: 'Add year',
-    },
   },
 
   about: {
