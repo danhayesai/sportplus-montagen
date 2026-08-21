@@ -9,14 +9,20 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "preview:ci": "astro preview --host 127.0.0.1 --port 4321",
+    "test:links": "linkinator http://127.0.0.1:4321/de --recurse --skip sportplusmontagen.de --skip ec.europa.eu",
+    "test:lighthouse": "lhci collect && lhci assert"
   },
   "dependencies": {
-    "astro": "^7.2.4",
-    "@astrojs/sitemap": "^3.7.3"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "typescript": "^5.9.2"
+    "@lhci/cli": "^0.15.1",
+    "linkinator": "^8.0.4",
+    "typescript": "^5.9.2",
+    "wait-on": "^9.1.0"
   }
 }

@@ -1,6 +1,6 @@
 ---
 import { site } from '../config/site';
-import { getContent, getPath, type Language } from '../i18n';
+import { getPath, type Language } from '../i18n';
 
 interface Props {
   lang: Language;
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const { lang, title, body, cta } = Astro.props;
-const t = getContent(lang);
 ---
 
 <section class="section section--inverse cta-band">

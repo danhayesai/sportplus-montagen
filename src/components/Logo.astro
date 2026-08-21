@@ -1,6 +1,4 @@
 ---
-import { site } from '../config/site';
-
 /**
  * Wordmark drawn inline as SVG so it stays crisp at any size, inherits the
  * current text colour and costs no extra network request.
@@ -14,8 +12,7 @@ import { site } from '../config/site';
   <svg
     class="logo__mark"
     viewBox="0 0 32 32"
-    role="img"
-    aria-label={site.shortName}
+    aria-hidden="true"
     focusable="false"
   >
     <rect width="32" height="32" rx="7" fill="currentColor" opacity="0.1" />
@@ -83,10 +80,16 @@ import { site } from '../config/site';
     text-transform: uppercase;
   }
 
-  /* Drop the wordmark on very narrow screens, keep the mark. */
+  /* Hide the wordmark visually on very narrow screens but keep it in the
+     accessibility tree, so the link never loses its accessible name. */
   @media (max-width: 24rem) {
     .logo__text {
-      display: none;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
   }
 </style>

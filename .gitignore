@@ -29,3 +29,6 @@ desktop.ini
 
 # Local editor and tooling config
 .claude/
+
+# Lighthouse CI reports
+.lighthouseci/

@@ -7,6 +7,26 @@
    ========================================================================= */
 
 /* -------------------------------------------------------------------------
+   0. Fonts
+
+   Inter is self-hosted rather than loaded from Google Fonts. Two reasons:
+   the third-party stylesheet was render-blocking and cost roughly a second
+   on mobile, and requesting it transmits the visitor's IP address to Google,
+   which German courts have held to require consent. Serving the file from our
+   own domain removes both problems.
+
+   This is the variable font, so one 48 KB file covers every weight.
+   ---------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-variable.woff2') format('woff2-variations');
+}
+
+/* -------------------------------------------------------------------------
    1. Design tokens
    ---------------------------------------------------------------------- */
 
@@ -21,9 +41,15 @@
   --color-brand-900: #0f2745;
 
   /* Accent - used sparingly for calls to action and highlights */
+  /* Accent scale.
+     500 is the bright brand orange and is used for decorative marks only —
+     white text on it reaches just 2.7:1, well short of WCAG AA.
+     600 and 700 are darkened so white text clears 4.5:1 (5.0 and 6.7), and are
+     the only accents used behind or as text. */
   --color-accent-400: #ff9d4d;
   --color-accent-500: #f57c1f;
-  --color-accent-600: #d9640c;
+  --color-accent-600: #b45309;
+  --color-accent-700: #9a4207;
 
   /* Neutrals */
   --color-neutral-0: #ffffff;
@@ -397,15 +423,15 @@ a:hover {
 }
 
 .button--primary {
-  background-color: var(--color-accent-500);
-  border-color: var(--color-accent-500);
+  background-color: var(--color-accent-600);
+  border-color: var(--color-accent-600);
   color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
 
 .button--primary:hover {
-  background-color: var(--color-accent-600);
-  border-color: var(--color-accent-600);
+  background-color: var(--color-accent-700);
+  border-color: var(--color-accent-700);
   color: #ffffff;
   box-shadow: var(--shadow-md);
 }
@@ -602,7 +628,7 @@ a:hover {
   left: var(--space-md);
   z-index: 100;
   padding: var(--space-sm) var(--space-md);
-  background-color: var(--color-accent-500);
+  background-color: var(--color-accent-600);
   border-radius: 0 0 var(--radius-md) var(--radius-md);
   color: #ffffff;
   font-weight: 600;

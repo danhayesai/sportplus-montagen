@@ -20,7 +20,9 @@ export const de: SiteContent = {
   },
 
   nav: {
-    home: 'Start',
+    // "Startseite" rather than "Start": search engines treat bare "Start" as a
+    // non-descriptive link text, and it reads more naturally in German anyway.
+    home: 'Startseite',
     services: 'Leistungen',
     references: 'Referenzen',
     about: 'Über uns',

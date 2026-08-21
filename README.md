@@ -19,12 +19,14 @@ npm run dev
 
 The dev server runs at <http://localhost:4321>.
 
-| Command           | Description                                    |
-| ----------------- | ---------------------------------------------- |
-| `npm run dev`     | Start the development server with hot reload   |
-| `npm run build`   | Build the production site into `dist/`         |
-| `npm run preview` | Serve the built site locally to check it       |
-| `npm run check`   | Type-check all Astro components and TypeScript |
+| Command                     | Description                                                         |
+| --------------------------- | -------------------------------------------------------------------- |
+| `npm run dev`                | Start the development server with hot reload                        |
+| `npm run build`              | Build the production site into `dist/`                              |
+| `npm run preview`            | Serve the built site locally to check it                            |
+| `npm run check`              | Type-check all Astro components and TypeScript                      |
+| `npm run test:links`         | Crawl the built site and fail on any broken link                    |
+| `npm run test:lighthouse`    | Run Lighthouse against key pages and enforce the score thresholds   |
 
 **Requirements:** Node.js 20 or newer.
 
@@ -120,6 +122,51 @@ the footer, contact page, imprint and structured data at once.
 
 ---
 
+## Quality checks
+
+A second workflow, `.github/workflows/quality.yml`, runs on every push and pull
+request:
+
+- **Type-check** — `astro check`, same as locally.
+- **Broken links** — [linkinator](https://github.com/JustinBeckwith/linkinator)
+  crawls every internal link on the built site. External links (fonts,
+  the ODR platform) are skipped so the check doesn't fail on someone else's
+  downtime.
+- **Lighthouse** — runs against the home, services, references, contact and
+  English pages, and fails the build if any of them drop below:
+
+  | Category       | Minimum |
+  | --------------- | ------- |
+  | Performance      | 85      |
+  | Accessibility    | 95      |
+  | Best Practices   | 95      |
+  | SEO              | 90      |
+
+  These are floors, not targets — the site currently scores 99–100 on every
+  category on the pages measured. The gap below 100 is deliberate headroom, not
+  a lowered bar: real photography and future copy changes will move these
+  numbers, and the check should catch a genuine regression, not fire on every
+  point of natural variance. Thresholds are set in `lighthouserc.json`.
+
+  Lighthouse reports are uploaded as a workflow artifact on every run (kept 14
+  days), including failed ones — that's exactly when the detail is worth
+  having.
+
+Run either check locally:
+
+```bash
+npm run build
+npm run preview:ci &
+npm run test:links
+npm run test:lighthouse
+```
+
+**Note for Windows:** Lighthouse's Chrome launcher has a known cleanup bug on
+Windows (`EPERM` deleting its temp profile) that doesn't affect Linux, so it
+may need a couple of tries locally. It runs cleanly in GitHub Actions.
+
+---
+
 ## Deployment
 
 A GitHub Actions workflow in `.github/workflows/deploy.yml` builds and publishes
@@ -140,7 +187,11 @@ equally well — Netlify, Cloudflare Pages, Vercel, or ordinary web hosting.
 
 - Semantic landmarks throughout, with a skip link to the main content.
 - Full keyboard navigation; visible focus rings on every interactive element.
-- Colour pairings meet WCAG AA contrast in both light and dark themes.
+- Colour pairings meet WCAG AA contrast in both light and dark themes (all
+  text and interactive elements score 4.5:1 or better).
 - Respects `prefers-reduced-motion` and `prefers-color-scheme`.
 - No cookies, no analytics, no tracking scripts — so no consent banner needed.
+- Inter is self-hosted from `/fonts` rather than loaded from Google Fonts, so
+  no visitor data is sent to a third party just to render text, and the page
+  has one request fewer to make.
 - Fluid typography scales without a horizontal scrollbar down to 320px.

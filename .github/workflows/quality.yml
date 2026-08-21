@@ -1,0 +1,58 @@
+name: Quality checks
+
+# Catches regressions that are easy to miss by eye: broken links, accessibility
+# violations, and pages getting slower. Runs on every push and pull request.
+#
+# Thresholds live in lighthouserc.json and were set from the site's actual
+# scores, so a failure means something genuinely got worse rather than the bar
+# being set arbitrarily high.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check Astro components
+        run: npm run check
+
+      - name: Build site
+        run: npm run build
+
+      - name: Start preview server
+        run: |
+          npm run preview:ci &
+          npx wait-on http://127.0.0.1:4321/de --timeout 60000
+
+      - name: Check for broken links
+        run: npm run test:links
+
+      - name: Run Lighthouse
+        run: npm run test:lighthouse
+
+      # Keep the reports even when the run fails - that is exactly when the
+      # detail is wanted.
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 14
+          if-no-files-found: ignore

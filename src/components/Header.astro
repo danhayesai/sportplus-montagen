@@ -2,7 +2,6 @@
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { site } from '../config/site';
 import {
   getContent,
   getPath,
@@ -34,7 +33,10 @@ const navItems = primaryNavKeys.map((key) => {
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href={getPath('home', lang)} class="site-header__brand" aria-label={site.shortName}>
+    {/* No aria-label here: the wordmark inside supplies the accessible name,
+        and an aria-label would override the visible text with a value screen
+        reader users could not speak back to a sighted colleague. */}
+    <a href={getPath('home', lang)} class="site-header__brand">
       <Logo />
     </a>
 
