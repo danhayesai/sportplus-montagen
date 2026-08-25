@@ -30,9 +30,9 @@ export const site = {
   },
 
   legal: {
-    managingDirector: 'Daniel Hayes',
+    managingDirector: 'Tomas Kenda',
     /** Responsible for content under § 18 (2) MStV. */
-    contentResponsible: 'Daniel Hayes',
+    contentResponsible: 'Tomas Kenda',
     vatId: 'DE332276997',
     // Required for a GmbH under § 5 TMG. Setting both makes the imprint's
     // "Registereintrag" section render.

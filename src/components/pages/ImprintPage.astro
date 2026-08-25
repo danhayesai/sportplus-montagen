@@ -33,11 +33,6 @@ const labels = {
     vatText:
       'Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:',
     responsibleTitle: 'Redaktionell verantwortlich gemäß § 18 Abs. 2 MStV',
-    disputeTitle: 'Streitschlichtung',
-    disputeText:
-      'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:',
-    disputeNote:
-      'Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
     liabilityTitle: 'Haftung für Inhalte',
     liabilityText:
       'Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.',
@@ -63,11 +58,6 @@ const labels = {
       'VAT identification number pursuant to § 27 a of the German VAT Act:',
     responsibleTitle:
       'Responsible for editorial content pursuant to § 18 (2) MStV',
-    disputeTitle: 'Dispute resolution',
-    disputeText:
-      'The European Commission provides a platform for online dispute resolution (ODR):',
-    disputeNote:
-      'We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
     liabilityTitle: 'Liability for content',
     liabilityText:
       'As a service provider, we are responsible for our own content on these pages in accordance with general law. However, we are not obliged to monitor transmitted or stored third-party information, or to investigate circumstances that indicate unlawful activity. Obligations to remove or block the use of information under general law remain unaffected. Liability in this respect is only possible from the point at which a specific infringement becomes known. If we become aware of such infringements, we will remove the content in question immediately.',
@@ -131,17 +121,6 @@ const hasRegisterDetails =
         {site.address.street}<br />
         {site.address.postalCode} {site.address.city}
       </p>
-
-      <h2>{l.disputeTitle}</h2>
-      <p>
-        {l.disputeText}{' '}
-        <a
-          href="https://ec.europa.eu/consumers/odr/"
-          target="_blank"
-          rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a
-        >
-      </p>
-      <p>{l.disputeNote}</p>
 
       <h2>{l.liabilityTitle}</h2>
       <p>{l.liabilityText}</p>
