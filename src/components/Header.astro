@@ -89,6 +89,7 @@ const navItems = primaryNavKeys.map((key) => {
       </svg>
       <span class="header-call__text">
         <span class="header-call__number">{site.contact.phone}</span>
+        <span class="header-call__hours">{t.nav.callHours}</span>
       </span>
     </a>
 
@@ -218,6 +219,20 @@ const navItems = primaryNavKeys.map((key) => {
     font-size: var(--text-sm);
     font-weight: 600;
     white-space: nowrap;
+  }
+
+  .header-call__hours {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+
+  /* Between the desktop layout and the smallest screens, drop the hours line
+     so the number itself still fits on one row. */
+  @media (max-width: 78rem) {
+    .header-call__hours {
+      display: none;
+    }
   }
 
   .menu-toggle {

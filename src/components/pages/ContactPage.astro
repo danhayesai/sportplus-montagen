@@ -42,9 +42,7 @@ const contact = t.contact;
         >
           {site.contact.phone}
         </a>
-        <a class="call-first__email" href={`mailto:${site.contact.email}`}>
-          {site.contact.email}
-        </a>
+        <span class="call-first__hours">{contact.hours}</span>
       </div>
     </div>
   </section>
@@ -117,7 +115,7 @@ const contact = t.contact;
     white-space: nowrap;
   }
 
-  .call-first__email {
+  .call-first__hours {
     color: var(--color-text-muted);
     font-size: var(--text-sm);
   }

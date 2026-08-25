@@ -59,6 +59,8 @@ export interface SiteContent {
     languageLabel: string;
     /** Accessible name for the header's click-to-call link. */
     callAriaLabel: string;
+    /** Short opening-hours label beside the header phone number. */
+    callHours: string;
   };
 
   /** Where the company works. Also feeds LocalBusiness areaServed. */
@@ -182,6 +184,8 @@ export interface SiteContent {
     phoneLabel: string;
     emailLabel: string;
     addressLabel: string;
+    /** Full opening-hours line, shown beside the phone number. */
+    hours: string;
     responseNote: string;
   };
 

@@ -29,6 +29,7 @@ export const de: SiteContent = {
     closeMenu: 'Menü schließen',
     languageLabel: 'Sprache wählen',
     callAriaLabel: 'Rufen Sie uns an',
+    callHours: 'Mo–Fr 7–17 Uhr',
   },
 
   serviceArea: {
@@ -303,6 +304,7 @@ export const de: SiteContent = {
     phoneLabel: 'Telefon',
     emailLabel: 'E-Mail',
     addressLabel: 'Anschrift',
+    hours: 'Montag bis Freitag, 7:00 – 17:00 Uhr',
 
     responseNote: 'Wenn es eilig ist, rufen Sie uns am besten direkt an.',
   },

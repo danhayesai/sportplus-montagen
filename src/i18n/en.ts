@@ -27,6 +27,7 @@ export const en: SiteContent = {
     closeMenu: 'Close menu',
     languageLabel: 'Choose language',
     callAriaLabel: 'Call us',
+    callHours: 'Mon–Fri 7–17',
   },
 
   serviceArea: {
@@ -300,6 +301,7 @@ export const en: SiteContent = {
     phoneLabel: 'Phone',
     emailLabel: 'Email',
     addressLabel: 'Address',
+    hours: 'Monday to Friday, 7:00 – 17:00',
 
     responseNote: 'If it is urgent, a phone call is quickest.',
   },

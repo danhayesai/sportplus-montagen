@@ -82,6 +82,14 @@ const structuredData = {
     addressLocality: site.address.city,
     addressCountry: site.address.countryCode,
   },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.openingHours.days,
+      opens: site.openingHours.opens,
+      closes: site.openingHours.closes,
+    },
+  ],
   image: shareImageUrl,
   logo: new URL(withBase('/brand/logo-mark-navy.png'), origin).href,
   // Tells search engines the business works nationwide rather than only in its

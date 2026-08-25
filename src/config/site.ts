@@ -69,9 +69,19 @@ export const site = {
    */
   areaServed: 'Deutschland',
 
-  // No opening hours are published. The previous site stated none, and
-  // inventing them would put unverified availability into the structured data
-  // that search engines surface. Reachability is by phone and email.
+  /**
+   * Opening hours, confirmed by the company (07:00-17:00). These feed the
+   * header, the contact page and the LocalBusiness structured data that search
+   * engines display, so they must never be guessed.
+   *
+   * Monday to Friday is assumed - only the times were stated. Adjust `days` if
+   * Saturdays are worked.
+   */
+  openingHours: {
+    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '07:00',
+    closes: '17:00',
+  },
 } as const;
 
 /** Single-line postal address, used in the footer and structured data. */
