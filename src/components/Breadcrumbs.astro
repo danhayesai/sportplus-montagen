@@ -22,6 +22,9 @@ const crumbs = [
   { label: current, href: null },
 ];
 
+// getPath() already carries the base, so crumb hrefs only need an origin.
+const origin = Astro.site ?? new URL(site.url);
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -29,7 +32,7 @@ const schema = {
     '@type': 'ListItem',
     position: index + 1,
     name: crumb.label,
-    ...(crumb.href ? { item: new URL(crumb.href, site.url).href } : {}),
+    ...(crumb.href ? { item: new URL(crumb.href, origin).href } : {}),
   })),
 };
 ---

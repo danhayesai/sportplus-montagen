@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/url';
+
 interface Props {
   /** Path relative to the site root, e.g. "/images/hero.jpg". */
   src: string;
@@ -31,13 +33,18 @@ const {
  */
 const webpSrc = src.replace(/\.(jpe?g|png)$/i, '.webp');
 const hasWebpTwin = webpSrc !== src;
+
+// Callers pass logical, root-relative paths; the base is applied here so it is
+// handled once for every image on the site rather than at each call site.
+const imgSrc = withBase(src);
+const imgWebpSrc = withBase(webpSrc);
 ---
 
 <picture>
-  {hasWebpTwin && <source srcset={webpSrc} type="image/webp" />}
+  {hasWebpTwin && <source srcset={imgWebpSrc} type="image/webp" />}
   <img
     class:list={['figure', className]}
-    src={src}
+    src={imgSrc}
     alt={alt}
     width={width}
     height={height}

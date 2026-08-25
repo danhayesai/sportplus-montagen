@@ -1,5 +1,6 @@
 ---
 import { site } from '../config/site';
+import { withBase } from '../utils/url';
 
 /**
  * Root entry point.
@@ -12,8 +13,11 @@ import { site } from '../config/site';
  * `noindex` keeps this staging post out of search results, while the hreflang
  * tags still point crawlers at both real language versions.
  */
-const germanUrl = new URL('/de', site.url).href;
-const englishUrl = new URL('/en', site.url).href;
+const origin = Astro.site ?? new URL(site.url);
+const germanPath = withBase('/de');
+const englishPath = withBase('/en');
+const germanUrl = new URL(germanPath, origin).href;
+const englishUrl = new URL(englishPath, origin).href;
 ---
 
 <!doctype html>
@@ -23,17 +27,19 @@ const englishUrl = new URL('/en', site.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{site.shortName}</title>
     <meta name="robots" content="noindex, follow" />
-    <meta http-equiv="refresh" content="0; url=/de" />
+    <meta http-equiv="refresh" content={`0; url=${germanPath}`} />
     <link rel="canonical" href={germanUrl} />
     <link rel="alternate" hreflang="de" href={germanUrl} />
     <link rel="alternate" hreflang="en" href={englishUrl} />
     <link rel="alternate" hreflang="x-default" href={germanUrl} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
 
-    <script is:inline>
+    <script is:inline define:vars={{ germanPath, englishPath }}>
       (function () {
         var preferred = (navigator.language || 'de').toLowerCase();
-        window.location.replace(preferred.indexOf('en') === 0 ? '/en' : '/de');
+        window.location.replace(
+          preferred.indexOf('en') === 0 ? englishPath : germanPath
+        );
       })();
     </script>
 
@@ -62,8 +68,8 @@ const englishUrl = new URL('/en', site.url).href;
   <body>
     <div>
       <p>{site.shortName}</p>
-      <a href="/de" hreflang="de">Deutsch</a>
-      <a href="/en" hreflang="en">English</a>
+      <a href={germanPath} hreflang="de">Deutsch</a>
+      <a href={englishPath} hreflang="en">English</a>
     </div>
   </body>
 </html>

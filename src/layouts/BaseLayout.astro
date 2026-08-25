@@ -2,6 +2,10 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../config/site';
+import { withBase } from '../utils/url';
+// Imported rather than hardcoded so the preload points at the same hashed,
+// base-aware URL the stylesheet resolves to.
+import interFontUrl from '../assets/fonts/inter-latin-variable.woff2?url';
 import {
   getContent,
   getAlternatePath,
@@ -41,16 +45,22 @@ const pageTitle = isHome
   : `${title} | ${site.shortName}`;
 
 const metaDescription = description ?? t.meta.description;
-const canonicalUrl = new URL(pathname, site.url).href;
+
+// Astro.site is whatever the build was configured for, so canonical URLs stay
+// correct on a staging deploy instead of pointing at a domain that is not live.
+// Astro.url.pathname already carries the base, and getPath() adds it too, so
+// neither needs withBase() here.
+const origin = Astro.site ?? new URL(site.url);
+const canonicalUrl = new URL(pathname, origin).href;
 
 // Social previews need an absolute URL; a root-relative path is ignored by
 // every major platform.
-const shareImageUrl = new URL('/images/share.jpg', site.url).href;
+const shareImageUrl = new URL(withBase('/images/share.jpg'), origin).href;
 
 // One alternate link per language, plus x-default pointing at German.
 const alternates = (Object.keys(languages) as Language[]).map((code) => ({
   code,
-  href: new URL(getAlternatePath(pathname, code), site.url).href,
+  href: new URL(getAlternatePath(pathname, code), origin).href,
 }));
 
 // LocalBusiness structured data helps the company surface in local search
@@ -61,7 +71,7 @@ const structuredData = {
   name: site.legalName,
   alternateName: site.shortName,
   description: metaDescription,
-  url: site.url,
+  url: origin.href,
   telephone: site.contact.phoneHref,
   email: site.contact.email,
   vatID: site.legal.vatId,
@@ -81,7 +91,7 @@ const structuredData = {
     },
   ],
   image: shareImageUrl,
-  logo: new URL('/brand/logo-mark-navy.png', site.url).href,
+  logo: new URL(withBase('/brand/logo-mark-navy.png'), origin).href,
   // Tells search engines which regions this business actually covers, which
   // is what drives "near me" style local results.
   areaServed: site.areaServed.map((name) => ({
@@ -131,13 +141,13 @@ const faqSchema = includeFaqSchema
     <link
       rel="alternate"
       hreflang="x-default"
-      href={new URL(getAlternatePath(pathname, 'de'), site.url).href}
+      href={new URL(getAlternatePath(pathname, 'de'), origin).href}
     />
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     {/* iOS ignores SVG favicons, so it needs its own raster icon. */}
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
+    <link rel="manifest" href={withBase("/site.webmanifest")} />
     <meta name="theme-color" content="#1b4272" />
 
     <!-- Open Graph / social sharing -->
@@ -161,7 +171,7 @@ const faqSchema = includeFaqSchema
          the file alongside the stylesheet instead of waiting for it. -->
     <link
       rel="preload"
-      href="/fonts/inter-latin-variable.woff2"
+      href={interFontUrl}
       as="font"
       type="font/woff2"
       crossorigin

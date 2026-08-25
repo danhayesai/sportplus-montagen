@@ -1,6 +1,7 @@
 import { de } from './de';
 import { en } from './en';
 import { site } from '../config/site';
+import { withBase, stripBase } from '../utils/url';
 import type { LinkedItem, SiteContent } from './types';
 
 /** Languages the site is published in, mapped to their native display names. */
@@ -58,7 +59,7 @@ export function getActiveSectors(lang: Language): LinkedItem[] {
  * Falls back to the default language when the path carries no known prefix.
  */
 export function getLanguageFromUrl(url: URL): Language {
-  const [, segment] = url.pathname.split('/');
+  const [, segment] = stripBase(url.pathname).split('/');
   if (segment && segment in languages) {
     return segment as Language;
   }
@@ -66,7 +67,8 @@ export function getLanguageFromUrl(url: URL): Language {
 }
 
 /**
- * Builds an absolute, root-relative path for a route in a given language.
+ * Builds a root-relative href for a route in a given language, including the
+ * base path when the site is served from a subdirectory.
  * `home` yields `/de` or `/en` rather than a trailing slash.
  */
 export function getPath(key: RouteKey, lang: Language): string {
@@ -75,12 +77,12 @@ export function getPath(key: RouteKey, lang: Language): string {
     throw new Error(`Unknown route key: ${key}`);
   }
   const slug = route[lang];
-  return slug ? `/${lang}/${slug}` : `/${lang}`;
+  return withBase(slug ? `/${lang}/${slug}` : `/${lang}`);
 }
 
 /** Finds which route a pathname belongs to, regardless of its language. */
 export function getRouteKeyFromPath(pathname: string): RouteKey | undefined {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = stripBase(pathname).split('/').filter(Boolean);
   const [langSegment, slugSegment] = segments;
 
   if (!langSegment || !(langSegment in languages)) {

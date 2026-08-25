@@ -32,10 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -46,11 +46,24 @@ jobs:
       - name: Type-check Astro components
         run: npm run check
 
+      # Pages serves a project site from /<repo>/, not the domain root, so the
+      # build needs to know that prefix. Once the custom domain is pointed at
+      # Pages the site moves to the root and PAGES_BASE should be dropped.
       - name: Build site
         run: npm run build
+        env:
+          PAGES_BASE: /${{ github.event.repository.name }}
+          # Keeps canonical URLs, hreflang and the sitemap pointing at the
+          # address this build is actually reachable at. Drop both variables
+          # once the custom domain is live and the site moves to a root path.
+          PAGES_SITE: https://${{ github.repository_owner }}.github.io
 
+      # enablement:true means the workflow turns Pages on itself rather than
+      # failing with "Get Pages site failed" when it has never been enabled.
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
