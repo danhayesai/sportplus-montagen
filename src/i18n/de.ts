@@ -13,7 +13,6 @@ export const de: SiteContent = {
   media: {
     heroAlt:
       'Fertig montierte Prallschutzwand und Sportboden in einer Sporthalle',
-    teamAlt: 'Fertiggestellte Sporthalle mit montierter Prallschutzwand',
     shareAlt: 'Logo von SportPlus Montagen',
     galleryAltPrefix: 'Projektbeispiel:',
   },
@@ -30,13 +29,12 @@ export const de: SiteContent = {
     closeMenu: 'Menü schließen',
     languageLabel: 'Sprache wählen',
     callAriaLabel: 'Rufen Sie uns an',
-    callHours: 'Mo–Fr 8–18 Uhr',
   },
 
   serviceArea: {
     title: 'Wo wir montieren',
     body:
-      'Unser Sitz ist in Rosenheim. Von dort fahren wir Baustellen in ganz Bayern an und übernehmen auf Anfrage auch Projekte darüber hinaus. Fragen Sie einfach, ob Ihr Standort dabei ist – die Anfahrt klären wir vorab, damit sie im Angebot nicht überrascht.',
+      'Unser Sitz ist in Rosenheim, gearbeitet wird bundesweit. Wo Ihre Halle steht, ist für uns zweitrangig – fragen Sie das Projekt einfach an, und wir klären die Anfahrt gleich mit.',
   },
 
   breadcrumb: {
@@ -58,32 +56,22 @@ export const de: SiteContent = {
       {
         question: 'Wie lange dauert die Montage einer Sporthalle?',
         answer:
-          'Das hängt von Hallengröße und System ab. Eine Einfachhalle mit Prallschutz und Sportboden liegt erfahrungsgemäß im Bereich weniger Wochen, eine Dreifachhalle entsprechend länger. Nach dem Aufmaß nennen wir Ihnen einen verbindlichen Zeitraum – und halten ihn ein.',
-      },
-      {
-        question: 'Können Sie im laufenden Betrieb arbeiten?',
-        answer:
-          'In vielen Fällen ja. Wir stimmen die Bauabschnitte mit Ihnen ab, sodass Teile der Halle nutzbar bleiben, und arbeiten auf Wunsch auch in den Ferien oder am Wochenende. Sprechen Sie uns früh darauf an, dann planen wir es von Anfang an ein.',
+          'Das hängt von der Hallengröße und vom gewählten System ab. Wir messen die Flächen vor Ort auf und nennen Ihnen danach einen Termin – und den halten wir auch ein.',
       },
       {
         question: 'Übernehmen Sie auch Demontage und Entsorgung?',
         answer:
-          'Ja, beides gehört zum Leistungsumfang. Wir bauen die alten Elemente zurück, entsorgen sie fachgerecht und weisen die Entsorgung nach. Sie brauchen dafür keinen zweiten Betrieb zu beauftragen.',
+          'Ja, beides gehört zum Leistungsumfang. Wir bauen die alten Elemente sorgfältig zurück und entsorgen sie fachgerecht. Sie brauchen dafür keinen zweiten Betrieb zu beauftragen.',
       },
       {
         question: 'Was kostet eine Prallschutzwand?',
         answer:
-          'Seriös lässt sich das erst nach dem Aufmaß sagen, weil Wandfläche, System, Brandschutzanforderungen und Sonderelemente den Preis bestimmen. Was wir zusagen können: Sie bekommen ein nachvollziehbares Angebot mit Positionen, die Sie prüfen können – keine Pauschale, die sich später bewegt.',
-      },
-      {
-        question: 'Wie schnell bekomme ich ein Angebot?',
-        answer:
-          'Auf Ihre Anfrage melden wir uns in der Regel innerhalb eines Werktages. Steht das Aufmaß, erhalten Sie das schriftliche Angebot meist innerhalb weniger Tage.',
+          'Seriös lässt sich das erst nach dem Aufmaß sagen, weil Wandfläche, System und Sonderanfertigungen den Preis bestimmen. Deshalb messen wir vor Ort auf, bevor wir Ihnen ein Angebot machen.',
       },
       {
         question: 'Arbeiten Sie auch für private Bauherren?',
         answer:
-          'Ja. Wir arbeiten für Bauunternehmen und Kommunen genauso wie für private Auftraggeber. Der Ablauf ist derselbe: Aufmaß, Angebot, Montage, gemeinsame Abnahme.',
+          'Ja. Wir arbeiten sowohl für Unternehmen als auch für private Bauherren. Der Ablauf ist derselbe: Aufmaß, Angebot, Montage, Abnahme.',
       },
     ],
   },
@@ -128,7 +116,7 @@ export const de: SiteContent = {
         {
           title: 'Anfrage',
           body:
-            'Sie schildern uns kurz das Projekt – Halle, ungefähre Fläche, Wunschtermin. Wir melden uns in der Regel innerhalb eines Werktages.',
+            'Sie schildern uns kurz das Projekt – Halle, ungefähre Fläche, Wunschtermin. Ein Anruf genügt.',
         },
         {
           title: 'Aufmaß vor Ort',
@@ -143,19 +131,19 @@ export const de: SiteContent = {
         {
           title: 'Montage',
           body:
-            'Wir montieren zum vereinbarten Termin, halten die Baustelle sauber und stimmen Bauabschnitte mit Ihnen ab, wenn die Halle in Betrieb bleibt.',
+            'Wir montieren zum vereinbarten Termin, sauber ausgeführt und ohne Mängel bei der Übergabe.',
         },
         {
           title: 'Abnahme',
           body:
-            'Die Abnahme erfolgt gemeinsam, in der Regel direkt im Anschluss an die Montage, mit Dokumentation für Ihre Unterlagen.',
+            'Die Abnahme erfolgt in der Regel direkt im Anschluss an die Montage. Einen separaten Termin richten wir auf Wunsch gerne ein.',
         },
       ],
     },
     ctaBand: {
       title: 'Sie haben ein Projekt in Planung?',
       body:
-        'Schicken Sie uns die Eckdaten – Hallengröße, Systemwunsch, Wunschtermin. Sie bekommen zeitnah eine belastbare Einschätzung.',
+        'Schicken Sie uns die Eckdaten – Hallengröße, Systemwunsch, Wunschtermin. Wir schauen es uns an und melden uns bei Ihnen.',
       cta: 'Jetzt anfragen',
     },
   },
@@ -189,7 +177,7 @@ export const de: SiteContent = {
           'Prallschutzwände und Sportböden aller Bauarten',
           'Alte Tribünen und Sportgeräte',
           'Einbauelemente, Tore und Türen',
-          'Fachgerechte Entsorgung inklusive Nachweis',
+          'Fachgerechte Entsorgung',
         ],
       },
       {
@@ -278,7 +266,7 @@ export const de: SiteContent = {
     closing: {
       title: 'Überzeugen Sie sich selbst',
       body:
-        'Rufen Sie uns an oder schreiben Sie uns kurz, was ansteht. Wir melden uns zeitnah mit einer ehrlichen Einschätzung – auch dann, wenn wir nicht der richtige Betrieb für Ihr Projekt sind.',
+        'Rufen Sie uns an oder schreiben Sie uns kurz, was ansteht. Sie bekommen eine ehrliche Einschätzung – auch dann, wenn wir nicht der richtige Betrieb für Ihr Projekt sind.',
       cta: 'Kontakt aufnehmen',
     },
   },
@@ -306,7 +294,7 @@ export const de: SiteContent = {
       submit: 'Anfrage senden',
       sending: 'Wird gesendet …',
       success:
-        'Vielen Dank für Ihre Nachricht! Wir melden uns in der Regel innerhalb eines Werktages bei Ihnen.',
+        'Vielen Dank für Ihre Nachricht – wir haben Ihre Anfrage erhalten und melden uns bei Ihnen.',
       error:
         'Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.',
       required: 'Pflichtfeld',
@@ -315,9 +303,8 @@ export const de: SiteContent = {
     phoneLabel: 'Telefon',
     emailLabel: 'E-Mail',
     addressLabel: 'Anschrift',
-    hoursLabel: 'Erreichbarkeit',
-    hours: 'Montag bis Freitag, 8:00 – 18:00 Uhr',
-    responseNote: 'Wir antworten in der Regel innerhalb eines Werktages.',
+
+    responseNote: 'Wenn es eilig ist, rufen Sie uns am besten direkt an.',
   },
 
   footer: {

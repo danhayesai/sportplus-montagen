@@ -42,7 +42,9 @@ const contact = t.contact;
         >
           {site.contact.phone}
         </a>
-        <span class="call-first__hours">{contact.hours}</span>
+        <a class="call-first__email" href={`mailto:${site.contact.email}`}>
+          {site.contact.email}
+        </a>
       </div>
     </div>
   </section>
@@ -83,10 +85,6 @@ const contact = t.contact;
             </dd>
           </div>
 
-          <div class="contact-details__row">
-            <dt>{contact.hoursLabel}</dt>
-            <dd>{contact.hours}</dd>
-          </div>
         </dl>
       </aside>
     </div>
@@ -119,7 +117,7 @@ const contact = t.contact;
     white-space: nowrap;
   }
 
-  .call-first__hours {
+  .call-first__email {
     color: var(--color-text-muted);
     font-size: var(--text-sm);
   }

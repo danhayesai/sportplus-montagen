@@ -120,13 +120,6 @@ the footer, contact page, imprint and structured data at once.
 - [ ] **Have the privacy policy reviewed.** It describes what the site actually
       does today (no cookies, no analytics, no tracking), but it is a starting
       point rather than legal advice.
-- [ ] **Confirm the service area.** `areaServed` in `src/config/site.ts` and the
-      "Wo wir montieren" copy both claim Bavaria and beyond. That was inferred
-      from the Rosenheim base, not stated by the company — narrow or widen it.
-- [ ] **Check the FAQ answers.** The six questions in `src/i18n/de.ts` are the
-      ones buyers in this trade actually ask, but the answers contain
-      operational claims (response times, phased working, disposal
-      documentation) that need to match how the company really works.
 - [ ] **Set up a Google Business Profile.** For a local trade this drives more
       enquiries than anything on the site itself, and nothing in the codebase
       can substitute for it.
@@ -142,9 +135,8 @@ request:
 
 - **Type-check** — `astro check`, same as locally.
 - **Broken links** — [linkinator](https://github.com/JustinBeckwith/linkinator)
-  crawls every internal link on the built site. External links (fonts,
-  the ODR platform) are skipped so the check doesn't fail on someone else's
-  downtime.
+  crawls every internal link on the built site. The site has no external
+  links, so nothing is skipped.
 - **Lighthouse** — runs against the home, services, references, contact and
   English pages, and fails the build if any of them drop below:
 

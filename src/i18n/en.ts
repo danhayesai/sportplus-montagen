@@ -13,7 +13,6 @@ export const en: SiteContent = {
   media: {
     heroAlt:
       'Finished impact protection wall and sports flooring in a sports hall',
-    teamAlt: 'Completed sports hall with installed impact protection wall',
     shareAlt: 'SportPlus Montagen logo',
     galleryAltPrefix: 'Project example:',
   },
@@ -28,13 +27,12 @@ export const en: SiteContent = {
     closeMenu: 'Close menu',
     languageLabel: 'Choose language',
     callAriaLabel: 'Call us',
-    callHours: 'Mon–Fri 8–18',
   },
 
   serviceArea: {
-    title: 'Our service area',
+    title: 'Where we work',
     body:
-      'We are based in Rosenheim and travel to sites throughout Bavaria, taking on projects further afield on request. Just ask whether your location is covered — we agree travel costs up front so they hold no surprises in the quote.',
+      'We are based in Rosenheim and work throughout Germany. Where your hall is matters less than you might think — send us the project and we will sort the travel out with it.',
   },
 
   breadcrumb: {
@@ -56,32 +54,22 @@ export const en: SiteContent = {
       {
         question: 'How long does installing a sports hall take?',
         answer:
-          'It depends on the size of the hall and the system. A single hall with impact protection and sports flooring typically runs to a few weeks; a triple hall proportionally longer. Once we have surveyed the site we give you a firm timeframe — and we keep to it.',
-      },
-      {
-        question: 'Can you work while the building stays in use?',
-        answer:
-          'In many cases, yes. We agree the phasing with you so parts of the hall stay usable, and we can work during school holidays or at weekends if that suits better. Raise it early and we will plan around it from the start.',
+          'It depends on the size of the hall and the system chosen. We survey the areas on site and give you a date afterwards — and we keep to it.',
       },
       {
         question: 'Do you handle strip-out and disposal too?',
         answer:
-          'Yes, both are part of the job. We remove the old elements, dispose of them properly and provide the disposal documentation. There is no need to bring in a second contractor for it.',
+          'Yes, both are part of the job. We carefully remove the old elements and dispose of them properly. There is no need to bring in a second contractor for it.',
       },
       {
         question: 'What does an impact protection wall cost?',
         answer:
-          'Honestly, that cannot be answered before the survey, because wall area, system, fire protection requirements and bespoke elements all drive the price. What we can promise: an itemised quote you can actually check — not a lump sum that moves later.',
-      },
-      {
-        question: 'How quickly will I get a quote?',
-        answer:
-          'We normally reply to an enquiry within one working day. Once the survey is done, the written quote usually follows within a few days.',
+          'That cannot honestly be answered before the survey, because wall area, system and any bespoke elements all drive the price. So we measure on site before quoting.',
       },
       {
         question: 'Do you work for private clients as well?',
         answer:
-          'Yes. We work for construction firms and local authorities just as we do for private clients. The process is the same either way: survey, quote, installation, joint handover.',
+          'Yes. We work for companies and private clients alike. The process is the same either way: survey, quote, installation, handover.',
       },
     ],
   },
@@ -125,7 +113,7 @@ export const en: SiteContent = {
         {
           title: 'Enquiry',
           body:
-            'You tell us briefly about the project — the hall, approximate area, target date. We normally come back to you within one working day.',
+            'You tell us briefly about the project — the hall, approximate area, target date. A phone call is enough.',
         },
         {
           title: 'Site survey',
@@ -140,19 +128,19 @@ export const en: SiteContent = {
         {
           title: 'Installation',
           body:
-            'We install on the agreed date, keep the site clean, and phase the work with you if the hall has to stay in use.',
+            'We install on the agreed date, executed cleanly and handed over without defects.',
         },
         {
           title: 'Handover',
           body:
-            'We walk the handover together, normally straight after installation, with documentation for your records.',
+            'Handover normally takes place directly after installation. A separate appointment can be arranged on request.',
         },
       ],
     },
     ctaBand: {
       title: 'Have a project coming up?',
       body:
-        'Send us the essentials — hall size, preferred system, target date. We will come back to you promptly with a realistic assessment.',
+        'Send us the essentials — hall size, preferred system, target date. We will look at it and come back to you.',
       cta: 'Get in touch',
     },
   },
@@ -186,7 +174,7 @@ export const en: SiteContent = {
           'Impact protection walls and sports floors of all construction types',
           'Old grandstands and sports equipment',
           'Fitted units, gates and doors',
-          'Proper disposal, documentation included',
+          'Proper disposal',
         ],
       },
       {
@@ -275,7 +263,7 @@ export const en: SiteContent = {
     closing: {
       title: 'See for yourself',
       body:
-        'Call us or drop us a line about what is coming up. We will get back to you promptly with an honest assessment — including when we are not the right company for your project.',
+        'Call us or drop us a line about what is coming up. You will get an honest assessment — including when we are not the right company for your project.',
       cta: 'Get in touch',
     },
   },
@@ -303,7 +291,7 @@ export const en: SiteContent = {
       submit: 'Send enquiry',
       sending: 'Sending …',
       success:
-        'Thank you for your message! We normally get back to you within one working day.',
+        'Thank you for your message — we have received your enquiry and will get back to you.',
       error:
         'That did not go through. Please try again, or simply give us a call.',
       required: 'Required',
@@ -312,9 +300,8 @@ export const en: SiteContent = {
     phoneLabel: 'Phone',
     emailLabel: 'Email',
     addressLabel: 'Address',
-    hoursLabel: 'Availability',
-    hours: 'Monday to Friday, 8:00 – 18:00',
-    responseNote: 'We normally reply within one working day.',
+
+    responseNote: 'If it is urgent, a phone call is quickest.',
   },
 
   footer: {

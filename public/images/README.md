@@ -21,7 +21,6 @@ picture on the site — no code change needed.
 | `sports-halls-1..3.jpg`  | 1200 x 900 | References gallery  |
 | `hotels-1..3.jpg`        | 1200 x 900 | References gallery  |
 | `timber-houses-1..3.jpg` | 1200 x 900 | References gallery  |
-| `team.jpg`               | 1200 x 900 | About page          |
 
 ## The library
 

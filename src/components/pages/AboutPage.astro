@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../PageHero.astro';
 import CtaBand from '../CtaBand.astro';
-import Figure from '../Figure.astro';
 import { getContent, type Language } from '../../i18n';
 
 interface Props {
@@ -17,20 +16,13 @@ const about = t.about;
 <BaseLayout lang={lang} title={about.title} description={about.subtitle}>
   <PageHero lang={lang} title={about.title} subtitle={about.subtitle} />
 
+  {/* No photograph here: the previous site had none either, and there is no
+      team photo to use. Rather than filling the space with an unrelated hall
+      shot, the introduction runs as a single readable column. */}
   <section class="section">
-    <div class="container">
-      <div class="about-intro">
-        <div class="about-intro__text prose">
-          {about.lead.map((paragraph) => <p>{paragraph}</p>)}
-        </div>
-
-        <Figure
-          src="/images/team.jpg"
-          alt={t.media.teamAlt}
-          width={1200}
-          height={900}
-          class="about-intro__media"
-        />
+    <div class="container container--narrow">
+      <div class="about-intro__text prose">
+        {about.lead.map((paragraph) => <p>{paragraph}</p>)}
       </div>
     </div>
   </section>
@@ -66,26 +58,10 @@ const about = t.about;
 </BaseLayout>
 
 <style>
-  .about-intro {
-    display: grid;
-    gap: clamp(2rem, 5vw, 3.5rem);
-    align-items: center;
-  }
-
-  @media (min-width: 62rem) {
-    .about-intro {
-      grid-template-columns: 1.1fr 1fr;
-    }
-  }
-
   .about-intro__text {
     color: var(--color-text-muted);
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
-  }
-
-  .about-intro__media {
-    box-shadow: var(--shadow-md);
   }
 
   .card[id] {

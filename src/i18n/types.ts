@@ -42,7 +42,6 @@ export interface SiteContent {
   /** Alternative text for photography, required for screen readers. */
   media: {
     heroAlt: string;
-    teamAlt: string;
     /** Describes the social sharing preview image. */
     shareAlt: string;
     /** Prefixed to a sector name, e.g. "Project example: sports halls". */
@@ -60,8 +59,6 @@ export interface SiteContent {
     languageLabel: string;
     /** Accessible name for the header's click-to-call link. */
     callAriaLabel: string;
-    /** Short label beside the header phone number, e.g. "Mo-Fr 8-18 Uhr". */
-    callHours: string;
   };
 
   /** Where the company works. Also feeds LocalBusiness areaServed. */
@@ -185,8 +182,6 @@ export interface SiteContent {
     phoneLabel: string;
     emailLabel: string;
     addressLabel: string;
-    hoursLabel: string;
-    hours: string;
     responseNote: string;
   };
 

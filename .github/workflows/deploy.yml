@@ -46,17 +46,12 @@ jobs:
       - name: Type-check Astro components
         run: npm run check
 
-      # Pages serves a project site from /<repo>/, not the domain root, so the
-      # build needs to know that prefix. Once the custom domain is pointed at
-      # Pages the site moves to the root and PAGES_BASE should be dropped.
+      # No PAGES_BASE / PAGES_SITE: the site is served from the root of its
+      # custom domain, so it builds with the defaults in astro.config.mjs.
+      # (Those variables are still supported if it ever needs to go back to a
+      # /<repo>/ project-site URL.)
       - name: Build site
         run: npm run build
-        env:
-          PAGES_BASE: /${{ github.event.repository.name }}
-          # Keeps canonical URLs, hreflang and the sitemap pointing at the
-          # address this build is actually reachable at. Drop both variables
-          # once the custom domain is live and the site moves to a root path.
-          PAGES_SITE: https://${{ github.repository_owner }}.github.io
 
       # enablement:true means the workflow turns Pages on itself rather than
       # failing with "Get Pages site failed" when it has never been enabled.

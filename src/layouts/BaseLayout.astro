@@ -82,22 +82,14 @@ const structuredData = {
     addressLocality: site.address.city,
     addressCountry: site.address.countryCode,
   },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: site.openingHours.days,
-      opens: site.openingHours.opens,
-      closes: site.openingHours.closes,
-    },
-  ],
   image: shareImageUrl,
   logo: new URL(withBase('/brand/logo-mark-navy.png'), origin).href,
-  // Tells search engines which regions this business actually covers, which
-  // is what drives "near me" style local results.
-  areaServed: site.areaServed.map((name) => ({
-    '@type': 'AdministrativeArea',
-    name,
-  })),
+  // Tells search engines the business works nationwide rather than only in its
+  // home city, which is what stops it being treated as purely Rosenheim-local.
+  areaServed: {
+    '@type': 'Country',
+    name: site.areaServed,
+  },
   knowsLanguage: ['de', 'en'],
 };
 
