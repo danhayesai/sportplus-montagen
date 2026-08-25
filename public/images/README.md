@@ -48,6 +48,19 @@ page.
 If the source is already in `library/`, it is 1600px wide and only needs
 cropping to the right ratio.
 
+## WebP is automatic — don't add it by hand
+
+`npm run build` regenerates a `.webp` twin for every JPEG and PNG in here (see
+`scripts/generate-webp.mjs`), and the page offers that to browsers first, with
+the original as the fallback. This cut about 5 MB across the library.
+
+The `.webp` files are **not** committed and should not be. They are rebuilt from
+whatever the JPEG currently is, so replacing `hero.jpg` and rebuilding always
+produces a matching `hero.webp`. Committing them would risk the opposite: modern
+browsers quietly serving last month's photo while the JPEG showed the new one.
+
+Just drop in the JPEG. Nothing else to do.
+
 ## If you add new photographs
 
 - Export as JPEG at around 80% quality.
@@ -55,3 +68,5 @@ cropping to the right ratio.
 - Landscape orientation; the grids crop to the ratios above.
 - Update the alt text in `src/i18n/de.ts` and `src/i18n/en.ts` under `media` if
   the subject changes.
+- To add a photo to the references page, add an entry to
+  `src/data/projects.ts` pointing at its path.

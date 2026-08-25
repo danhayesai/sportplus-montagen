@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import { site } from '../config/site';
 import {
   getContent,
   getPath,
@@ -63,6 +64,35 @@ const navItems = primaryNavKeys.map((key) => {
       </div>
     </nav>
 
+    {/* Click-to-call, kept outside the collapsible nav so it stays reachable
+        on mobile without opening the menu - a phone call is the primary way
+        this trade gets enquiries. */}
+    <a
+      class="header-call"
+      href={`tel:${site.contact.phoneHref}`}
+      aria-label={`${t.nav.callAriaLabel}: ${site.contact.phone}`}
+    >
+      <svg
+        class="header-call__icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+        />
+      </svg>
+      <span class="header-call__text">
+        <span class="header-call__number">{site.contact.phone}</span>
+        <span class="header-call__hours">{t.nav.callHours}</span>
+      </span>
+    </a>
+
     <button
       type="button"
       class="menu-toggle"
@@ -107,6 +137,9 @@ const navItems = primaryNavKeys.map((key) => {
     display: flex;
     align-items: center;
     gap: var(--space-xl);
+    /* Pushes the nav and everything after it (the call button) to the right,
+       leaving the brand on the left. */
+    margin-left: auto;
   }
 
   .site-nav__list {
@@ -137,7 +170,7 @@ const navItems = primaryNavKeys.map((key) => {
   }
 
   .site-nav__link[aria-current='page'] {
-    color: var(--color-accent-600);
+    color: var(--color-accent-text);
     font-weight: 600;
   }
 
@@ -147,6 +180,51 @@ const navItems = primaryNavKeys.map((key) => {
     gap: var(--space-xs);
     padding-left: var(--space-lg);
     border-left: 1px solid var(--color-border);
+  }
+
+  .header-call {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color var(--transition-fast),
+      background-color var(--transition-fast);
+  }
+
+  .header-call:hover {
+    background-color: var(--color-bg-subtle);
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+  }
+
+  .header-call__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    color: var(--color-accent-text);
+  }
+
+  .header-call__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .header-call__number {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .header-call__hours {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    white-space: nowrap;
   }
 
   .menu-toggle {
@@ -198,10 +276,43 @@ const navItems = primaryNavKeys.map((key) => {
     transform: translateY(0) rotate(-45deg);
   }
 
+  /* Between the desktop layout and the smallest screens, drop the opening
+     hours line so the number itself still fits on one row. */
+  @media (max-width: 78rem) {
+    .header-call__hours {
+      display: none;
+    }
+  }
+
   @media (max-width: 60rem) {
     .menu-toggle {
       display: grid;
       position: relative;
+    }
+
+    /* Collapse to an icon-only call button, pushed to sit next to the menu
+       toggle. The accessible name still carries the full number. */
+    .header-call {
+      margin-left: auto;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+
+    .header-call__text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .header-call__icon {
+      width: 1.25rem;
+      height: 1.25rem;
     }
 
     .site-nav {

@@ -18,9 +18,20 @@ interface Props {
   description?: string;
   /** Set on the home page so the title is not duplicated. */
   isHome?: boolean;
+  /** Emits FAQPage structured data. Only set on pages that render the FAQ. */
+  includeFaqSchema?: boolean;
+  /** Keeps a page out of search results (used by the 404). */
+  noindex?: boolean;
 }
 
-const { lang, title, description, isHome = false } = Astro.props;
+const {
+  lang,
+  title,
+  description,
+  isHome = false,
+  includeFaqSchema = false,
+  noindex = false,
+} = Astro.props;
 
 const t = getContent(lang);
 const pathname = Astro.url.pathname;
@@ -69,7 +80,33 @@ const structuredData = {
       closes: site.openingHours.closes,
     },
   ],
+  image: shareImageUrl,
+  logo: new URL('/brand/logo-mark-navy.png', site.url).href,
+  // Tells search engines which regions this business actually covers, which
+  // is what drives "near me" style local results.
+  areaServed: site.areaServed.map((name) => ({
+    '@type': 'AdministrativeArea',
+    name,
+  })),
+  knowsLanguage: ['de', 'en'],
 };
+
+// Emitted only where the FAQ is actually rendered - marking up questions that
+// are not visible on the page is a structured-data violation.
+const faqSchema = includeFaqSchema
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: t.faq.items.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -79,6 +116,7 @@ const structuredData = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalUrl} />
 
     {
@@ -97,6 +135,9 @@ const structuredData = {
     />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {/* iOS ignores SVG favicons, so it needs its own raster icon. */}
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#1b4272" />
 
     <!-- Open Graph / social sharing -->
@@ -131,6 +172,16 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+
+    {
+      faqSchema && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(faqSchema)}
+        />
+      )
+    }
 
     <!-- Applies the saved theme before first paint so the page never flashes
          the wrong colour scheme. -->

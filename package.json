@@ -12,7 +12,9 @@
     "check": "astro check",
     "preview:ci": "astro preview --host 127.0.0.1 --port 4321",
     "test:links": "linkinator http://127.0.0.1:4321/de --recurse --skip sportplusmontagen.de --skip ec.europa.eu",
-    "test:lighthouse": "lhci collect && lhci assert"
+    "test:lighthouse": "lhci collect && lhci assert",
+    "images:webp": "node scripts/generate-webp.mjs",
+    "prebuild": "node scripts/generate-webp.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

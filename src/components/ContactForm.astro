@@ -27,43 +27,26 @@ const privacyHref = getPath('privacy', lang);
   action={hasEndpoint ? endpoint : undefined}
   data-endpoint={hasEndpoint ? endpoint : ''}
   data-mailto={site.contact.email}
+  data-mail-subject={lang === 'de' ? 'Anfrage über die Website' : 'Website enquiry'}
   novalidate
 >
   <div class="contact-form__row">
     <div class="field">
-      <label class="field__label" for="firstName">
-        {form.firstName}
+      <label class="field__label" for="name">
+        {form.name}
         <span class="field__required" aria-hidden="true">*</span>
         <span class="visually-hidden">({form.required})</span>
       </label>
       <input
         class="field__input"
         type="text"
-        id="firstName"
-        name="firstName"
-        autocomplete="given-name"
+        id="name"
+        name="name"
+        autocomplete="name"
         required
       />
     </div>
 
-    <div class="field">
-      <label class="field__label" for="lastName">
-        {form.lastName}
-        <span class="field__required" aria-hidden="true">*</span>
-        <span class="visually-hidden">({form.required})</span>
-      </label>
-      <input
-        class="field__input"
-        type="text"
-        id="lastName"
-        name="lastName"
-        autocomplete="family-name"
-        required
-      />
-    </div>
-  </div>
-
-  <div class="contact-form__row">
     <div class="field">
       <label class="field__label" for="email">
         {form.email}
@@ -79,22 +62,22 @@ const privacyHref = getPath('privacy', lang);
         required
       />
     </div>
-
-    <div class="field">
-      <label class="field__label" for="phone">{form.phone}</label>
-      <input
-        class="field__input"
-        type="tel"
-        id="phone"
-        name="phone"
-        autocomplete="tel"
-      />
-    </div>
   </div>
 
   <div class="field">
-    <label class="field__label" for="subject">{form.subject}</label>
-    <input class="field__input" type="text" id="subject" name="subject" />
+    <label class="field__label" for="phone">
+      {form.phone}
+      <span class="field__optional">({form.optional})</span>
+    </label>
+    <input
+      class="field__input"
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      aria-describedby="phone-hint"
+    />
+    <span class="field__hint" id="phone-hint">{form.phoneHint}</span>
   </div>
 
   <div class="field">
@@ -172,7 +155,17 @@ const privacyHref = getPath('privacy', lang);
   }
 
   .field__required {
-    color: var(--color-accent-600);
+    color: var(--color-accent-text);
+  }
+
+  .field__optional {
+    color: var(--color-text-muted);
+    font-weight: 400;
+  }
+
+  .field__hint {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
   }
 
   .field__input {
@@ -315,16 +308,20 @@ const privacyHref = getPath('privacy', lang);
       // client so it still reaches the company.
       if (!endpoint) {
         const address = form.dataset.mailto ?? '';
-        const subject =
-          (data.get('subject') as string) ||
-          `${data.get('firstName')} ${data.get('lastName')}`;
+        const name = String(data.get('name') ?? '');
+        const phone = String(data.get('phone') ?? '');
+        const subject = form.dataset.mailSubject
+          ? `${form.dataset.mailSubject}: ${name}`
+          : name;
         const body = [
-          `${data.get('firstName')} ${data.get('lastName')}`,
-          `${data.get('email')}`,
-          `${data.get('phone') ?? ''}`,
+          name,
+          String(data.get('email') ?? ''),
+          phone,
           '',
-          `${data.get('message')}`,
-        ].join('\n');
+          String(data.get('message') ?? ''),
+        ]
+          .filter((line, index) => line !== '' || index === 3)
+          .join('\n');
 
         window.location.href = `mailto:${address}?subject=${encodeURIComponent(
           subject

@@ -16,14 +16,41 @@ const contact = t.contact;
 
 <BaseLayout lang={lang} title={contact.title} description={contact.subtitle}>
   <PageHero
+    lang={lang}
     title={contact.title}
     subtitle={contact.subtitle}
     lead={contact.lead}
   />
 
+  {/*
+    Phone first, form second. In this trade most enquiries still come by
+    telephone, and both closest competitors lead with a number rather than a
+    form - but the form stays, because it catches the enquiries that arrive
+    outside working hours.
+  */}
+  <section class="section section--subtle call-first">
+    <div class="container call-first__inner">
+      <div class="call-first__text">
+        <h2 class="section-title">{contact.preferCallTitle}</h2>
+        <p class="section-subtitle">{contact.preferCallBody}</p>
+      </div>
+
+      <div class="call-first__actions">
+        <a
+          class="button button--primary call-first__number"
+          href={`tel:${site.contact.phoneHref}`}
+        >
+          {site.contact.phone}
+        </a>
+        <span class="call-first__hours">{contact.hours}</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container contact-layout">
       <div class="contact-layout__form">
+        <h2 class="contact-details__title">{contact.formTitle}</h2>
         <ContactForm lang={lang} />
       </div>
 
@@ -67,6 +94,40 @@ const contact = t.contact;
 </BaseLayout>
 
 <style>
+  .call-first__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+  }
+
+  .call-first__text {
+    flex: 1 1 30rem;
+    min-width: 0;
+  }
+
+  .call-first__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .call-first__number {
+    font-size: var(--text-xl);
+    white-space: nowrap;
+  }
+
+  .call-first__hours {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .contact-layout__form > .contact-details__title {
+    margin-bottom: var(--space-lg);
+  }
+
   .contact-layout {
     display: grid;
     gap: clamp(2.5rem, 6vw, 4rem);

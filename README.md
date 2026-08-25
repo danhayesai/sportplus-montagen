@@ -44,11 +44,15 @@ developer while the site itself stays fully bilingual.
 ## Structure
 
 ```
+scripts/
+└── generate-webp.mjs    Prebuild step: WebP twin for every JPEG/PNG
 src/
 ├── components/          Reusable UI components
 │   └── pages/           One component per page, shared by both languages
 ├── config/
-│   └── site.ts          Company details, contact info, form endpoint
+│   └── site.ts          Company details, contact info, service area, form endpoint
+├── data/
+│   └── projects.ts      Reference projects shown on the references page
 ├── i18n/
 │   ├── types.ts         Content interface both languages must satisfy
 │   ├── de.ts            German content
@@ -58,7 +62,8 @@ src/
 │   └── BaseLayout.astro Head, SEO, structured data, page shell
 ├── pages/               URL routes (thin wrappers around page components)
 │   ├── de/              German routes
-│   └── en/              English routes
+│   ├── en/              English routes
+│   └── 404.astro        Served for any unmatched route
 └── styles/
     └── global.css       Design tokens and shared styles
 ```
@@ -119,6 +124,18 @@ the footer, contact page, imprint and structured data at once.
 - [ ] **Have the privacy policy reviewed.** It describes what the site actually
       does today (no cookies, no analytics, no tracking), but it is a starting
       point rather than legal advice.
+- [ ] **Confirm the service area.** `areaServed` in `src/config/site.ts` and the
+      "Wo wir montieren" copy both claim Bavaria and beyond. That was inferred
+      from the Rosenheim base, not stated by the company — narrow or widen it.
+- [ ] **Check the FAQ answers.** The six questions in `src/i18n/de.ts` are the
+      ones buyers in this trade actually ask, but the answers contain
+      operational claims (response times, phased working, disposal
+      documentation) that need to match how the company really works.
+- [ ] **Set up a Google Business Profile.** For a local trade this drives more
+      enquiries than anything on the site itself, and nothing in the codebase
+      can substitute for it.
+- [ ] **Plan the redirects.** When the domain moves, the old Wix URLs need 301s
+      to the new paths or the existing search ranking is lost.
 
 ---
 
@@ -138,15 +155,20 @@ request:
   | Category       | Minimum |
   | --------------- | ------- |
   | Performance      | 85      |
-  | Accessibility    | 95      |
+  | Accessibility    | 100     |
   | Best Practices   | 95      |
   | SEO              | 90      |
 
-  These are floors, not targets — the site currently scores 99–100 on every
-  category on the pages measured. The gap below 100 is deliberate headroom, not
-  a lowered bar: real photography and future copy changes will move these
-  numbers, and the check should catch a genuine regression, not fire on every
-  point of natural variance. Thresholds are set in `lighthouserc.json`.
+  The site currently scores 98 / 100 / 100 / 100 on the pages measured.
+  Performance, best practices and SEO have deliberate headroom, because real
+  photography and copy changes move those numbers and the check should catch a
+  genuine regression rather than fire on natural variance.
+
+  **Accessibility is pinned at 100 on purpose.** Those audits are
+  deterministic — they do not drift — so any drop is a real defect. That
+  threshold has already earned its keep: adding the process section introduced
+  an accent colour that read at 3.4:1 against the dark theme, and a floor of 95
+  would have let it through. Thresholds are set in `lighthouserc.json`.
 
   Lighthouse reports are uploaded as a workflow artifact on every run (kept 14
   days), including failed ones — that's exactly when the detail is worth

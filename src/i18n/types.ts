@@ -19,6 +19,16 @@ export interface Stat {
   label: string;
 }
 
+export interface Step {
+  title: string;
+  body: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface SiteContent {
   meta: {
     /** BCP-47 tag used for the <html lang> attribute and Open Graph. */
@@ -48,6 +58,35 @@ export interface SiteContent {
     openMenu: string;
     closeMenu: string;
     languageLabel: string;
+    /** Accessible name for the header's click-to-call link. */
+    callAriaLabel: string;
+    /** Short label beside the header phone number, e.g. "Mo-Fr 8-18 Uhr". */
+    callHours: string;
+  };
+
+  /** Where the company works. Also feeds LocalBusiness areaServed. */
+  serviceArea: {
+    title: string;
+    body: string;
+  };
+
+  /** Shared breadcrumb strings. */
+  breadcrumb: {
+    label: string;
+    home: string;
+  };
+
+  /** Copy for the 404 page. */
+  notFound: {
+    title: string;
+    body: string;
+    cta: string;
+  };
+
+  faq: {
+    title: string;
+    subtitle: string;
+    items: FaqItem[];
   };
 
   home: {
@@ -72,6 +111,12 @@ export interface SiteContent {
       title: string;
       subtitle: string;
       cta: string;
+    };
+    /** "So läuft's ab" - the step-by-step a customer can expect. */
+    process: {
+      title: string;
+      subtitle: string;
+      steps: Step[];
     };
     ctaBand: {
       title: string;
@@ -111,12 +156,16 @@ export interface SiteContent {
     title: string;
     subtitle: string;
     lead: string;
+    /**
+     * Deliberately short. Every extra field costs completions, and asking for
+     * a phone number without saying why measurably reduces them - hence the
+     * explicit `phoneHint` rather than a bare optional field.
+     */
     form: {
-      firstName: string;
-      lastName: string;
+      name: string;
       email: string;
       phone: string;
-      subject: string;
+      phoneHint: string;
       message: string;
       messagePlaceholder: string;
       consent: string;
@@ -125,7 +174,13 @@ export interface SiteContent {
       success: string;
       error: string;
       required: string;
+      optional: string;
     };
+    /** Heading above the phone/email block, which is the primary path. */
+    preferCallTitle: string;
+    preferCallBody: string;
+    /** Heading above the form, framed as the secondary path. */
+    formTitle: string;
     directTitle: string;
     phoneLabel: string;
     emailLabel: string;

@@ -63,6 +63,15 @@ export const site = {
    */
   activeSectors: ['sports-halls', 'hotels'] as const,
 
+  /**
+   * Regions the company takes work in, used for local-search structured data
+   * and mirrored in prose by the "Wo wir montieren" section.
+   *
+   * TODO: confirm this list. It is inferred from the Rosenheim base, not from
+   * a statement Daniel has made - narrow or widen it as appropriate.
+   */
+  areaServed: ['Rosenheim', 'Oberbayern', 'Bayern', 'Deutschland'],
+
   /** Business hours used for structured data, in 24h format. */
   openingHours: {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

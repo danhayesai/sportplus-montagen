@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../config/site';
+import { getContent, getPath, type Language } from '../../i18n';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getContent(lang);
+---
+
+<BaseLayout lang={lang} title={t.notFound.title} noindex>
+  <section class="section not-found">
+    <div class="container container--narrow">
+      <p class="not-found__code" aria-hidden="true">404</p>
+      <h1 class="not-found__title">{t.notFound.title}</h1>
+      <p class="not-found__body">{t.notFound.body}</p>
+
+      <div class="button-group not-found__actions">
+        <a href={getPath('home', lang)} class="button button--primary">
+          {t.notFound.cta}
+        </a>
+        <a
+          href={`tel:${site.contact.phoneHref}`}
+          class="button button--secondary"
+        >
+          {site.contact.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: clamp(3rem, 10vw, 7rem);
+    text-align: center;
+  }
+
+  .not-found__code {
+    color: var(--color-accent-text);
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .not-found__title {
+    margin-top: var(--space-md);
+    font-size: var(--text-3xl);
+  }
+
+  .not-found__body {
+    max-width: 46ch;
+    margin: var(--space-lg) auto 0;
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .not-found__actions {
+    justify-content: center;
+    margin-top: var(--space-2xl);
+  }
+</style>

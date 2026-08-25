@@ -1,4 +1,7 @@
 ---
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { Language } from '../i18n';
+
 interface Props {
   /** Small label above the heading. */
   eyebrow?: string;
@@ -6,10 +9,14 @@ interface Props {
   subtitle?: string;
   /** Longer introductory paragraph below the subtitle. */
   lead?: string;
+  /** Renders breadcrumbs above the heading. Omit on pages without a parent. */
+  lang?: Language;
 }
 
-const { eyebrow, title, subtitle, lead } = Astro.props;
+const { eyebrow, title, subtitle, lead, lang } = Astro.props;
 ---
+
+{lang && <Breadcrumbs lang={lang} current={title} />}
 
 <section class="page-hero">
   <div class="container">
@@ -22,7 +29,7 @@ const { eyebrow, title, subtitle, lead } = Astro.props;
 
 <style>
   .page-hero {
-    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem);
+    padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
     background-color: var(--color-bg-subtle);
     border-bottom: 1px solid var(--color-border);
   }

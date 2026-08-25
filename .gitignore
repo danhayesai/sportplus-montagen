@@ -32,3 +32,6 @@ desktop.ini
 
 # Lighthouse CI reports
 .lighthouseci/
+
+# Generated at build time from the JPEG/PNG originals (see scripts/generate-webp.mjs)
+public/**/*.webp

@@ -77,6 +77,11 @@
   --color-link: var(--color-brand-600);
   --color-link-hover: var(--color-brand-700);
   --color-focus: var(--color-accent-500);
+  /* Accent used as TEXT, which has to flip with the theme: the dark orange
+     that clears 4.5:1 on white drops to 3.4:1 on the dark background, so the
+     dark theme substitutes the light orange. Anything drawing accent-coloured
+     text must use this token, never accent-600 directly. */
+  --color-accent-text: var(--color-accent-600);
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
@@ -149,6 +154,7 @@
     --color-border-strong: #3a4353;
     --color-link: var(--color-brand-300);
     --color-link-hover: #a5c4e8;
+    --color-accent-text: var(--color-accent-400);
 
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-md: 0 4px 12px rgb(0 0 0 / 0.45);
@@ -169,6 +175,7 @@
   --color-border-strong: #3a4353;
   --color-link: var(--color-brand-300);
   --color-link-hover: #a5c4e8;
+  --color-accent-text: var(--color-accent-400);
 
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 12px rgb(0 0 0 / 0.45);
@@ -331,7 +338,7 @@ a:hover {
 .eyebrow {
   display: inline-block;
   margin-bottom: var(--space-sm);
-  color: var(--color-accent-600);
+  color: var(--color-accent-text);
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: 0.09em;
@@ -640,4 +647,81 @@ a:hover {
 .skip-link:focus-visible {
   color: #ffffff;
   transform: translateY(0);
+}
+
+/* -------------------------------------------------------------------------
+   8. Print
+
+   Trade customers do print pages - a quote request, contact details to take
+   to a site meeting. Without this the dark footer burns ink and link targets
+   are invisible on paper.
+   ---------------------------------------------------------------------- */
+
+@media print {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-subtle: #ffffff;
+    --color-bg-raised: #ffffff;
+    --color-bg-inverse: #ffffff;
+    --color-text: #000000;
+    --color-text-muted: #333333;
+    --color-text-inverse: #000000;
+    --color-text-inverse-muted: #333333;
+    --color-border: #cccccc;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 11pt;
+  }
+
+  /* Interface chrome carries no meaning on paper. */
+  .site-header,
+  .skip-link,
+  .theme-toggle,
+  .language-switcher,
+  .menu-toggle,
+  .header-call__icon,
+  .contact-form,
+  .faq__chevron {
+    display: none !important;
+  }
+
+  .section,
+  .page-hero {
+    padding-block: 1rem;
+    border: none;
+  }
+
+  /* Spell out where a link actually goes, since it cannot be clicked. */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  a[href^='tel:']::after,
+  a[href^='mailto:']::after {
+    content: '';
+  }
+
+  /* Answers must be readable even if the reader printed with them collapsed. */
+  .faq__item[open] .faq__answer,
+  .faq__answer {
+    display: block !important;
+  }
+
+  .card,
+  .faq__item,
+  .project-card,
+  img {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
 }

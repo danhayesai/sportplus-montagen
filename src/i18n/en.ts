@@ -27,6 +27,63 @@ export const en: SiteContent = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     languageLabel: 'Choose language',
+    callAriaLabel: 'Call us',
+    callHours: 'Mon–Fri 8–18',
+  },
+
+  serviceArea: {
+    title: 'Our service area',
+    body:
+      'We are based in Rosenheim and travel to sites throughout Bavaria, taking on projects further afield on request. Just ask whether your location is covered — we agree travel costs up front so they hold no surprises in the quote.',
+  },
+
+  breadcrumb: {
+    label: 'You are here',
+    home: 'Home',
+  },
+
+  notFound: {
+    title: 'Page not found',
+    body:
+      'This page does not exist, or no longer does. The address may have changed, or a link may be out of date. The navigation above will get you where you need to go — or simply give us a call.',
+    cta: 'Back to the home page',
+  },
+
+  faq: {
+    title: 'Frequently asked questions',
+    subtitle: 'What clients most often ask us before a project starts.',
+    items: [
+      {
+        question: 'How long does installing a sports hall take?',
+        answer:
+          'It depends on the size of the hall and the system. A single hall with impact protection and sports flooring typically runs to a few weeks; a triple hall proportionally longer. Once we have surveyed the site we give you a firm timeframe — and we keep to it.',
+      },
+      {
+        question: 'Can you work while the building stays in use?',
+        answer:
+          'In many cases, yes. We agree the phasing with you so parts of the hall stay usable, and we can work during school holidays or at weekends if that suits better. Raise it early and we will plan around it from the start.',
+      },
+      {
+        question: 'Do you handle strip-out and disposal too?',
+        answer:
+          'Yes, both are part of the job. We remove the old elements, dispose of them properly and provide the disposal documentation. There is no need to bring in a second contractor for it.',
+      },
+      {
+        question: 'What does an impact protection wall cost?',
+        answer:
+          'Honestly, that cannot be answered before the survey, because wall area, system, fire protection requirements and bespoke elements all drive the price. What we can promise: an itemised quote you can actually check — not a lump sum that moves later.',
+      },
+      {
+        question: 'How quickly will I get a quote?',
+        answer:
+          'We normally reply to an enquiry within one working day. Once the survey is done, the written quote usually follows within a few days.',
+      },
+      {
+        question: 'Do you work for private clients as well?',
+        answer:
+          'Yes. We work for construction firms and local authorities just as we do for private clients. The process is the same either way: survey, quote, installation, joint handover.',
+      },
+    ],
   },
 
   home: {
@@ -57,9 +114,40 @@ export const en: SiteContent = {
       cta: 'All services',
     },
     sectorsTeaser: {
-      title: 'Where we work',
+      title: 'Our sectors',
       subtitle: 'The sectors we have worked in for years.',
       cta: 'View references',
+    },
+    process: {
+      title: 'How a project runs with us',
+      subtitle: 'Five steps, so you always know where things stand.',
+      steps: [
+        {
+          title: 'Enquiry',
+          body:
+            'You tell us briefly about the project — the hall, approximate area, target date. We normally come back to you within one working day.',
+        },
+        {
+          title: 'Site survey',
+          body:
+            'We measure the areas ourselves and settle the details the drawings do not show: substrate, reveals, bespoke elements.',
+        },
+        {
+          title: 'Quote',
+          body:
+            'You get a written, itemised quote you can check line by line — including strip-out and disposal where those apply.',
+        },
+        {
+          title: 'Installation',
+          body:
+            'We install on the agreed date, keep the site clean, and phase the work with you if the hall has to stay in use.',
+        },
+        {
+          title: 'Handover',
+          body:
+            'We walk the handover together, normally straight after installation, with documentation for your records.',
+        },
+      ],
     },
     ctaBand: {
       title: 'Have a project coming up?',
@@ -197,12 +285,16 @@ export const en: SiteContent = {
     subtitle: 'We would like to hear from you.',
     lead:
       'Tell us briefly about your project: the type of hall or building, approximate area, preferred system and target date. The more we know, the more precise our response can be.',
+    preferCallTitle: 'A phone call is quickest',
+    preferCallBody:
+      'A short call settles most questions on the spot, especially around dates and feasibility. If you would rather write, or it is late in the evening, use the form instead.',
+    formTitle: 'Or send us a message',
     form: {
-      firstName: 'First name',
-      lastName: 'Last name',
+      name: 'Name',
       email: 'Email',
       phone: 'Phone',
-      subject: 'Subject',
+      phoneHint: 'Only if you would like a call back.',
+      optional: 'optional',
       message: 'Your message',
       messagePlaceholder:
         'What is the project? Type of building, approximate area, preferred system, target date …',

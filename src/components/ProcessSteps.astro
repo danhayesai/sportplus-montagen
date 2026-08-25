@@ -1,0 +1,93 @@
+---
+import type { Step } from '../i18n/types';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  steps: Step[];
+  /** Renders on the subtle background, to separate it from adjacent sections. */
+  subtle?: boolean;
+}
+
+const { title, subtitle, steps, subtle = false } = Astro.props;
+---
+
+<section class:list={['section', 'process', subtle && 'section--subtle']}>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{title}</h2>
+      <p class="section-subtitle">{subtitle}</p>
+    </div>
+
+    <ol class="process__list">
+      {
+        steps.map((step, index) => (
+          <li class="process__step">
+            <span class="process__number" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div class="process__content">
+              <h3 class="process__title">{step.title}</h3>
+              <p class="process__body">{step.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process__list {
+    display: grid;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+
+  @media (min-width: 48rem) {
+    .process__list {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+      gap: var(--space-xl);
+    }
+  }
+
+  .process__step {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 48rem) {
+    .process__step {
+      flex-direction: column;
+      gap: var(--space-sm);
+      /* A rule along the top ties the steps together into a sequence
+         without needing connector graphics that break when they wrap. */
+      padding-top: var(--space-md);
+      border-top: 2px solid var(--color-border);
+    }
+  }
+
+  .process__number {
+    flex-shrink: 0;
+    color: var(--color-accent-text);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  .process__title {
+    font-size: var(--text-lg);
+  }
+
+  .process__body {
+    margin-top: var(--space-2xs);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+</style>

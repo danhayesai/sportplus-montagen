@@ -1,0 +1,117 @@
+---
+import type { FaqItem } from '../i18n/types';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: FaqItem[];
+  /** Renders on the subtle background when placed next to a plain section. */
+  subtle?: boolean;
+}
+
+const { title, subtitle, items, subtle = false } = Astro.props;
+---
+
+{/*
+  Native <details>/<summary> rather than a scripted accordion: it is keyboard
+  accessible, screen-reader friendly and searchable in-page by default, and it
+  works with JavaScript disabled. The FAQPage structured data is emitted by
+  BaseLayout so search engines can surface these answers directly.
+*/}
+<section class:list={['section', subtle && 'section--subtle']} id="faq">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2 class="section-title">{title}</h2>
+      <p class="section-subtitle">{subtitle}</p>
+    </div>
+
+    <div class="faq__list">
+      {
+        items.map((item) => (
+          <details class="faq__item">
+            <summary class="faq__question">
+              <span>{item.question}</span>
+              <svg
+                class="faq__chevron"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="faq__answer">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .faq__item {
+    background-color: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-fast);
+  }
+
+  .faq__item:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    /* Removes the default disclosure triangle so the chevron is the only
+       affordance, across browsers. */
+    list-style: none;
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: -3px;
+    border-radius: var(--radius-lg);
+  }
+
+  .faq__chevron {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-text-muted);
+    transition: transform var(--transition-base);
+  }
+
+  .faq__item[open] .faq__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    padding: 0 var(--space-lg) var(--space-lg);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+</style>

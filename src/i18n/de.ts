@@ -29,6 +29,63 @@ export const de: SiteContent = {
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
     languageLabel: 'Sprache wählen',
+    callAriaLabel: 'Rufen Sie uns an',
+    callHours: 'Mo–Fr 8–18 Uhr',
+  },
+
+  serviceArea: {
+    title: 'Wo wir montieren',
+    body:
+      'Unser Sitz ist in Rosenheim. Von dort fahren wir Baustellen in ganz Bayern an und übernehmen auf Anfrage auch Projekte darüber hinaus. Fragen Sie einfach, ob Ihr Standort dabei ist – die Anfahrt klären wir vorab, damit sie im Angebot nicht überrascht.',
+  },
+
+  breadcrumb: {
+    label: 'Sie sind hier',
+    home: 'Startseite',
+  },
+
+  notFound: {
+    title: 'Seite nicht gefunden',
+    body:
+      'Diese Seite gibt es nicht (mehr). Vielleicht hat sich die Adresse geändert oder ein Link ist veraltet. Über die Navigation oben finden Sie alles Weitere – oder rufen Sie uns einfach an.',
+    cta: 'Zur Startseite',
+  },
+
+  faq: {
+    title: 'Häufige Fragen',
+    subtitle: 'Was Auftraggeber uns vor einem Projekt am häufigsten fragen.',
+    items: [
+      {
+        question: 'Wie lange dauert die Montage einer Sporthalle?',
+        answer:
+          'Das hängt von Hallengröße und System ab. Eine Einfachhalle mit Prallschutz und Sportboden liegt erfahrungsgemäß im Bereich weniger Wochen, eine Dreifachhalle entsprechend länger. Nach dem Aufmaß nennen wir Ihnen einen verbindlichen Zeitraum – und halten ihn ein.',
+      },
+      {
+        question: 'Können Sie im laufenden Betrieb arbeiten?',
+        answer:
+          'In vielen Fällen ja. Wir stimmen die Bauabschnitte mit Ihnen ab, sodass Teile der Halle nutzbar bleiben, und arbeiten auf Wunsch auch in den Ferien oder am Wochenende. Sprechen Sie uns früh darauf an, dann planen wir es von Anfang an ein.',
+      },
+      {
+        question: 'Übernehmen Sie auch Demontage und Entsorgung?',
+        answer:
+          'Ja, beides gehört zum Leistungsumfang. Wir bauen die alten Elemente zurück, entsorgen sie fachgerecht und weisen die Entsorgung nach. Sie brauchen dafür keinen zweiten Betrieb zu beauftragen.',
+      },
+      {
+        question: 'Was kostet eine Prallschutzwand?',
+        answer:
+          'Seriös lässt sich das erst nach dem Aufmaß sagen, weil Wandfläche, System, Brandschutzanforderungen und Sonderelemente den Preis bestimmen. Was wir zusagen können: Sie bekommen ein nachvollziehbares Angebot mit Positionen, die Sie prüfen können – keine Pauschale, die sich später bewegt.',
+      },
+      {
+        question: 'Wie schnell bekomme ich ein Angebot?',
+        answer:
+          'Auf Ihre Anfrage melden wir uns in der Regel innerhalb eines Werktages. Steht das Aufmaß, erhalten Sie das schriftliche Angebot meist innerhalb weniger Tage.',
+      },
+      {
+        question: 'Arbeiten Sie auch für private Bauherren?',
+        answer:
+          'Ja. Wir arbeiten für Bauunternehmen und Kommunen genauso wie für private Auftraggeber. Der Ablauf ist derselbe: Aufmaß, Angebot, Montage, gemeinsame Abnahme.',
+      },
+    ],
   },
 
   home: {
@@ -59,9 +116,41 @@ export const de: SiteContent = {
       cta: 'Alle Leistungen',
     },
     sectorsTeaser: {
-      title: 'Wo wir arbeiten',
+      title: 'Unsere Bereiche',
       subtitle: 'Die Bereiche, in denen wir seit Jahren zu Hause sind.',
       cta: 'Referenzen ansehen',
+    },
+    process: {
+      title: 'So läuft ein Projekt bei uns ab',
+      subtitle:
+        'Fünf Schritte, bei denen Sie jederzeit wissen, woran Sie sind.',
+      steps: [
+        {
+          title: 'Anfrage',
+          body:
+            'Sie schildern uns kurz das Projekt – Halle, ungefähre Fläche, Wunschtermin. Wir melden uns in der Regel innerhalb eines Werktages.',
+        },
+        {
+          title: 'Aufmaß vor Ort',
+          body:
+            'Wir messen die Flächen selbst auf und klären Details, die auf dem Plan nicht stehen: Untergrund, Laibungen, Sonderelemente.',
+        },
+        {
+          title: 'Angebot',
+          body:
+            'Sie bekommen ein schriftliches Angebot mit nachvollziehbaren Positionen – inklusive Demontage und Entsorgung, wenn das dazugehört.',
+        },
+        {
+          title: 'Montage',
+          body:
+            'Wir montieren zum vereinbarten Termin, halten die Baustelle sauber und stimmen Bauabschnitte mit Ihnen ab, wenn die Halle in Betrieb bleibt.',
+        },
+        {
+          title: 'Abnahme',
+          body:
+            'Die Abnahme erfolgt gemeinsam, in der Regel direkt im Anschluss an die Montage, mit Dokumentation für Ihre Unterlagen.',
+        },
+      ],
     },
     ctaBand: {
       title: 'Sie haben ein Projekt in Planung?',
@@ -199,12 +288,16 @@ export const de: SiteContent = {
     subtitle: 'Wir freuen uns auf Ihre Anfrage.',
     lead:
       'Beschreiben Sie kurz Ihr Projekt: Art der Halle oder des Gebäudes, ungefähre Fläche, gewünschtes System und Wunschtermin. Je mehr wir wissen, desto genauer fällt unsere Rückmeldung aus.',
+    preferCallTitle: 'Am schnellsten geht es per Telefon',
+    preferCallBody:
+      'Ein kurzer Anruf klärt die meisten Fragen sofort – gerade wenn es um Termine oder Machbarkeit geht. Wenn es Ihnen lieber ist oder es später am Abend wird, schreiben Sie uns einfach über das Formular.',
+    formTitle: 'Oder schreiben Sie uns',
     form: {
-      firstName: 'Vorname',
-      lastName: 'Nachname',
+      name: 'Name',
       email: 'E-Mail',
       phone: 'Telefon',
-      subject: 'Betreff',
+      phoneHint: 'Nur falls Sie einen Rückruf möchten.',
+      optional: 'optional',
       message: 'Ihre Nachricht',
       messagePlaceholder:
         'Um welches Projekt geht es? Art des Gebäudes, ungefähre Fläche, gewünschtes System, Wunschtermin …',

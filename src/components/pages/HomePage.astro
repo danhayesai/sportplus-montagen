@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBand from '../CtaBand.astro';
 import Figure from '../Figure.astro';
+import ProcessSteps from '../ProcessSteps.astro';
+import Faq from '../Faq.astro';
 import { getContent, getPath, getActiveSectors, type Language } from '../../i18n';
 
 interface Props {
@@ -14,7 +16,7 @@ const home = t.home;
 const sectors = getActiveSectors(lang);
 ---
 
-<BaseLayout lang={lang} title={t.nav.home} isHome>
+<BaseLayout lang={lang} title={t.nav.home} isHome includeFaqSchema>
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
@@ -131,6 +133,27 @@ const sectors = getActiveSectors(lang);
     </div>
   </section>
 
+  <ProcessSteps
+    title={home.process.title}
+    subtitle={home.process.subtitle}
+    steps={home.process.steps}
+    subtle
+  />
+
+  <section class="section service-area">
+    <div class="container container--narrow">
+      <h2 class="section-title">{t.serviceArea.title}</h2>
+      <p class="service-area__body">{t.serviceArea.body}</p>
+    </div>
+  </section>
+
+  <Faq
+    title={t.faq.title}
+    subtitle={t.faq.subtitle}
+    items={t.faq.items}
+    subtle
+  />
+
   <CtaBand
     lang={lang}
     title={home.ctaBand.title}
@@ -245,5 +268,12 @@ const sectors = getActiveSectors(lang);
 
   .section-cta {
     margin-top: var(--space-2xl);
+  }
+
+  .service-area__body {
+    margin-top: var(--space-md);
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
   }
 </style>

@@ -1,0 +1,100 @@
+---
+import { site } from '../config/site';
+import { getContent, getPath, type Language } from '../i18n';
+
+interface Props {
+  lang: Language;
+  /** Label of the page the visitor is on. Rendered as the final, unlinked crumb. */
+  current: string;
+}
+
+const { lang, current } = Astro.props;
+const t = getContent(lang);
+const homeHref = getPath('home', lang);
+
+/**
+ * Two levels only - the site is shallow, so anything deeper would be invented
+ * hierarchy. The matching BreadcrumbList JSON-LD lets search engines show the
+ * path instead of a bare URL in results.
+ */
+const crumbs = [
+  { label: t.breadcrumb.home, href: homeHref },
+  { label: current, href: null },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.label,
+    ...(crumb.href ? { item: new URL(crumb.href, site.url).href } : {}),
+  })),
+};
+---
+
+<nav class="breadcrumbs" aria-label={t.breadcrumb.label}>
+  <div class="container">
+    <ol class="breadcrumbs__list">
+      {
+        crumbs.map((crumb) => (
+          <li class="breadcrumbs__item">
+            {crumb.href ? (
+              <a href={crumb.href}>{crumb.label}</a>
+            ) : (
+              <span aria-current="page">{crumb.label}</span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</nav>
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>
+
+<style>
+  .breadcrumbs {
+    padding-block: var(--space-sm);
+    background-color: var(--color-bg-subtle);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumbs__item + .breadcrumbs__item::before {
+    content: '/';
+    margin-right: var(--space-xs);
+    color: var(--color-border-strong);
+  }
+
+  .breadcrumbs__item a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumbs__item a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .breadcrumbs__item [aria-current='page'] {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+</style>
