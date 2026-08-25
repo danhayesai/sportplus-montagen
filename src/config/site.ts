@@ -34,10 +34,10 @@ export const site = {
     /** Responsible for content under § 18 (2) MStV. */
     contentResponsible: 'Daniel Hayes',
     vatId: 'DE332276997',
-    // TODO: A GmbH must state its registry court and HRB number under § 5 TMG.
-    // Fill these in from the commercial register extract before going live.
-    registryCourt: '',
-    registrationNumber: '',
+    // Required for a GmbH under § 5 TMG. Setting both makes the imprint's
+    // "Registereintrag" section render.
+    registryCourt: 'Amtsgericht Traunstein',
+    registrationNumber: 'HRB 28989',
   },
 
   /**

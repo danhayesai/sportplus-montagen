@@ -112,10 +112,6 @@ the footer, contact page, imprint and structured data at once.
 - [ ] **Review the image choices.** The visible slots were picked by eye from
       the library; swap any of them by saving a replacement over the slot
       filename at the same dimensions.
-- [ ] **Add the commercial register details.** A GmbH must state its registry
-      court and HRB number under § 5 TMG. Fill in `registryCourt` and
-      `registrationNumber` in `src/config/site.ts` and the imprint section
-      appears automatically.
 - [ ] **Connect the contact form.** Set `contactFormEndpoint` in
       `src/config/site.ts` to a form provider endpoint such as
       [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io).
