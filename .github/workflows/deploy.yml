@@ -2,12 +2,23 @@ name: Deploy to GitHub Pages
 
 # Builds the static site and publishes it to GitHub Pages.
 #
-# This does NOT affect the current live site on its own. It publishes to the
-# repository's github.io address until the domain's DNS records are pointed at
-# GitHub Pages, which is a separate, deliberate step.
+# ----------------------------------------------------------------------------
+# GOING LIVE ON THE CUSTOM DOMAIN
 #
-# Before the first run, enable Pages in the repository:
-#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+# 1. Point the DNS records at GitHub Pages FIRST (A records for the apex,
+#    CNAME for www -> danhayesai.github.io).
+# 2. Then set CUSTOM_DOMAIN below to "www.sportplusmontagen.de".
+#
+# Doing it in that order matters. Setting CUSTOM_DOMAIN while DNS still points
+# elsewhere leaves the site unreachable at both addresses: Pages redirects the
+# github.io URL to the custom domain, which does not resolve yet.
+#
+# While CUSTOM_DOMAIN is empty the site is published to the project-site URL
+# (https://<owner>.github.io/<repo>/) and the live domain is untouched.
+# ----------------------------------------------------------------------------
+
+env:
+  CUSTOM_DOMAIN: ''
 
 on:
   push:
@@ -46,12 +57,38 @@ jobs:
       - name: Type-check Astro components
         run: npm run check
 
-      # No PAGES_BASE / PAGES_SITE: the site is served from the root of its
-      # custom domain, so it builds with the defaults in astro.config.mjs.
-      # (Those variables are still supported if it ever needs to go back to a
-      # /<repo>/ project-site URL.)
+      # A project site is served from /<repo>/, a custom domain from the root.
+      # Resolving both here keeps the switch to a single edit at the top of
+      # this file rather than a scattering of conditionals.
+      - name: Resolve deployment target
+        id: target
+        env:
+          REPO: ${{ github.event.repository.name }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          if [ -n "$CUSTOM_DOMAIN" ]; then
+            echo "base=" >> "$GITHUB_OUTPUT"
+            echo "site=https://$CUSTOM_DOMAIN" >> "$GITHUB_OUTPUT"
+            echo "Publishing to custom domain: https://$CUSTOM_DOMAIN"
+          else
+            echo "base=/$REPO" >> "$GITHUB_OUTPUT"
+            echo "site=https://$OWNER.github.io" >> "$GITHUB_OUTPUT"
+            echo "Publishing to project site: https://$OWNER.github.io/$REPO/"
+          fi
+
       - name: Build site
         run: npm run build
+        env:
+          PAGES_BASE: ${{ steps.target.outputs.base }}
+          PAGES_SITE: ${{ steps.target.outputs.site }}
+
+      # Pages reads CNAME from the published artifact. It is written only for a
+      # custom-domain deploy: shipping it while DNS still points elsewhere would
+      # make Pages redirect the working github.io URL to a domain that does not
+      # resolve, taking the site offline at both addresses.
+      - name: Write CNAME for the custom domain
+        if: env.CUSTOM_DOMAIN != ''
+        run: echo "$CUSTOM_DOMAIN" > dist/CNAME
 
       # enablement:true means the workflow turns Pages on itself rather than
       # failing with "Get Pages site failed" when it has never been enabled.
