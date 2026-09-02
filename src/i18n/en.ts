@@ -12,7 +12,7 @@ export const en: SiteContent = {
 
   media: {
     heroAlt:
-      'Finished impact protection wall and sports flooring in a sports hall',
+      'Sports hall during installation: wall cladding, sports flooring and fitted elements',
     shareAlt: 'SportPlus Montagen logo',
     galleryAltPrefix: 'Project example:',
   },
