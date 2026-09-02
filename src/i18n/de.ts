@@ -4,9 +4,9 @@ import type { SiteContent } from './types';
 export const de: SiteContent = {
   meta: {
     localeTag: 'de-DE',
-    tagline: 'Prallschutzwände und Sportböden – montiert mit Präzision.',
+    tagline: 'Montage im Innenausbau für Hotels und Sporthallen.',
     description:
-      'SportPlus Montagen GmbH aus Rosenheim montiert Prallschutzwände und Sportböden in Sporthallen. Dazu Innenausbau für Hotellerie und Gewerbe. Termingerecht, normgerecht und mängelfrei abgenommen.',
+      'SportPlus Montagen GmbH aus Rosenheim ist Ihr Montagepartner für Hoteleinrichtungen, Innenausbauelemente und Prallschutzwände in Sporthallen – bundesweit im Einsatz.',
     skipToContent: 'Zum Inhalt springen',
   },
 
@@ -35,7 +35,7 @@ export const de: SiteContent = {
   serviceArea: {
     title: 'Wo wir montieren',
     body:
-      'Unser Sitz ist in Rosenheim, gearbeitet wird bundesweit. Wo Ihre Halle steht, ist für uns zweitrangig – fragen Sie das Projekt einfach an, und wir klären die Anfahrt gleich mit.',
+      'Unser Sitz ist in Rosenheim, unser Einsatzgebiet ist ganz Deutschland. Fragen Sie Ihr Projekt einfach an – wir stimmen Ablauf und Anfahrt mit Ihnen ab.',
   },
 
   breadcrumb: {
@@ -55,9 +55,9 @@ export const de: SiteContent = {
     subtitle: 'Was Auftraggeber uns vor einem Projekt am häufigsten fragen.',
     items: [
       {
-        question: 'Wie lange dauert die Montage einer Sporthalle?',
+        question: 'Welche Arbeiten übernehmen Sie im Hotelbereich?',
         answer:
-          'Das hängt von der Hallengröße und vom gewählten System ab. Wir messen die Flächen vor Ort auf und nennen Ihnen danach einen Termin – und den halten wir auch ein.',
+          'Wir montieren Hoteleinrichtungen und Innenausbauelemente – zum Beispiel Möbel, Küchen, Türen, Badmöbel, Regale und weitere Einbauelemente.',
       },
       {
         question: 'Übernehmen Sie auch Demontage und Entsorgung?',
@@ -79,34 +79,34 @@ export const de: SiteContent = {
 
   home: {
     hero: {
-      eyebrow: 'Montagebetrieb aus Rosenheim',
-      title: 'Der Montagepartner, auf den Sie sich verlassen können',
+      eyebrow: 'Innenausbau & Montage | Bundesweit',
+      title: 'Montage für Hotels und Sporthallen',
       subtitle:
-        'Wir montieren Prallschutzwände und Sportböden in Sporthallen – nach aktuellem Stand der Technik, zum vereinbarten Termin und mängelfrei bei der Abnahme. Darüber hinaus übernehmen wir Innenausbau für Hotellerie und Gewerbe.',
+        'Wir montieren Hoteleinrichtungen und Innenausbauelemente sowie Prallschutzwände für Sporthallen. Präzise ausgeführt, sauber organisiert und bundesweit für unsere Auftraggeber im Einsatz.',
       ctaPrimary: 'Projekt anfragen',
       ctaSecondary: 'Leistungen ansehen',
     },
     stats: [
-      { value: 'Mängelfrei', label: 'Abnahme unserer Projekte' },
-      { value: 'Aus einer Hand', label: 'Von der Demontage bis zur Abnahme' },
-      { value: 'Termintreu', label: 'Bisher jedes Projekt pünktlich' },
+      { value: 'Hotelmontage', label: 'Möbel, Küchen, Türen & Einbauten' },
+      { value: 'Prallschutz', label: 'Montage für Sporthallen' },
+      { value: 'Bundesweit', label: 'Von Rosenheim aus im Einsatz' },
     ],
     intro: {
-      title: 'Sauber, präzise, termingerecht',
+      title: 'Montage, die zum Projekt passt',
       body: [
-        'SportPlus Montagen ist auf die Montage von Prallschutzwänden und Sportböden in Sporthallen spezialisiert. Was wir dort bauen, wird täglich benutzt – von Schulklassen und Vereinen. Entsprechend genau arbeiten wir.',
-        'Wir übernehmen Aufträge für Bauunternehmen, Kommunen und private Bauherren – von der einzelnen Hallenwand bis zum kompletten Innenausbau.',
+        'SportPlus Montagen ist ein Montagebetrieb für den Innenausbau. Unser Schwerpunkt liegt auf der Montage von Hoteleinrichtungen und auf Prallschutzwänden für Sporthallen.',
+        'Wir montieren überwiegend bauseits bereitgestellte Materialien. Auf Wunsch kalkulieren wir auch die Materialbeschaffung mit – die fachgerechte Montage bleibt dabei unser Kern.',
       ],
     },
     servicesTeaser: {
       title: 'Was wir für Sie übernehmen',
       subtitle:
-        'Von der Demontage der alten Elemente bis zur Abnahme des fertigen Bodens – alles aus einer Hand.',
+        'Vom einzelnen Einbauelement bis zur kompletten Einrichtung: Wir übernehmen die Montage strukturiert, sauber und mit einem festen Ansprechpartner.',
       cta: 'Alle Leistungen',
     },
     sectorsTeaser: {
-      title: 'Unsere Bereiche',
-      subtitle: 'Die Bereiche, in denen wir seit Jahren zu Hause sind.',
+      title: 'Unsere Schwerpunkte',
+      subtitle: 'Hotelmontage und Prallschutzwände: zwei Bereiche, in denen Präzision zählt.',
       cta: 'Referenzen ansehen',
     },
     process: {
@@ -117,22 +117,22 @@ export const de: SiteContent = {
         {
           title: 'Anfrage',
           body:
-            'Sie schildern uns kurz das Projekt – Halle, ungefähre Fläche, Wunschtermin. Ein Anruf genügt.',
+            'Sie schildern uns kurz das Projekt – Hotelbereich oder Sporthalle, Umfang, Material und Wunschtermin. Ein Anruf genügt.',
         },
         {
           title: 'Aufmaß vor Ort',
           body:
-            'Wir messen die Flächen selbst auf und klären Details, die auf dem Plan nicht stehen: Untergrund, Laibungen, Sonderelemente.',
+            'Bei Bedarf stimmen wir Maße, Anschlüsse und besondere Einbausituationen vor Ort mit Ihnen ab.',
         },
         {
           title: 'Angebot',
           body:
-            'Sie bekommen ein schriftliches Angebot mit nachvollziehbaren Positionen – inklusive Demontage und Entsorgung, wenn das dazugehört.',
+            'Sie bekommen ein schriftliches Angebot mit nachvollziehbaren Positionen. Materialbeschaffung berücksichtigen wir auf Wunsch.',
         },
         {
           title: 'Montage',
           body:
-            'Wir montieren zum vereinbarten Termin, sauber ausgeführt und ohne Mängel bei der Übergabe.',
+            'Wir montieren die vereinbarten Leistungen sauber, präzise und abgestimmt auf Ihr Projekt.',
         },
         {
           title: 'Abnahme',
@@ -144,41 +144,41 @@ export const de: SiteContent = {
     ctaBand: {
       title: 'Sie haben ein Projekt in Planung?',
       body:
-        'Schicken Sie uns die Eckdaten – Hallengröße, Systemwunsch, Wunschtermin. Wir schauen es uns an und melden uns bei Ihnen.',
+        'Schicken Sie uns die Eckdaten – Hotelbereich oder Sporthalle, die zu montierenden Elemente und den Wunschtermin. Wir schauen es uns an und melden uns bei Ihnen.',
       cta: 'Jetzt anfragen',
     },
   },
 
   services: {
     title: 'Leistungen',
-    subtitle: 'Montage, Demontage, Aufmaß und Abnahme aus einer Hand.',
+    subtitle: 'Hotelmontage, Prallschutzwände und ergänzende Montageleistungen.',
     lead:
-      'Wir übernehmen den kompletten Ablauf: alte Elemente zurückbauen, aufmessen, neu montieren und gemeinsam abnehmen. Ein Ansprechpartner, ein Termin, ein Ergebnis.',
+      'Unser Schwerpunkt ist die Montage: Hoteleinrichtungen und Innenausbauelemente auf der einen, Prallschutzwände für Sporthallen auf der anderen Seite. Ergänzende Leistungen stimmen wir projektbezogen mit Ihnen ab.',
     items: [
       {
         id: 'installation',
-        title: 'Montage & Service',
+        title: 'Hotelmontage & Innenausbau',
         body:
-          'Prallschutzwände und Sportböden montieren wir nach dem aktuellen Stand der Technik – sauber ausgerichtet, sicher befestigt und normgerecht ausgeführt. Wir arbeiten mit allen gängigen Systemen:',
+          'Wir montieren Hoteleinrichtungen und Innenausbauelemente nach Ihren Vorgaben – präzise eingepasst, sauber befestigt und abgestimmt auf den jeweiligen Raum:',
         bullets: [
-          'Schutzwände mit Holz- oder Metallrahmen, auf Wunsch mit Brandschutz',
-          'Schaum- und Sperrholzpaneele, unter anderem Haro-Systeme',
-          'Light 19 und Light 27 auf ebenen Wandflächen',
-          'Textilschutzbeläge',
+          'Hotelmöbel und Zimmerausstattungen',
+          'Küchen und Küchenzeilen',
+          'Türen, Badmöbel und Regalsysteme',
+          'Einbauelemente und individuelle Ausbauten',
         ],
         note:
-          'Ihr System ist nicht dabei? Sprechen Sie uns an – in der Regel finden wir eine Lösung.',
+          'In der Regel montieren wir bauseits gelieferte Materialien. Auf Wunsch erstellen wir auch ein Angebot inklusive Material.',
       },
       {
         id: 'dismantling',
-        title: 'Demontage & Entsorgung',
+        title: 'Prallschutzwände für Sporthallen',
         body:
-          'Alte Elemente bauen wir sorgfältig zurück und entsorgen sie fachgerecht. Mit Spezialwerkzeug lösen wir Schutzwände und Sportböden, ohne die Bausubstanz darunter zu beschädigen.',
+          'Prallschutzwände sind unser zweiter Schwerpunkt. Wir montieren die gängigen Systeme für Schul-, Vereins- und Mehrzweckhallen präzise und fachgerecht.',
         bullets: [
-          'Prallschutzwände und Sportböden aller Bauarten',
-          'Alte Tribünen und Sportgeräte',
-          'Einbauelemente, Tore und Türen',
-          'Fachgerechte Entsorgung',
+          'Prallschutzwände mit Holz- oder Metallrahmen',
+          'Schaum-, Sperrholz- und Textilsysteme',
+          'Auf Wunsch ergänzende Sporthallen-Elemente',
+          'Montage nach Aufmaß und Vorgabe',
         ],
       },
       {
