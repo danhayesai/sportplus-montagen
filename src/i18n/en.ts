@@ -180,42 +180,42 @@ export const en: SiteContent = {
       },
       {
         id: 'surveying',
-        title: 'Surveying & Bespoke Elements',
+        title: 'Strip-out & additional services',
         body:
-          'Not every hall follows standard dimensions. We survey on site and build the elements that fall outside the standard range, so everything sits flush at the end.',
+          'Alongside our main areas, we can also take on strip-out, surveying and further installation work by agreement. We will assess what makes sense for your project directly with you.',
         bullets: [
-          'Window frames and reveals',
-          'Ball roller boards',
-          'Bespoke elements to your specification',
+          'Strip-out of existing elements',
+          'Surveying and on-site coordination',
+          'Further fitted components to specification',
         ],
       },
       {
         id: 'handover',
-        title: 'Handover & Documentation',
+        title: 'Handover',
         body:
-          'Handover normally takes place directly after installation, carried out by our qualified fitters. Separate handover appointments can be arranged on request.',
-        note: 'We are happy to show you our recent handover reports in advance.',
+          'After installation, we coordinate the handover with you. Separate handover appointments can of course be arranged.',
+        note: 'If you have questions about the work, speak to us directly at any time.',
       },
     ],
   },
 
   references: {
     title: 'References',
-    subtitle: 'The sectors we have worked in for years.',
+    subtitle: 'Hotel fit-out and impact-protection walls: our two main areas.',
     lead:
-      'A selection of our work. For references near you, or for a particular system, just ask.',
+      'A selection of our installation work in hotels and sports halls.',
     sectors: [
       {
         id: 'sports-halls',
         title: 'Sports halls',
         body:
-          'Impact protection and sports flooring for school, club and multi-purpose halls. Precisely aligned, cleanly jointed and built to last for decades.',
+          'Installation of impact-protection walls for school, club and multi-purpose halls. We work accurately, cleanly and in line with the individual system.',
       },
       {
         id: 'hotels',
         title: 'Hotels',
         body:
-          'Interior fit-out for hospitality, commercial and residential projects. Delivered by experienced tradespeople who understand that every day counts when a building stays open.',
+          'Installation of hotel furnishings and interior fit-out components — from furniture and kitchens to doors, bathroom furniture, shelving and further fitted elements.',
       },
       {
         id: 'timber-houses',
@@ -232,39 +232,39 @@ export const en: SiteContent = {
     title: 'About us',
     subtitle: 'One company, four principles.',
     lead: [
-      'SportPlus Montagen is an installation company based in Rosenheim. We have the experience to install protection walls and sports floors of every kind — and the standards to get it right every time.',
-      'We work for companies and private clients alike. What stays the same either way: a named point of contact, firm dates, and a site left the way we would want to find it ourselves.',
+      'SportPlus Montagen is an installation company based in Rosenheim. We carry out interior installation work with a focus on hotel furnishings and impact-protection walls for sports halls.',
+      'We work throughout Germany and mainly install materials supplied for the project. What remains the same on every job: one named contact, careful installation and a well-organised site.',
     ],
     pillars: [
       {
         id: 'quality',
         title: 'Quality',
         body:
-          'Our projects are handed over free of defects. That is not a marketing line but a matter of record — we are happy to show you the recent handover reports on request.',
+          'Quality shows in the execution: accurately fitted components, clean transitions and installation that suits the room and system.',
       },
       {
         id: 'reliability',
         title: 'Reliability',
         body:
-          'A commitment is a commitment. You reach us on the same number throughout the project and always know where your job stands.',
+          'One named contact supports your project from the first coordination through to handover.',
       },
       {
         id: 'detail',
         title: 'Attention to detail',
         body:
-          'Edges, joints, transitions: the details decide whether a hall still looks right after five years. You can see how we handle them in our references.',
+          'Edges, joints, connections and transitions determine the overall result. We pay attention to the details that keep an installation looking clean over time.',
       },
       {
         id: 'punctuality',
         title: 'On-time delivery',
         body:
-          'We have completed every project to date on schedule and intend to keep it that way. If a delivery slips, we will work through the options with you so your date still holds.',
+          'We plan reliably and coordinate dates transparently with you, so everyone involved knows when each step is due.',
       },
     ],
     closing: {
       title: 'See for yourself',
       body:
-        'Call us or drop us a line about what is coming up. You will get an honest assessment — including when we are not the right company for your project.',
+        'Call us or send us a short message about what is coming up. Together, we can establish whether and how we can support your project.',
       cta: 'Get in touch',
     },
   },
@@ -273,7 +273,7 @@ export const en: SiteContent = {
     title: 'Contact',
     subtitle: 'We would like to hear from you.',
     lead:
-      'Tell us briefly about your project: the type of hall or building, approximate area, preferred system and target date. The more we know, the more precise our response can be.',
+      'Tell us briefly about your project: hotel fit-out or sports hall, the elements to be installed, approximate quantity or area and your target date.',
     preferCallTitle: 'A phone call is quickest',
     preferCallBody:
       'A short call settles most questions on the spot, especially around dates and feasibility. If you would rather write, or it is late in the evening, use the form instead.',
@@ -308,7 +308,7 @@ export const en: SiteContent = {
 
   footer: {
     about:
-      'Impact protection walls and sports flooring for sports halls, interior fit-out for hospitality and commercial projects. Based in Rosenheim, working across the region.',
+      'Impact-protection walls for sports halls, plus hotel fit-out and interior installation. Based in Rosenheim, working throughout Germany.',
     quickLinksTitle: 'Navigation',
     contactTitle: 'Contact',
     legalTitle: 'Legal',
