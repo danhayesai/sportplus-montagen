@@ -183,42 +183,42 @@ export const de: SiteContent = {
       },
       {
         id: 'surveying',
-        title: 'Aufmaß & Sonderanfertigung',
+        title: 'Demontage & Zusatzleistungen',
         body:
-          'Nicht jede Halle folgt dem Standardmaß. Wir messen vor Ort auf und konstruieren die Elemente, die von der Norm abweichen – damit am Ende alles bündig sitzt.',
+          'Neben unseren Schwerpunkten übernehmen wir nach Absprache auch Demontage, Aufmaß und weitere Montagearbeiten. Was sinnvoll ist, klären wir direkt anhand Ihres Projekts.',
         bullets: [
-          'Fensterrahmen und Laibungen',
-          'Ballrollerboards',
-          'Sonderelemente nach Ihren Vorgaben',
+          'Demontage bestehender Elemente',
+          'Aufmaß und Abstimmung vor Ort',
+          'Weitere Einbauelemente nach Vorgabe',
         ],
       },
       {
         id: 'handover',
-        title: 'Abnahme & Dokumentation',
+        title: 'Abnahme & Übergabe',
         body:
-          'Die Abnahme findet in der Regel direkt im Anschluss an die Montage statt, durchgeführt von unseren qualifizierten Monteuren. Separate Abnahmetermine richten wir gerne ein.',
-        note: 'Unsere Abnahmeberichte zeigen wir Ihnen auf Anfrage gerne vorab.',
+          'Nach der Montage stimmen wir die Übergabe mit Ihnen ab. Separate Abnahmetermine sind selbstverständlich möglich.',
+        note: 'Bei Fragen zur Ausführung sprechen Sie uns jederzeit direkt an.',
       },
     ],
   },
 
   references: {
     title: 'Referenzen',
-    subtitle: 'Die Bereiche, in denen wir seit Jahren zu Hause sind.',
+    subtitle: 'Hotelmontage und Prallschutzwände: unsere beiden Schwerpunkte.',
     lead:
-      'Ein Auszug aus unserer Arbeit. Für Referenzen in Ihrer Nähe oder zu einem bestimmten System sprechen Sie uns gerne an.',
+      'Ein Auszug aus unserer Montagearbeit im Hotelbereich und in Sporthallen.',
     sectors: [
       {
         id: 'sports-halls',
         title: 'Sporthallen',
         body:
-          'Prallschutz und Sportböden für Schul-, Vereins- und Mehrzweckhallen. Präzise ausgerichtet, sauber verfugt und so ausgeführt, dass die Halle jahrzehntelang hält.',
+          'Montage von Prallschutzwänden für Schul-, Vereins- und Mehrzweckhallen. Wir arbeiten präzise, sauber und abgestimmt auf das jeweilige System.',
       },
       {
         id: 'hotels',
         title: 'Hotels',
         body:
-          'Innenausbau für Hotellerie, Gewerbe und Wohnbau. Ausgeführt von erfahrenen Fachkräften, die wissen, dass im laufenden Betrieb jeder Tag zählt.',
+          'Montage von Hoteleinrichtungen und Innenausbauelementen – von Möbeln und Küchen über Türen und Badmöbel bis zu Regalen und weiteren Einbauten.',
       },
       {
         id: 'timber-houses',
@@ -235,39 +235,39 @@ export const de: SiteContent = {
     title: 'Über uns',
     subtitle: 'Ein Betrieb, vier Grundsätze.',
     lead: [
-      'SportPlus Montagen ist ein Montagebetrieb aus Rosenheim. Wir haben die Erfahrung, Schutzwände und Sportböden aller Art zu montieren – und den Anspruch, das jedes Mal richtig zu tun.',
-      'Wir arbeiten für Unternehmen genauso wie für private Bauherren. Was in jedem Fall gleich bleibt: ein fester Ansprechpartner, verbindliche Termine und eine Baustelle, die wir so hinterlassen, wie wir sie selbst vorfinden möchten.',
+      'SportPlus Montagen ist ein Montagebetrieb aus Rosenheim. Wir realisieren Montageleistungen im Innenausbau – mit Schwerpunkt auf Hoteleinrichtungen und Prallschutzwänden für Sporthallen.',
+      'Wir arbeiten bundesweit und überwiegend mit bauseits bereitgestellten Materialien. Was bei jedem Projekt gleich bleibt: ein fester Ansprechpartner, sorgfältige Montage und eine sauber organisierte Baustelle.',
     ],
     pillars: [
       {
         id: 'quality',
         title: 'Qualität',
         body:
-          'Unsere Projekte werden mängelfrei abgenommen. Das ist kein Werbeversprechen, sondern nachlesbar – die aktuellen Abnahmeberichte zeigen wir Ihnen auf Anfrage.',
+          'Qualität zeigt sich in der Ausführung: passgenaue Elemente, saubere Übergänge und eine Montage, die zum Raum und zum System passt.',
       },
       {
         id: 'reliability',
         title: 'Zuverlässigkeit',
         body:
-          'Zugesagt ist zugesagt. Sie erreichen uns während des gesamten Projekts unter derselben Nummer und wissen jederzeit, wo Ihr Auftrag steht.',
+          'Ein fester Ansprechpartner begleitet Ihr Projekt von der ersten Abstimmung bis zur Übergabe.',
       },
       {
         id: 'detail',
         title: 'Aufmerksamkeit zum Detail',
         body:
-          'Kanten, Fugen, Übergänge: Die Details entscheiden darüber, ob eine Halle nach fünf Jahren noch gut aussieht. Wie das bei uns aussieht, sehen Sie in den Referenzen.',
+          'Kanten, Fugen, Anschlüsse und Übergänge entscheiden über das Gesamtbild. Deshalb achten wir auf die Details, die eine Montage dauerhaft sauber wirken lassen.',
       },
       {
         id: 'punctuality',
         title: 'Termintreue',
         body:
-          'Wir haben bisher jedes Projekt termingerecht abgeschlossen und wollen das so halten. Verzögert sich eine Lieferung, suchen wir gemeinsam mit Ihnen nach einer Lösung, damit Ihr Termin steht.',
+          'Wir planen verbindlich und stimmen Termine transparent mit Ihnen ab. So wissen alle Beteiligten, wann welcher Arbeitsschritt ansteht.',
       },
     ],
     closing: {
       title: 'Überzeugen Sie sich selbst',
       body:
-        'Rufen Sie uns an oder schreiben Sie uns kurz, was ansteht. Sie bekommen eine ehrliche Einschätzung – auch dann, wenn wir nicht der richtige Betrieb für Ihr Projekt sind.',
+        'Rufen Sie uns an oder schreiben Sie uns kurz, was ansteht. Wir klären gemeinsam, ob und wie wir Ihr Projekt unterstützen können.',
       cta: 'Kontakt aufnehmen',
     },
   },
@@ -276,7 +276,7 @@ export const de: SiteContent = {
     title: 'Kontakt',
     subtitle: 'Wir freuen uns auf Ihre Anfrage.',
     lead:
-      'Beschreiben Sie kurz Ihr Projekt: Art der Halle oder des Gebäudes, ungefähre Fläche, gewünschtes System und Wunschtermin. Je mehr wir wissen, desto genauer fällt unsere Rückmeldung aus.',
+      'Beschreiben Sie kurz Ihr Projekt: Hotelbereich oder Sporthalle, welche Elemente montiert werden sollen, ungefähre Menge oder Fläche und Ihr Wunschtermin.',
     preferCallTitle: 'Am schnellsten geht es per Telefon',
     preferCallBody:
       'Ein kurzer Anruf klärt die meisten Fragen sofort – gerade wenn es um Termine oder Machbarkeit geht. Wenn es Ihnen lieber ist oder es später am Abend wird, schreiben Sie uns einfach über das Formular.',
@@ -311,7 +311,7 @@ export const de: SiteContent = {
 
   footer: {
     about:
-      'Prallschutzwände und Sportböden für Sporthallen, Innenausbau für Hotellerie und Gewerbe. Aus Rosenheim, überregional im Einsatz.',
+      'Prallschutzwände für Sporthallen sowie Hotelmontage und Innenausbau. Aus Rosenheim, bundesweit im Einsatz.',
     quickLinksTitle: 'Navigation',
     contactTitle: 'Kontakt',
     legalTitle: 'Rechtliches',

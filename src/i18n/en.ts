@@ -4,9 +4,9 @@ import type { SiteContent } from './types';
 export const en: SiteContent = {
   meta: {
     localeTag: 'en-US',
-    tagline: 'Impact protection walls and sports flooring, installed with precision.',
+    tagline: 'Hotel fit-out and sports-hall installation, carried out with precision.',
     description:
-      'SportPlus Montagen GmbH, based in Rosenheim, installs impact protection walls and sports flooring in sports halls, alongside interior fit-out for hospitality and commercial projects. On schedule, to standard, handed over without defects.',
+      'SportPlus Montagen GmbH, based in Rosenheim, is an installation partner for hotel furnishings, interior fit-out components and impact-protection walls in sports halls. Working throughout Germany.',
     skipToContent: 'Skip to content',
   },
 
@@ -33,7 +33,7 @@ export const en: SiteContent = {
   serviceArea: {
     title: 'Where we work',
     body:
-      'We are based in Rosenheim and work throughout Germany. Where your hall is matters less than you might think — send us the project and we will sort the travel out with it.',
+      'Based in Rosenheim, we work throughout Germany. Send us your project and we will coordinate the practical details with you.',
   },
 
   breadcrumb: {
@@ -53,9 +53,9 @@ export const en: SiteContent = {
     subtitle: 'What clients most often ask us before a project starts.',
     items: [
       {
-        question: 'How long does installing a sports hall take?',
+        question: 'What do you install in hotels?',
         answer:
-          'It depends on the size of the hall and the system chosen. We survey the areas on site and give you a date afterwards — and we keep to it.',
+          'We install hotel furnishings and interior fit-out components, including furniture, kitchens, doors, bathroom furniture, shelving and other fitted elements.',
       },
       {
         question: 'Do you handle strip-out and disposal too?',
@@ -77,34 +77,34 @@ export const en: SiteContent = {
 
   home: {
     hero: {
-      eyebrow: 'Installation specialists based in Rosenheim',
-      title: 'The installation partner you can rely on',
+      eyebrow: 'Interior fit-out & installation | Nationwide',
+      title: 'Installation for hotels and sports halls',
       subtitle:
-        'We install impact protection walls and sports flooring in sports halls — built to current technical standards, delivered on the agreed date and handed over without defects. We also take on interior fit-out for hospitality and commercial projects.',
+        'We install hotel furnishings and interior fit-out components, as well as impact-protection walls for sports halls. Precisely delivered, well organised and available to clients throughout Germany.',
       ctaPrimary: 'Request a quote',
       ctaSecondary: 'View our services',
     },
     stats: [
-      { value: 'Defect-free', label: 'Handover on our projects' },
-      { value: 'End to end', label: 'From strip-out to handover' },
-      { value: 'On schedule', label: 'Every project delivered on time' },
+      { value: 'Hotel fit-out', label: 'Furniture, kitchens, doors & fitted units' },
+      { value: 'Impact protection', label: 'Installation for sports halls' },
+      { value: 'Nationwide', label: 'Based in Rosenheim, working throughout Germany' },
     ],
     intro: {
-      title: 'Clean work, precise fit, on the agreed date',
+      title: 'Installation built around the project',
       body: [
-        'SportPlus Montagen specialises in installing impact protection walls and sports flooring in sports halls. What we build there gets used every day — by school classes and sports clubs. We work to match.',
-        'We take on work for construction firms, local authorities and private clients, from a single hall wall through to a complete interior fit-out.',
+        'SportPlus Montagen is an installation company for interior fit-out. Our focus is installing hotel furnishings and impact-protection walls for sports halls.',
+        'We mainly install materials supplied for the project. If needed, we can also include material supply in our quote — professional installation remains our core work.',
       ],
     },
     servicesTeaser: {
       title: 'What we take off your hands',
       subtitle:
-        'From stripping out the old elements to signing off the finished floor — handled end to end.',
+        'From a single fitted component to a complete hotel fit-out: we organise the installation cleanly, methodically and with one named contact.',
       cta: 'All services',
     },
     sectorsTeaser: {
-      title: 'Our sectors',
-      subtitle: 'The sectors we have worked in for years.',
+      title: 'Our main areas',
+      subtitle: 'Hotel fit-out and impact-protection walls: two areas where precision matters.',
       cta: 'View references',
     },
     process: {
@@ -114,22 +114,22 @@ export const en: SiteContent = {
         {
           title: 'Enquiry',
           body:
-            'You tell us briefly about the project — the hall, approximate area, target date. A phone call is enough.',
+            'You tell us briefly about the project — hotel fit-out or sports hall, scope, materials and target date. A phone call is enough.',
         },
         {
           title: 'Site survey',
           body:
-            'We measure the areas ourselves and settle the details the drawings do not show: substrate, reveals, bespoke elements.',
+            'Where needed, we coordinate dimensions, connections and specific installation situations with you on site.',
         },
         {
           title: 'Quote',
           body:
-            'You get a written, itemised quote you can check line by line — including strip-out and disposal where those apply.',
+            'You receive a written, itemised quote. We can include material supply where required.',
         },
         {
           title: 'Installation',
           body:
-            'We install on the agreed date, executed cleanly and handed over without defects.',
+            'We install the agreed scope cleanly, precisely and in line with the project requirements.',
         },
         {
           title: 'Handover',
@@ -141,41 +141,41 @@ export const en: SiteContent = {
     ctaBand: {
       title: 'Have a project coming up?',
       body:
-        'Send us the essentials — hall size, preferred system, target date. We will look at it and come back to you.',
+        'Send us the essentials — hotel fit-out or sports hall, the elements to be installed and the target date. We will look at it and come back to you.',
       cta: 'Get in touch',
     },
   },
 
   services: {
     title: 'Services',
-    subtitle: 'Installation, strip-out, surveying and handover from a single contractor.',
+    subtitle: 'Hotel fit-out, impact-protection walls and complementary installation work.',
     lead:
-      'We handle the whole sequence: strip out the old elements, survey the space, install the new system and walk the handover with you. One point of contact, one schedule, one result.',
+      'Installation is our focus: hotel furnishings and interior components on one side, impact-protection walls for sports halls on the other. We agree any complementary work around your specific project.',
     items: [
       {
         id: 'installation',
-        title: 'Installation & Service',
+        title: 'Hotel fit-out & interior installation',
         body:
-          'We install impact protection walls and sports flooring to current technical standards — accurately aligned, securely fixed and executed to specification. We work with all the common systems:',
+          'We install hotel furnishings and interior fit-out components to your specification — accurately fitted, securely fixed and tailored to each room:',
         bullets: [
-          'Protection walls with timber or metal frames, with fire protection on request',
-          'Foam and plywood panels, including Haro systems',
-          'Light 19 and Light 27 on level wall surfaces',
-          'Textile protective coverings',
+          'Hotel furniture and room furnishings',
+          'Kitchens and kitchenettes',
+          'Doors, bathroom furniture and shelving systems',
+          'Fitted components and individual interior installations',
         ],
         note:
-          'System not listed? Get in touch — we can usually find a way to make it work.',
+          'We normally install materials supplied for the project. If needed, we can also quote for supply and installation.',
       },
       {
         id: 'dismantling',
-        title: 'Strip-out & Disposal',
+        title: 'Impact-protection walls for sports halls',
         body:
-          'We remove old elements carefully and dispose of them properly. Specialist tooling lets us release protection walls and sports floors without damaging the building fabric underneath.',
+          'Impact-protection walls are our second main focus. We install common systems for school, club and multi-purpose halls accurately and professionally.',
         bullets: [
-          'Impact protection walls and sports floors of all construction types',
-          'Old grandstands and sports equipment',
-          'Fitted units, gates and doors',
-          'Proper disposal',
+          'Impact-protection walls with timber or metal frames',
+          'Foam, plywood and textile systems',
+          'Additional sports-hall elements where required',
+          'Installation to survey and specification',
         ],
       },
       {
