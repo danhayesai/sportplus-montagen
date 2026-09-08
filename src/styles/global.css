@@ -225,6 +225,24 @@ video {
   height: auto;
 }
 
+/*
+ * <source> holds no content, and browsers give it no display rule of their own
+ * because it normally sits inside a <picture> that lays out only its <img>.
+ *
+ * Figure.astro and Logo.astro both set `picture { display: contents }` so the
+ * <img> becomes a direct child of whatever grid or flex container wraps it.
+ * That promotes the <source> to a sibling item as well, and being an item
+ * blockifies it from inline to block, so it claims a full grid track or a flex
+ * slot plus its gap. In the hero it took the entire second column and pushed
+ * the image down a row; in the logo it added gaps that were never asked for.
+ *
+ * Hiding it has no cost: <picture> resolves which source to use in HTML, and
+ * that algorithm never consults CSS.
+ */
+source {
+  display: none;
+}
+
 input,
 button,
 textarea,
