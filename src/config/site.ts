@@ -43,12 +43,18 @@ export const site = {
   /**
    * Endpoint for the contact form.
    *
-   * The site is fully static, so form delivery runs through a third-party
-   * endpoint. Paste the form ID from your provider (for example Web3Forms or
-   * Formspree) here. While this is empty, the form falls back to a mailto link
-   * so no enquiry is ever silently lost.
+   * The site is fully static, so form delivery runs through Web3Forms, which
+   * relays the submission to the company mailbox.
+   *
+   * The access key is public by design: it names the destination mailbox
+   * rather than authenticating the account, and Web3Forms expects it in the
+   * posted form data, so it is visible in the page source either way.
+   *
+   * Emptying either value drops the form back to a mailto link, so no enquiry
+   * is silently lost if the service is ever changed.
    */
-  contactFormEndpoint: '',
+  contactFormEndpoint: 'https://api.web3forms.com/submit',
+  contactFormAccessKey: '00703524-b425-4edc-a42e-426ac0614158',
 
   /**
    * Sectors currently offered, in display order.

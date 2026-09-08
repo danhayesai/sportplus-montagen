@@ -14,9 +14,21 @@ const form = t.contact.form;
  * The site is static, so submissions go to a third-party form endpoint
  * configured in `src/config/site.ts`. Until one is set, the form degrades to a
  * mailto link rather than silently discarding an enquiry.
+ *
+ * Web3Forms identifies the destination mailbox by an access key posted with
+ * the form data, so both halves have to be present for a submission to reach
+ * anyone - hence the check below covers the key as well as the endpoint.
  */
 const endpoint = site.contactFormEndpoint;
-const hasEndpoint = endpoint.length > 0;
+const accessKey = site.contactFormAccessKey;
+const hasEndpoint = endpoint.length > 0 && accessKey.length > 0;
+
+// Web3Forms uses this as the subject line of the notification email. Naming
+// the site keeps it distinguishable from mail sent straight to the address.
+const mailSubject =
+  lang === 'de'
+    ? 'Neue Anfrage über sportplusmontagen.de'
+    : 'New enquiry via sportplusmontagen.de';
 const privacyHref = getPath('privacy', lang);
 ---
 
@@ -30,6 +42,14 @@ const privacyHref = getPath('privacy', lang);
   data-mail-subject={lang === 'de' ? 'Anfrage über die Website' : 'Website enquiry'}
   novalidate
 >
+  {
+    hasEndpoint && (
+      <>
+        <input type="hidden" name="access_key" value={accessKey} />
+        <input type="hidden" name="subject" value={mailSubject} />
+      </>
+    )
+  }
   <div class="contact-form__row">
     <div class="field">
       <label class="field__label" for="name">
