@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { legacyRedirects } from './src/data/legacy-redirects';
 
 /**
  * Astro configuration.
@@ -21,6 +22,8 @@ const base = process.env.PAGES_BASE || undefined;
 // pointing every canonical at a domain that is not live yet.
 const site = process.env.PAGES_SITE || 'https://www.sportplusmontagen.de';
 
+const legacyPaths = new Set(legacyRedirects.map((redirect) => redirect.from));
+
 export default defineConfig({
   site,
   base,
@@ -38,6 +41,18 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // A sitemap should list only canonical destinations. The redirect stubs
+      // for the old Wix URLs, and the language splitter at `/`, all canonical
+      // elsewhere, so listing them would just ask Google to crawl pages whose
+      // only job is to point at another one.
+      filter: (page) => {
+        // Entries arrive as absolute URLs, percent-encoded where the path is
+        // not ASCII and always carrying a trailing slash. The redirect map
+        // has neither, so both are undone before comparing.
+        const pathname = decodeURIComponent(new URL(page).pathname);
+        const path = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+        return path !== '' && !legacyPaths.has(path);
+      },
       i18n: {
         defaultLocale: 'de',
         locales: {

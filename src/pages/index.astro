@@ -10,8 +10,10 @@ import { withBase } from '../utils/url';
  * English to the English tree instead. Visitors without JavaScript get the
  * meta refresh, and the visible links are the final fallback.
  *
- * `noindex` keeps this staging post out of search results, while the hreflang
- * tags still point crawlers at both real language versions.
+ * The canonical link and hreflang tags point crawlers at the real language
+ * versions. This page stays indexable on purpose: `/` is the address the old
+ * site ranked under, so excluding it would discard that standing instead of
+ * handing it to `/de/`.
  */
 const origin = Astro.site ?? new URL(site.url);
 const germanPath = withBase('/de');
@@ -26,7 +28,6 @@ const englishUrl = new URL(englishPath, origin).href;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{site.shortName}</title>
-    <meta name="robots" content="noindex, follow" />
     <meta http-equiv="refresh" content={`0; url=${germanPath}`} />
     <link rel="canonical" href={germanUrl} />
     <link rel="alternate" hreflang="de" href={germanUrl} />

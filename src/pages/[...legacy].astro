@@ -1,0 +1,86 @@
+---
+import { legacyRedirects } from '../data/legacy-redirects';
+import { site } from '../config/site';
+import { withBase } from '../utils/url';
+
+/**
+ * Renders one stub page per entry in the legacy redirect map, so URLs from the
+ * old Wix site keep working after the cutover.
+ *
+ * This is a rest route, but it only ever produces the paths `getStaticPaths`
+ * returns - a static build emits nothing else - so it cannot shadow a real page
+ * or swallow anything that should reach the 404 handler.
+ */
+export function getStaticPaths() {
+  return legacyRedirects.map((redirect) => ({
+    // The leading slash belongs to the route, not the parameter.
+    params: { legacy: redirect.from.replace(/^\//, '') },
+    props: redirect,
+  }));
+}
+
+const { to, lang } = Astro.props;
+
+const target = withBase(to);
+const origin = Astro.site ?? new URL(site.url);
+
+// Absolute, because a canonical link has to be resolvable on its own. This is
+// the signal that consolidates the old URL's standing onto the new page, so it
+// matters more here than the refresh does.
+const canonicalUrl = new URL(target, origin).href;
+
+const copy =
+  lang === 'de'
+    ? {
+        title: 'Seite umgezogen',
+        body: 'Diese Seite hat eine neue Adresse.',
+        link: 'Weiter zur neuen Seite',
+      }
+    : {
+        title: 'Page moved',
+        body: 'This page has a new address.',
+        link: 'Continue to the new page',
+      };
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{copy.title}</title>
+
+    {/*
+      No `noindex` here, deliberately. The point of these stubs is to hand the
+      old URL's standing to the new one, and excluding them from the index
+      throws that away instead of passing it on.
+    */}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+
+    <script is:inline define:vars={{ target }}>
+      // replace() rather than assign(), so the back button returns to wherever
+      // the visitor came from instead of bouncing off this stub again.
+      window.location.replace(target);
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    {/* Only reached with both JavaScript and meta refresh unavailable. */}
+    <div>
+      <p>{copy.body}</p>
+      <a href={target}>{copy.link}</a>
+    </div>
+  </body>
+</html>
