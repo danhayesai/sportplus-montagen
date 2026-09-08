@@ -18,7 +18,7 @@ name: Deploy to GitHub Pages
 # ----------------------------------------------------------------------------
 
 env:
-  CUSTOM_DOMAIN: ''
+  CUSTOM_DOMAIN: 'www.sportplusmontagen.de'
 
 on:
   push:
