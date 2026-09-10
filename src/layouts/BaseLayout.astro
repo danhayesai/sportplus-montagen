@@ -144,6 +144,14 @@ const faqSchema = includeFaqSchema
       href={new URL(getAlternatePath(pathname, 'de'), origin).href}
     />
 
+    {/*
+      The .ico comes first because it is the format the widest range of
+      consumers understand, Google's favicon fetcher among them: it looks for
+      the declared icon and falls back to /favicon.ico at the domain root.
+      Declaring only an SVG left that fallback returning a 404. Browsers that
+      understand SVG take the second line instead, which is sharp at any size.
+    */}
+    <link rel="icon" href={withBase("/favicon.ico")} sizes="32x32" />
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     {/* iOS ignores SVG favicons, so it needs its own raster icon. */}
     <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
