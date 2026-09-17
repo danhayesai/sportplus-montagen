@@ -16,8 +16,8 @@ import { withBase } from '../utils/url';
  * handing it to `/de/`.
  */
 const origin = Astro.site ?? new URL(site.url);
-const germanPath = withBase('/de');
-const englishPath = withBase('/en');
+const germanPath = withBase('/de/');
+const englishPath = withBase('/en/');
 const germanUrl = new URL(germanPath, origin).href;
 const englishUrl = new URL(englishPath, origin).href;
 ---

@@ -69,7 +69,12 @@ export function getLanguageFromUrl(url: URL): Language {
 /**
  * Builds a root-relative href for a route in a given language, including the
  * base path when the site is served from a subdirectory.
- * `home` yields `/de` or `/en` rather than a trailing slash.
+ *
+ * Always ends in a slash. That is the form GitHub Pages serves for a directory
+ * build without redirecting, the form the canonical links and sitemap already
+ * used, and the form hreflang has to use: an alternate that points through a
+ * 301 is discarded by Google, and without hreflang the two language versions
+ * of a page read as duplicates of each other.
  */
 export function getPath(key: RouteKey, lang: Language): string {
   const route = routes.find((entry) => entry.key === key);
@@ -77,7 +82,7 @@ export function getPath(key: RouteKey, lang: Language): string {
     throw new Error(`Unknown route key: ${key}`);
   }
   const slug = route[lang];
-  return withBase(slug ? `/${lang}/${slug}` : `/${lang}`);
+  return withBase(slug ? `/${lang}/${slug}/` : `/${lang}/`);
 }
 
 /** Finds which route a pathname belongs to, regardless of its language. */

@@ -21,13 +21,13 @@ const pathname = Astro.url.pathname;
 
 const navItems = primaryNavKeys.map((key) => {
   const href = getPath(key, lang);
-  // Normalise trailing slashes so `/de` and `/de/` both match the home entry.
-  const normalised = pathname.replace(/\/$/, '') || pathname;
   return {
     key,
     href,
     label: getNavLabel(key, lang),
-    isCurrent: normalised === href,
+    // Both sides end in a slash: getPath() emits one, and trailingSlash:
+    // 'always' in the config guarantees the pathname carries one too.
+    isCurrent: pathname === href,
   };
 });
 ---

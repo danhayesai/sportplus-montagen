@@ -27,7 +27,12 @@ const legacyPaths = new Set(legacyRedirects.map((redirect) => redirect.from));
 export default defineConfig({
   site,
   base,
-  trailingSlash: 'ignore',
+  // Every URL ends in a slash, which is what GitHub Pages serves for a
+  // directory build without redirecting. 'ignore' let two spellings of one
+  // address coexist: canonical links carried the slash, hreflang and nav links
+  // did not, so hreflang pointed through a 301, Google dropped it, and judged
+  // the English home page a duplicate of the German one.
+  trailingSlash: 'always',
   build: {
     inlineStylesheets: 'auto',
   },

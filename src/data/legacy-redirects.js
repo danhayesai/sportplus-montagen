@@ -30,30 +30,30 @@
 export const legacyRedirects = [
   // German pages. The old site served German from the root; here it lives
   // under /de/, so every one of these moved.
-  { from: '/leistungen', to: '/de/leistungen', lang: 'de' },
-  { from: '/referenzen', to: '/de/referenzen', lang: 'de' },
-  { from: '/ueber-uns', to: '/de/ueber-uns', lang: 'de' },
-  { from: '/kontakt', to: '/de/kontakt', lang: 'de' },
-  { from: '/impressum', to: '/de/impressum', lang: 'de' },
-  { from: '/datenschutz', to: '/de/datenschutz', lang: 'de' },
+  { from: '/leistungen', to: '/de/leistungen/', lang: 'de' },
+  { from: '/referenzen', to: '/de/referenzen/', lang: 'de' },
+  { from: '/ueber-uns', to: '/de/ueber-uns/', lang: 'de' },
+  { from: '/kontakt', to: '/de/kontakt/', lang: 'de' },
+  { from: '/impressum', to: '/de/impressum/', lang: 'de' },
+  { from: '/datenschutz', to: '/de/datenschutz/', lang: 'de' },
 
   // The old per-sector pages are now sections of one references page.
-  { from: '/sporthallen', to: '/de/referenzen', lang: 'de' },
-  { from: '/hotels', to: '/de/referenzen', lang: 'de' },
+  { from: '/sporthallen', to: '/de/referenzen/', lang: 'de' },
+  { from: '/hotels', to: '/de/referenzen/', lang: 'de' },
 
   // Timber construction is no longer offered, so there is no matching page.
   // Services is the closest honest destination: it says what we do instead,
   // which serves the visitor better than a 404 or a bounce to the home page.
-  { from: '/holzhäuser', to: '/de/leistungen', lang: 'de' },
+  { from: '/holzhäuser', to: '/de/leistungen/', lang: 'de' },
 
   // English pages. The old site reused the German slugs under /en/.
-  { from: '/en/leistungen', to: '/en/services', lang: 'en' },
-  { from: '/en/referenzen', to: '/en/references', lang: 'en' },
-  { from: '/en/ueber-uns', to: '/en/about', lang: 'en' },
-  { from: '/en/kontakt', to: '/en/contact', lang: 'en' },
-  { from: '/en/impressum', to: '/en/imprint', lang: 'en' },
-  { from: '/en/datenschutz', to: '/en/privacy', lang: 'en' },
-  { from: '/en/sporthallen', to: '/en/references', lang: 'en' },
-  { from: '/en/hotels', to: '/en/references', lang: 'en' },
-  { from: '/en/holzhäuser', to: '/en/services', lang: 'en' },
+  { from: '/en/leistungen', to: '/en/services/', lang: 'en' },
+  { from: '/en/referenzen', to: '/en/references/', lang: 'en' },
+  { from: '/en/ueber-uns', to: '/en/about/', lang: 'en' },
+  { from: '/en/kontakt', to: '/en/contact/', lang: 'en' },
+  { from: '/en/impressum', to: '/en/imprint/', lang: 'en' },
+  { from: '/en/datenschutz', to: '/en/privacy/', lang: 'en' },
+  { from: '/en/sporthallen', to: '/en/references/', lang: 'en' },
+  { from: '/en/hotels', to: '/en/references/', lang: 'en' },
+  { from: '/en/holzhäuser', to: '/en/services/', lang: 'en' },
 ];

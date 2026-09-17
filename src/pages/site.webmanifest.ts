@@ -15,7 +15,7 @@ export const GET: APIRoute = () => {
     description:
       'Montage von Prallschutzwänden und Sportböden in Sporthallen. Innenausbau für Hotellerie und Gewerbe.',
     lang: 'de',
-    start_url: withBase('/de'),
+    start_url: withBase('/de/'),
     scope: withBase('/'),
     display: 'standalone',
     background_color: '#000000',
