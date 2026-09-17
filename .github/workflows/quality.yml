@@ -38,7 +38,7 @@ jobs:
       - name: Start preview server
         run: |
           npm run preview:ci &
-          npx wait-on http://127.0.0.1:4321/de --timeout 60000
+          npx wait-on http://127.0.0.1:4321/de/ --timeout 60000
 
       - name: Check for broken links
         run: npm run test:links
